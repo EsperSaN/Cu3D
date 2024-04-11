@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:41:48 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/10 22:46:51 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:09:57 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ char	*read_until_newline(int fd, char *st_mem);
 char	*copy_line_to_output(char *st_mem);
 char	*del_oldline_and_move_to_next_line(char *st_mem);
 char	*get_next_line(int fd);
-// char	*ft_strjoin(char const *s1, char const *s2);
-// size_t	ft_strlen(const char *s);
 
 #endif

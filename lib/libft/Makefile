@@ -6,7 +6,7 @@
 #    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 20:55:46 by pruenrua          #+#    #+#              #
-#    Updated: 2024/04/10 22:50:43 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/04/11 16:09:14 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,21 +23,26 @@ ft_memmove.c ft_atoi.c ft_strnstr.c ft_strlcat.c ft_substr.c ft_strjoin.c ft_str
 ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c\
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c $(GNL_FILE)
 
+HEADER_FILE = ./libft.h ./get_next_line/get_next_line.h
+
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstadd_back.c ft_lstsize.c ft_lstlast.c\
 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 B_OBJ = $(BONUS:.c=.o)
-
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
+$(NAME) : $(OBJ) $(B_OBJ)
+	ar -rcs $(NAME) $(OBJ) $(B_OBJ)
+
+%.o: %.c $(HEADER_FILE)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	rm -f $(OBJ) $(B_OBJ)
@@ -46,8 +51,5 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean $(NAME)
-
-bonus : $(OBJ) $(B_OBJ)
-	ar -rcs $(NAME) $(OBJ) $(B_OBJ)
 
 .PHONY: clean fclean all re bonus 
