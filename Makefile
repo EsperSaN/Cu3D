@@ -6,7 +6,7 @@
 #    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/04/11 16:09:21 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/04/12 02:28:39 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,23 @@ HEADER_FILE = $(SRC_DIR)cube.h \
 			  $(RENDER_DIR)render.h \
 			  $(SRC_DIR)define.h
 
+UTIL_FILE = puterror.c \
+		    putreport.c \
+			is_same_str.c \
+			is_right_extension.c \
+			is_file_valid.c \
+			is_file_readable.c \
+			get_rgba.c \
+			get_rad.c \
+			get_png_texture.c \
+			ft_cos.c \
+			ft_sin.c \
+			get_direction.c \
+			
+
+UTIL_DIR = $(SRC_DIR)util/
+UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
+
 # PARSER_FILE = 
 # PARSER_DIR = $(SRC_DIR)parser/
 # PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
@@ -50,7 +67,8 @@ HEADER_FILE = $(SRC_DIR)cube.h \
 # RENDER_DIR = $(SRC_DIR)render/
 # RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 
-SRCS = $(PARSER_SRCS) \
+SRCS = $(UTIL_SRCS) \
+	   $(PARSER_SRCS) \
 	   $(RENDER_SRCS) \
 	   ./src/main.c
 
