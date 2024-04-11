@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/11 15:59:04 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/04/12 02:51:12 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@
 # define PI 3.14123456789098765432123456789876543212345678909876543f
 # define FLOOR '0'
 # define WALL '1'
+
+// error msg
+
+#define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
+
+enum	e_direction
+{
+	N = 0,
+	E,
+	S,
+	W,
+	NE,
+	NW,
+	SE,
+	SW
+};
 
 typedef struct s_texture_data
 {
