@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/04/11 15:59:04 by pruenrua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DEFINE_H
+# define DEFINE_H
+
+// SETTING
+
+# define SCREEN_HIGHT 400
+# define SCREEN_WIDTH  400
+# define FIELD_OF_VIEW 60
+# define WIN_TITLE "RAY CASTING"
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.5
+
+// DONT CHANGE
+# define TRUE 1
+# define FALSE 0
+# define SUCCESS 1
+# define FAIL 0
+# define PI 3.14123456789098765432123456789876543212345678909876543f
+# define FLOOR '0'
+# define WALL '1'
+
+typedef struct s_texture_data
+{
+	int				width;
+	int				height;
+	unsigned int	**pixel_array;
+}	t_texture;
+
+typedef struct s_texture
+{
+	t_texture		*west_texture;
+	t_texture		*east_texture;
+	t_texture		*north_texture;
+	t_texture		*south_texture;
+	unsigned int	floor_color;
+	unsigned int	ceil_color;
+}	t_texture_assets;
+
+typedef struct s_maps_data
+{
+	char		**maps_ar;
+	int			maps_width;
+	int			maps_height;
+}	t_maps_data;
+
+typedef struct s_parser_raw_data
+{
+	char	*west_texture;
+	char	*east_texture;
+	char	*north_texture;
+	char	*south_texture;
+	int		floor_color[3];
+	int		ceil_color[3];
+	char	**maps_data;
+}	t_parser_data;
+
+typedef struct s_player_data
+{
+	float	pos_x;
+	float	pos_y;
+	float	angle;
+}	t_player_data;
+
+typedef struct s_data
+{
+	t_parser_data		*parser_data;
+	t_texture_assets	*texture;
+	t_maps_data			*maps;
+	t_player_data		*player;
+}	t_data;
+
+#endif
