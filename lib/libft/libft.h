@@ -14,6 +14,10 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stddef.h>
+# include <limits.h>
+# include <stdint.h>
+//# define SIZE_MAX 65535
 
 typedef struct s_list
 {

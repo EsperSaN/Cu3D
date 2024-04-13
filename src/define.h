@@ -34,6 +34,7 @@
 // error msg
 
 #define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
+#define WRG_ARG_NO "Invalid arguments number!"
 
 enum	e_direction
 {
@@ -56,10 +57,13 @@ typedef struct s_texture_data
 
 typedef struct s_texture
 {
+	//get_png_texture to assign this
 	t_texture		*west_texture;
 	t_texture		*east_texture;
 	t_texture		*north_texture;
 	t_texture		*south_texture;
+
+	// get_rgb to assign this
 	unsigned int	floor_color;
 	unsigned int	ceil_color;
 }	t_texture_assets;
@@ -73,6 +77,7 @@ typedef struct s_maps_data
 
 typedef struct s_parser_raw_data
 {
+	// check the file and str not above
 	char	*west_texture;
 	char	*east_texture;
 	char	*north_texture;
@@ -92,7 +97,9 @@ typedef struct s_player_data
 typedef struct s_data
 {
 	t_parser_data		*parser_data;
+	// check file before assign
 	t_texture_assets	*texture;
+	//ff before maps
 	t_maps_data			*maps;
 	t_player_data		*player;
 }	t_data;

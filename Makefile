@@ -59,9 +59,9 @@ UTIL_FILE = puterror.c \
 UTIL_DIR = $(SRC_DIR)util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
 
-# PARSER_FILE = 
-# PARSER_DIR = $(SRC_DIR)parser/
-# PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
+PARSER_FILE = parser.c
+PARSER_DIR = $(SRC_DIR)parser/
+PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
 # RENDER_FILE = 
 # RENDER_DIR = $(SRC_DIR)render/
