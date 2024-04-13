@@ -15,4 +15,6 @@
 
 # include "../cube.h"
 
+t_parser_data	*init_map(t_parser_data *data, int width, int height);
+t_parser_data	*main_parser(char *file_name);
 #endif

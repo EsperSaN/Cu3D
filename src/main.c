@@ -13,12 +13,18 @@
 #include "./cube.h"
 
 
-int	main()
+int	main(int ac, char **av)
 {
-	// t_data	*d;
+	t_data	d;
 
-	// if (ac != 2)
-	// 	return (1);
+	if (ac != 2)
+		return (puts(WRG_ARG_NO), 1);
+
+	(void)av;
+	d.parser_data = main_parser(av[1]);
+	
+	//parser
+	//check_and_assign_data
 	puts("done");
 	// d = init();
 	// d->parser_data = data_parser(av); // do the read file
