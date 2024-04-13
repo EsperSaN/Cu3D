@@ -77,8 +77,8 @@ typedef struct s_parser_raw_data
 	char	*east_texture;
 	char	*north_texture;
 	char	*south_texture;
-	int		floor_color[3];
-	int		ceil_color[3];
+	int		floor_color[4];
+	int		ceil_color[4];
 	char	**maps_data;
 }	t_parser_data;
 
