@@ -13,7 +13,7 @@
 NAME = libft.a
 
 GNL_DIR = ./get_next_line/
-GNL = get_next_line.c get_next_line_utils.c
+GNL = get_next_line.c
 GNL_FILE = $(addprefix $(GNL_DIR), $(GNL))
 
 SRC = ft_bzero.c ft_isdigit.c ft_memcpy.c ft_strlcpy.c ft_tolower.c ft_isalnum.c\

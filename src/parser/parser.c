@@ -30,6 +30,18 @@ t_parser_data	*init_map(t_parser_data *data, int width, int height)
 	return (data);
 }
 
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
+}
+
 void	print_map_data(t_parser_data *res)
 {
 	int				i;
@@ -46,15 +58,37 @@ void	print_map_data(t_parser_data *res)
 	}
 }
 
-int	file_reader(t_parser_data *data, int fd)
+char	**file_reader(int fd)
 {
-	
+	char	*tmp;
+	char	*chdata;
+	char	**map;
+	char	*buffer;
+	int		read_count;
+
+	read_count = 1;
+	buffer = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
+	buffer[BUFFER_SIZE] = '\0';
+	chdata = ft_calloc(sizeof(char), 1);
+	while (read_count > 0)
+	{
+		tmp = chdata;
+		read_count = read(fd, buffer, BUFFER_SIZE);
+		chdata = ft_strjoin(tmp, buffer);
+		free(tmp);
+	}
+	if (read_count < -1)
+		perror("FILE READER : ");
+	map = ft_split(chdata, '\n');
+	free(chdata);
+	return (map);
 }
 
 t_parser_data	*main_parser(char *file_name)
 {
 	t_parser_data	*res;
 	int				fd;
+	char			**map;
 
 	res = ft_calloc(sizeof(t_parser_data), 1);
 	init_map(res, 3, 3);
@@ -66,6 +100,8 @@ t_parser_data	*main_parser(char *file_name)
 		fd = open(file_name, O_RDONLY | O_CLOEXEC);
 		if (fd < 0)
 			return (perror("PARSER ERROR : "), NULL);
+		map = file_reader(fd);
 	}
+	print_map(map);
 	return (res);
 }
