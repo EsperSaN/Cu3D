@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/12 02:51:12 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:58:35 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 // SETTING
 
-# define SCREEN_HIGHT 400
-# define SCREEN_WIDTH  400
+# define SCREEN_HIGHT 800
+# define SCREEN_WIDTH  1600
 # define FIELD_OF_VIEW 60
 # define WIN_TITLE "RAY CASTING"
 # define MOVE_SPEED 0.05
@@ -48,6 +48,12 @@ enum	e_direction
 	SW
 };
 
+typedef struct s_position_int
+{
+	int	x;
+	int	y;
+}	t_int_pos;
+
 typedef struct s_texture_data
 {
 	int				width;
@@ -70,7 +76,7 @@ typedef struct s_texture
 
 typedef struct s_maps_data
 {
-	char		**maps_ar;
+	char		**maps_array;
 	int			maps_width;
 	int			maps_height;
 }	t_maps_data;
@@ -82,8 +88,8 @@ typedef struct s_parser_raw_data
 	char	*east_texture;
 	char	*north_texture;
 	char	*south_texture;
-	int		floor_color[4];
-	int		ceil_color[4];
+	int		floor_color;
+	int		ceil_color;
 	char	**maps_data;
 }	t_parser_data;
 
@@ -96,6 +102,10 @@ typedef struct s_player_data
 
 typedef struct s_data
 {
+	mlx_t				*mlx;
+	mlx_image_t			*img_game;
+	mlx_image_t			*img_maps;
+	mlx_image_t			*data;
 	t_parser_data		*parser_data;
 	// check file before assign
 	t_texture_assets	*texture;
