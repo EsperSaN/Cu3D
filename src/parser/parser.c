@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <tpoungla@student.42.fr>          #+#  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-04-13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024-04-13 15:10:32 by tpoungla         ###   ########.fr       */
+/*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
+/*   Updated: 2024/04/25 18:31:54 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	print_map_data(t_parser_data *res)
 
 	i = 0;
 
-	printf("%s\n%s\n%s\n%s\n", res->west_texture, res->south_texture, res->north_texture, res->east_texture);
-	printf("%d %d %d %d\n", res->floor_color[0], res->floor_color[1], res->floor_color[2], res->floor_color[3]);
-	printf("%d %d %d %d\n", res->ceil_color[0], res->ceil_color[1], res->ceil_color[2], res->ceil_color[3]);
+	dprintf(2,"%s\n%s\n%s\n%s\n", res->west_texture, res->south_texture, res->north_texture, res->east_texture);
+	// printf("%d %d %d %d\n", res->floor_color[0], res->floor_color[1], res->floor_color[2], res->floor_color[3]);
+	// printf("%d %d %d %d\n", res->ceil_color[0], res->ceil_color[1], res->ceil_color[2], res->ceil_color[3]);
 	while (res->maps_data[i])
 	{
-		printf("i = {%s\n}",res->maps_data[i]);
+		printf("%d = {%s\n}", i ,res->maps_data[i]);
 		i++;
 	}
 }
@@ -102,6 +102,15 @@ t_parser_data	*main_parser(char *file_name)
 			return (perror("PARSER ERROR : "), NULL);
 		map = file_reader(fd);
 	}
-	print_map(map);
+	res->north_texture = get_texture_file(map, "NO");
+	res->south_texture = get_texture_file(map, "SO");
+	res->east_texture = get_texture_file(map, "EA");
+	res->west_texture = get_texture_file(map, "WE");
+	dprintf(2, "-----------------\n");
+
+	res->maps_data = get_maps_array(map);
+	// res->ceil_color = get_color(map, "F");
+	// res->ceil_color = get_color(map, "C");
+	print_map_data(res);
 	return (res);
 }
