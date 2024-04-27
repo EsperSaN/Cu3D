@@ -6,7 +6,7 @@
 #    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/04/12 02:28:39 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/04/27 09:47:57 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,18 +54,22 @@ UTIL_FILE = puterror.c \
 			ft_cos.c \
 			ft_sin.c \
 			get_direction.c \
+			free_two_d.c
 			
 
 UTIL_DIR = $(SRC_DIR)util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
 
-PARSER_FILE = parser.c read.c
+PARSER_FILE = parser.c get_texture_file.c get_maps_array.c read.c
 PARSER_DIR = $(SRC_DIR)parser/
 PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
-# RENDER_FILE = 
-# RENDER_DIR = $(SRC_DIR)render/
-# RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
+RENDER_FILE = clear_image.c\
+			  draw_map.c\
+			  draw_squre.c\
+			  
+RENDER_DIR = $(SRC_DIR)render/
+RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 
 SRCS = $(UTIL_SRCS) \
 	   $(PARSER_SRCS) \
@@ -91,6 +95,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
 
 clean :
+	make -C $(LIB_FT_DIR) clean
 	rm -f $(OBJS)
 
 fclean : clean

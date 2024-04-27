@@ -6,14 +6,14 @@
 #    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 20:55:46 by pruenrua          #+#    #+#              #
-#    Updated: 2024/04/11 16:09:14 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/04/27 09:42:54 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 GNL_DIR = ./get_next_line/
-GNL = get_next_line.c
+GNL = get_next_line_utils.c get_next_line.c
 GNL_FILE = $(addprefix $(GNL_DIR), $(GNL))
 
 SRC = ft_bzero.c ft_isdigit.c ft_memcpy.c ft_strlcpy.c ft_tolower.c ft_isalnum.c\

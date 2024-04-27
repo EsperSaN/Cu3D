@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/10 22:22:13 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:03:37 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 #define RENDER_H
 
 #include "../cube.h"
+
+void	draw_square(mlx_image_t *image, t_int_pos pos, int size, int color);
+void	clear_image(mlx_image_t *frm, int color);
+void	draw_maps(mlx_image_t *image, t_maps_data *maps_data);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/12 02:33:51 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:09:21 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ bool		is_file_valid(char *file_name, char *extension);
 int			get_rgba(int r, int g, int b, int a);
 float		abs_deg(float dregree);
 t_texture	*get_texture_png(char *tex_file);
-
+void		free2d(char **ptr);
 #endif
