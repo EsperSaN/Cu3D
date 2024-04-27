@@ -6,7 +6,7 @@
 #    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/04/21 21:34:27 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/04/27 09:47:57 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
 
 clean :
+	make -C $(LIB_FT_DIR) clean
 	rm -f $(OBJS)
 
 fclean : clean
