@@ -58,11 +58,10 @@ void	print_map_data(t_parser_data *res)
 	}
 }
 
-char	**file_reader(int fd)
+char	*file_reader(int fd)
 {
 	char	*tmp;
 	char	*chdata;
-	char	**map;
 	char	*buffer;
 	int		read_count;
 
@@ -75,42 +74,37 @@ char	**file_reader(int fd)
 		tmp = chdata;
 		read_count = read(fd, buffer, BUFFER_SIZE);
 		chdata = ft_strjoin(tmp, buffer);
+		buffer[read_count] = '\0';
 		free(tmp);
 	}
 	if (read_count < -1)
 		perror("FILE READER : ");
-	map = ft_split(chdata, '\n');
-	free(chdata);
-	return (map);
+	// map = ft_split(chdata, '\n');
+	// word_cut(chdata);
+	// free(chdata);
+	return (chdata);
 }
 
 t_parser_data	*main_parser(char *file_name)
 {
 	t_parser_data	*res;
 	int				fd;
-	char			**map;
+	char			*data;
 
 	res = ft_calloc(sizeof(t_parser_data), 1);
-	init_map(res, 3, 3);
-	print_map_data(res);
+	// init_map(res, 3, 3);
+	// print_map_data(res);
 	if (!is_file_valid(file_name, ".cub"))
 		return (0);
-	else
-	{
-		fd = open(file_name, O_RDONLY | O_CLOEXEC);
-		if (fd < 0)
-			return (perror("PARSER ERROR : "), NULL);
-		map = file_reader(fd);
-	}
-	res->north_texture = get_texture_file(map, "NO");
-	res->south_texture = get_texture_file(map, "SO");
-	res->east_texture = get_texture_file(map, "EA");
-	res->west_texture = get_texture_file(map, "WE");
-	dprintf(2, "-----------------\n");
-
-	res->maps_data = get_maps_array(map);
-	// res->ceil_color = get_color(map, "F");
-	// res->ceil_color = get_color(map, "C");
-	print_map_data(res);
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	data = file_reader(fd);
+	//find height
+	//find width
+	//assign map value
+	//free data
+	//check all
+	// close(fd);
 	return (res);
 }

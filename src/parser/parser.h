@@ -19,9 +19,11 @@
 t_parser_data	*init_map(t_parser_data *data, int width, int height);
 void			print_map(char **map);
 void			print_map_data(t_parser_data *res);
-char			**file_reader(int fd);
+char			*file_reader(int fd);
 t_parser_data	*main_parser(char *file_name);
 char			*get_texture_file(char **map, char *indicater);
 char			**get_maps_array(char **maps);
+char            **word_cut(char *data);
+
 
 #endif

@@ -60,7 +60,7 @@ UTIL_FILE = puterror.c \
 UTIL_DIR = $(SRC_DIR)util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
 
-PARSER_FILE = parser.c get_texture_file.c get_maps_array.c
+PARSER_FILE = parser.c get_texture_file.c get_maps_array.c read.c
 PARSER_DIR = $(SRC_DIR)parser/
 PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
