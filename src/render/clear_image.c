@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   clear_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 16:03:37 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/04/21 15:42:46 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/04/21 15:43:24 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-#define RENDER_H
+#include "./render.h"
 
-#include "../cube.h"
+void	clear_image(mlx_image_t *frm, int color)
+{
+	uint32_t	y;
+	uint32_t	x;
 
-void	draw_square(mlx_image_t *image, t_int_pos pos, int size, int color);
-void	clear_image(mlx_image_t *frm, int color);
-void	draw_maps(mlx_image_t *image, t_maps_data *maps_data);
-
-
-#endif
+	y = 0;
+	while (y < frm->width)
+	{
+		x = 0;
+		while (x < frm->height)
+		{
+			mlx_put_pixel(frm, y, x, color);
+			x++;
+		}
+		y++;
+	}
+}
