@@ -12,6 +12,18 @@
 
 #include "parser.h"
 
+int scanner(char *data)
+{
+    int i;
+
+    i = 0;
+    while (data[i])
+    {
+        
+        i++;
+    }
+    return (1);
+}
 // int try_read(char *file_name)
 // {
 //     int     fd;
@@ -27,23 +39,33 @@
 //     //return map
 // }
 
-char    **word_cut(char *data)
-{
-    int     i;
-    int     k;
-    char    **res;
-    // int     n;
+// int    find_height(char *data)
+// {
+//     int     i;
+//     int     k;
 
-    i = 0;
-    // n = 0;
-    k = 0;
-    while (data[i])
-    {
-        if (data[i] == '\n')
-            k++;
-        i++; 
-    }
+//     i = 0;
+//     k = 0;
+//     while (data[i])
+//     {
+//         if (data[i] == '\n')
+//             k++;
+//         i++; 
+//     }
 
-    // printf("k = %d\n", k);
-    return (res);
-}
+//     printf("height = %d\n", k);
+//     return (k);
+// }
+
+// int    find_width(char *data, int h)
+// {
+//     int i;
+//     int k;
+
+//     k = 0;
+//     i = 0;
+//     while (i < h)
+//     {
+
+//     }
+// }

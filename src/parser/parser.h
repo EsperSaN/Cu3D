@@ -23,7 +23,7 @@ char			*file_reader(int fd);
 t_parser_data	*main_parser(char *file_name);
 char			*get_texture_file(char **map, char *indicater);
 char			**get_maps_array(char **maps);
-char            **word_cut(char *data);
+// int             find_height(char *data);
 
 
 #endif

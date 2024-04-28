@@ -79,6 +79,7 @@ char	*file_reader(int fd)
 	}
 	if (read_count < -1)
 		perror("FILE READER : ");
+	// scan
 	// map = ft_split(chdata, '\n');
 	// word_cut(chdata);
 	// free(chdata);
@@ -106,5 +107,6 @@ t_parser_data	*main_parser(char *file_name)
 	//free data
 	//check all
 	// close(fd);
+	(void)data;
 	return (res);
 }
