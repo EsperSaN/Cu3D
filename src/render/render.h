@@ -18,6 +18,8 @@
 void	draw_square(mlx_image_t *image, t_int_pos pos, int size, int color);
 void	clear_image(mlx_image_t *frm, int color);
 void	draw_maps(mlx_image_t *image, t_maps_data *maps_data);
+bool    prepare_render(t_data *data);
+void    main_render(void *d);
 
 
 #endif

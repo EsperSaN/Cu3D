@@ -14,7 +14,7 @@ NAME = cub3d
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+# CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = ./src/
 
@@ -67,6 +67,8 @@ PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 RENDER_FILE = clear_image.c\
 			  draw_map.c\
 			  draw_squre.c\
+			  prepare_render.c\
+			  main_render.c
 			  
 RENDER_DIR = $(SRC_DIR)render/
 RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))

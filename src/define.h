@@ -15,8 +15,6 @@
 
 // SETTING
 
-# define SCREEN_HIGHT 800
-# define SCREEN_WIDTH  1600
 # define FIELD_OF_VIEW 60
 # define WIN_TITLE "RAY CASTING"
 # define MOVE_SPEED 0.05

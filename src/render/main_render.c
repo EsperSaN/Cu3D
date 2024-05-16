@@ -12,7 +12,12 @@
 
 #include "render.h"
 
-void	main_render()
+void	main_render(void *d)
 {
-	
+	t_data *data;
+
+    data = (t_data *)d;
+
+    //clear_image(data->img_game, get_rgba(255, 0, 0, 255));
+    dprintf(2, "herer");
 }

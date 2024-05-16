@@ -23,4 +23,8 @@ int	main(int ac, char **av)
 		return (1);
 	(void)av;
 	d->parser_data = main_parser(av[1]);
+	if (prepare_render(d) == false)
+		return (1);
+	mlx_loop_hook(d->mlx, main_render, (void *)d);
+	mlx_loop(d->mlx);
 }
