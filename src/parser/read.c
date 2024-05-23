@@ -27,23 +27,23 @@
 //     //return map
 // }
 
-char    **word_cut(char *data)
-{
-    int     i;
-    int     k;
-    char    **res;
-    // int     n;
+// char    **word_cut(char *data)
+// {
+//     int     i;
+//     int     k;
+//     char    **res;
+//     // int     n;
 
-    i = 0;
-    // n = 0;
-    k = 0;
-    while (data[i])
-    {
-        if (data[i] == '\n')
-            k++;
-        i++; 
-    }
+//     i = 0;
+//     // n = 0;
+//     k = 0;
+//     while (data[i])
+//     {
+//         if (data[i] == '\n')
+//             k++;
+//         i++; 
+//     }
 
-    // printf("k = %d\n", k);
-    return (res);
-}
+//     // printf("k = %d\n", k);
+//     return (res);
+// }

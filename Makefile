@@ -24,20 +24,13 @@ LIB_FT_DIR = $(LIB_DIR)/libft
 LIB_FILE = $(LIB_FT_DIR)/libft.a \
 		   $(LIB_MLX_DIR)/build/libmlx42.a
 
-# LIB_LINK = --library-directory $(LIB_FT_DIR) --library-directory $(LIB_MLX_DIR)build 
-# INCLUDE_FLAG 	-I $(LIB_FT_DIR)/ \
-# 			 	-I $(LIB_FT_DIR)/get_next_line/\
-# 			 	-I $(LIB_MLX_DIR)/build/ \
-# 			 	-I $(LIB_MLX_DIR)/include/MLX42/ \
-# 			 	-I $(SRC_DIR)/include/
-
+#--library-directory
 LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build
 INCLUDE_FLAG = -I$(LIB_FT_DIR)/ \
 			   -I$(LIB_FT_DIR)/get_next_line/\
 			   -I$(LIB_MLX_DIR)/build/ \
 			   -I$(LIB_MLX_DIR)/include/MLX42/ \
 			   -Iinclude/
-# INCLUDE_FLAG = -Ilibft -Ilibmlx42 // need to clarify this
 
 UNAME = $(shell uname)
 ifeq ($(UNAME), Linux)
@@ -87,7 +80,7 @@ SRCS = $(UTIL_SRCS) \
 
 
 
-OBJS = $(SRCS:.c=.o) 
+OBJS = $(SRCS:.c=.o)
 
 %.o: %.c $(HEADER_FILE)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
