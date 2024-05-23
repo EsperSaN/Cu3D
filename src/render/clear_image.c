@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./render.h"
+#include "render.h"
 
 void	clear_image(mlx_image_t *frm, int color)
 {

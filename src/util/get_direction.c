@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./util.h"
+#include "util.h"
 
 int	get_direction(float degree_angle)
 {

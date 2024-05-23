@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./render.h"
+#include "render.h"
 
 static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)
 {

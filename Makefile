@@ -16,16 +16,27 @@ CC = clang
 
 # CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
-SRC_DIR = ./src/
+SRC_DIR = ./src
 
-LIB_DIR = ./lib/
-LIB_MLX_DIR = $(LIB_DIR)MLX42/
-LIB_FT_DIR = $(LIB_DIR)libft/
-LIB_FILE = $(LIB_FT_DIR)libft.a \
-		   $(LIB_MLX_DIR)build/libmlx42.a
+LIB_DIR = ./lib
+LIB_MLX_DIR = $(LIB_DIR)/MLX42
+LIB_FT_DIR = $(LIB_DIR)/libft
+LIB_FILE = $(LIB_FT_DIR)/libft.a \
+		   $(LIB_MLX_DIR)/build/libmlx42.a
 
-LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build
-INCLUDE_FLAG = -I$(LIB_FT_DIR) -I$(LIB_MLX_DIR)build
+# LIB_LINK = --library-directory $(LIB_FT_DIR) --library-directory $(LIB_MLX_DIR)build 
+# INCLUDE_FLAG 	-I $(LIB_FT_DIR)/ \
+# 			 	-I $(LIB_FT_DIR)/get_next_line/\
+# 			 	-I $(LIB_MLX_DIR)/build/ \
+# 			 	-I $(LIB_MLX_DIR)/include/MLX42/ \
+# 			 	-I $(SRC_DIR)/include/
+
+LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build 
+INCLUDE_FLAG = -I$(LIB_FT_DIR)/ \
+			   -I$(LIB_FT_DIR)/get_next_line/\
+			   -I$(LIB_MLX_DIR)/build/ \
+			   -I$(LIB_MLX_DIR)/include/MLX42/ \
+			   -I$(SRC_DIR)/include/
 # INCLUDE_FLAG = -Ilibft -Ilibmlx42 // need to clarify this
 
 UNAME = $(shell uname)
@@ -37,11 +48,6 @@ else
 MLXLINK_FLAG = -lglfw3 -lopengl32 -lgdi32
 endif
 
-HEADER_FILE = $(SRC_DIR)cube.h \
-			  $(PARSER_DIR)parser.h \
-			  $(RENDER_DIR)render.h \
-			  $(SRC_DIR)define.h\
-			  $(UTIL_DIR)util.h\
 
 UTIL_FILE = puterror.c \
 		    putreport.c \
@@ -58,11 +64,11 @@ UTIL_FILE = puterror.c \
 			free_two_d.c
 			
 
-UTIL_DIR = $(SRC_DIR)util/
+UTIL_DIR = $(SRC_DIR)/util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
 
 PARSER_FILE = parser.c get_texture_file.c get_maps_array.c read.c
-PARSER_DIR = $(SRC_DIR)parser/
+PARSER_DIR = $(SRC_DIR)/parser/
 PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
 RENDER_FILE = clear_image.c\
@@ -71,7 +77,7 @@ RENDER_FILE = clear_image.c\
 			  prepare_render.c\
 			  main_render.c
 			  
-RENDER_DIR = $(SRC_DIR)render/
+RENDER_DIR = $(SRC_DIR)/render/
 RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 
 SRCS = $(UTIL_SRCS) \
@@ -95,7 +101,7 @@ libft :
 	@make -C $(LIB_FT_DIR)
 
 libmlx :
-	@cmake $(LIB_MLX_DIR) -B $(LIB_MLX_DIR)build && make -C $(LIB_MLX_DIR)build -j4
+	@cmake $(LIB_MLX_DIR) -B $(LIB_MLX_DIR)/build && make -C $(LIB_MLX_DIR)/build -j4
 
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
@@ -106,7 +112,7 @@ clean :
 
 fclean : clean
 	make -C $(LIB_FT_DIR) fclean
-	make -C $(LIB_MLX_DIR)build/ clean
+	make -C $(LIB_MLX_DIR)/build/ clean
 	rm -f $(NAME)
 
 re : fclean all

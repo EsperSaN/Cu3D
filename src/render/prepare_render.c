@@ -1,4 +1,4 @@
-#include "./render.h"
+#include "render.h"
 
 # define WIN_WIDTH 800
 # define WIN_HIGHT 800

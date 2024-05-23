@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./render.h"
+#include "render.h"
 
 void	draw_square(mlx_image_t *image, t_int_pos pos, int size, int color)
 {

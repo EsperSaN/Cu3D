@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./util.h"
+#include "util.h"
 
 // this function will mallc the new int array 
 // according to the each pixel of the png propery

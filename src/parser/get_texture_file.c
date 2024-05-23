@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./parser.h"
+#include "parser.h"
 // didnt get the out rager erg yet
 char	*get_texture_file(char **map, char *indicater)
 {

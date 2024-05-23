@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./parser.h"
+#include "parser.h"
 
 #define MAPS_CHARSET "10NSWE\n "
 bool	is_only_char(char *str, char *to_have_str)

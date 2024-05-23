@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./util.h"
+#include "util.h"
 
 int	get_rgba(int r, int g, int b, int a)
 {

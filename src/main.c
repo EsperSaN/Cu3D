@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cube.h"
+#include "cube.h"
 
 	// branch name/topic/feof
 	// header -I
