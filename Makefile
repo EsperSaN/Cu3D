@@ -31,12 +31,12 @@ LIB_FILE = $(LIB_FT_DIR)/libft.a \
 # 			 	-I $(LIB_MLX_DIR)/include/MLX42/ \
 # 			 	-I $(SRC_DIR)/include/
 
-LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build 
+LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build
 INCLUDE_FLAG = -I$(LIB_FT_DIR)/ \
 			   -I$(LIB_FT_DIR)/get_next_line/\
 			   -I$(LIB_MLX_DIR)/build/ \
 			   -I$(LIB_MLX_DIR)/include/MLX42/ \
-			   -I$(SRC_DIR)/include/
+			   -Iinclude/
 # INCLUDE_FLAG = -Ilibft -Ilibmlx42 // need to clarify this
 
 UNAME = $(shell uname)
