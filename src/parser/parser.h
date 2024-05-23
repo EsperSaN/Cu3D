@@ -14,6 +14,7 @@
 # define PARSER_H
 
 # include "../cube.h"
+
 # define BUFFER_SIZE 1
 
 t_parser_data	*init_map(t_parser_data *data, int width, int height);

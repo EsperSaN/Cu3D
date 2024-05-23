@@ -40,7 +40,8 @@ endif
 HEADER_FILE = $(SRC_DIR)cube.h \
 			  $(PARSER_DIR)parser.h \
 			  $(RENDER_DIR)render.h \
-			  $(SRC_DIR)define.h
+			  $(SRC_DIR)define.h\
+			  $(UTIL_DIR)util.h\
 
 UTIL_FILE = puterror.c \
 		    putreport.c \
