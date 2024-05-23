@@ -8,6 +8,7 @@
 # define MLX_IMG_FAIL "MLX FAIL TO CREATE IMG"
 # define DEMO_MODE true
 
+
 bool init_window(t_data *data)
 {
     data->mlx = mlx_init(WIN_WIDTH, WIN_HIGHT, WIN_TITLE, WIN_RESIZE);
@@ -21,27 +22,34 @@ bool init_window(t_data *data)
         data->img_maps = mlx_new_image(data->mlx, WIN_WIDTH / 2, WIN_HIGHT);
         if (data->img_maps == NULL)
             return (puterror(MLX_IMG_FAIL), false);
+        if (mlx_image_to_window(data->mlx, data->img_game, 0, 0) == -1 ||\
+                mlx_image_to_window(data->mlx, data->img_maps, WIN_WIDTH/2, 0) == -1)
+            return (puterror(MLX_IMG_FAIL), false);
     }
     else
     {
-        data->img_game = mlx_new_image(data->mlx, WIN_WIDTH / 2, WIN_HIGHT);
-        if (data->img_game == NULL)
+        data->img_game = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HIGHT);
+        if (data->img_game == NULL || mlx_image_to_window(data->mlx, data->img_game, 0, 0) == -1)
             return (puterror(MLX_IMG_FAIL), false);
     }
-    mlx_image_t *text = mlx_put_string(data->mlx, "LOADING....", data->img_game->width/2, data->img_game->height /2);
-    mlx_image_to_window(data->mlx, text, 0 ,0);
-    mlx_image_to_window(data->mlx, data->img_game, 0, 0);
+    return (true);
 }
 
+bool init_event_hook(t_data *data)
+{
+    return (true);
+}
 bool init_first_frame(t_data *data)
 {
-
+    return (true);
 }
 
 bool prepare_render(t_data *data)
 {
-    init_window(data);
-    init_first_frame(data);
-	mlx_image_to_window(data->mlx, data->img_game, 0, 0);
+    if (init_window(data) == false || \
+            init_event_hook(data) == false || \
+                init_first_frame(data) == false)
+        return (false);
+	//mlx_image_to_window(data->mlx, data->img_game, 0, 0);
     return (true);
 }

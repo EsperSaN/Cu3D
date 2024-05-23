@@ -52,7 +52,7 @@ char	**get_maps_array(char **maps)
 			break ;
 		i++;
 	}
-	dprintf(2, "maps[%d] -> %s\n", i, maps[i]);
+	//dprintf(2, "maps[%d] -> %s\n", i, maps[i]);
 	int count = 0;
 	int tmpi = i;
 	while (maps[i] && is_only_char(maps[i], MAPS_CHARSET))
@@ -60,16 +60,16 @@ char	**get_maps_array(char **maps)
 		i++;
 		count++;
 	}
-	dprintf(2, "count is %d out of count == [%s]\n", count,maps[i]);
+	//dprintf(2, "count is %d out of count == [%s]\n", count,maps[i]);
 	ret = ft_calloc(sizeof(char *), count + 1);
 	i = 0;
-	dprintf(2, "here1");
+	//dprintf(2, "here1");
 	while (i < count)
 	{
 		ret[i] = ft_substr(maps[tmpi], 0, ft_strlen(maps[tmpi]));
 		i++;
 		tmpi++;
 	}
-	dprintf(2, "%s\n", ret[0]);
+	//dprintf(2, "%s\n", ret[0]);
 	return (ret);
 }

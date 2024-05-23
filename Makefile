@@ -87,6 +87,9 @@ OBJS = $(SRCS:.c=.o)
 
 all : libft libmlx $(NAME)
 
+val : $(NAME)
+	valgrind --leak-check=full  -s ./$(NAME) maps/valid/subject.cub
+#	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) maps/valid/subject.cub
 libft :
 	@make -C $(LIB_FT_DIR)
 
