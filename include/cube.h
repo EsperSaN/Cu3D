@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 16:03:37 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/04/10 22:05:54 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/04/11 20:25:50 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-#define RENDER_H
+#ifndef CUBE_H
+# define CUBE_H
 
-#include "../cube.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <math.h>
+# include "MLX42.h"
+# include "libft.h"
+# include "get_next_line.h"
+# include "define.h"
+# include "util.h"
+# include "parser.h"
+# include "render.h"
 
-void	draw_square(mlx_image_t *image, t_int_pos pos, int size, int color);
-void	clear_image(mlx_image_t *frm, int color);
-void	draw_maps(mlx_image_t *image, t_maps_data *maps_data);
-bool    prepare_render(t_data *data);
-void    main_render(void *d);
 
 
 #endif

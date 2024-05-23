@@ -16,7 +16,7 @@
 // SETTING
 
 # define FIELD_OF_VIEW 60
-# define WIN_TITLE "RAY CASTING"
+
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.5
 
@@ -88,6 +88,8 @@ typedef struct s_parser_raw_data
 	char	*south_texture;
 	int		floor_color;
 	int		ceil_color;
+	int		height;
+	int		width;
 	char	**maps_data;
 }	t_parser_data;
 
@@ -103,7 +105,6 @@ typedef struct s_data
 	mlx_t				*mlx;
 	mlx_image_t			*img_game;
 	mlx_image_t			*img_maps;
-	mlx_image_t			*data;
 	t_parser_data		*parser_data;
 	// check file before assign
 	t_texture_assets	*texture;

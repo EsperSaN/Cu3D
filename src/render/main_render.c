@@ -20,4 +20,8 @@ void	main_render(void *d)
 
     //clear_image(data->img_game, get_rgba(255, 0, 0, 255));
     dprintf(2, "herer");
+    // mlx_delete_image(data->mlx, data->img_game);
+    // mlx_delete_image(data->mlx, data->img_maps);
+    // mlx_terminate(data->mlx);
+
 }

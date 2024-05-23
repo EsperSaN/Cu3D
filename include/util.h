@@ -13,7 +13,7 @@
 #ifndef UTIL_H
 # define UTIL_H
 
-# include "../cube.h"
+# include "cube.h"
 
 void		puterror(char *msg);
 void		putreport(char *msg);
