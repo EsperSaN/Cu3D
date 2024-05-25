@@ -26,4 +26,5 @@ int			get_rgba(int r, int g, int b, int a);
 float		abs_deg(float dregree);
 t_texture	*get_texture_png(char *tex_file);
 void		free2d(char **ptr);
+void        terminate_and_cleanup(t_data **d_ptr);
 #endif
