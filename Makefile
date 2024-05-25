@@ -18,6 +18,40 @@ CC = clang
 
 SRC_DIR = ./src
 
+RENDER_FILE = clear_image.c\
+			  draw_map.c\
+			  draw_squre.c\
+			  set_from_parser_data.c\
+			  set_maps_data.c\
+			  set_texture_assets.c\
+			  prepare_render.c\
+			  main_render.c
+
+UTIL_FILE = puterror.c \
+		    putreport.c \
+			is_same_str.c \
+			is_right_extension.c \
+			is_file_valid.c \
+			is_file_readable.c \
+			get_rgba.c \
+			get_rad.c \
+			get_png_texture.c \
+			ft_cos.c \
+			ft_sin.c \
+			get_direction.c \
+			free_two_d.c
+
+PARSER_FILE = parser.c \
+			  get_texture_file.c\
+			  get_maps_array.c\
+			  read.c
+
+FREE_FILE = free_maps_data.c\
+			free_parser_data.c\
+			free_player_data.c\
+			free_texture_assets.c\
+			free_texture.c\
+			term_and_cleanup.c
 LIB_DIR = ./lib
 LIB_MLX_DIR = $(LIB_DIR)/MLX42
 LIB_FT_DIR = $(LIB_DIR)/libft
@@ -41,44 +75,23 @@ else
 MLXLINK_FLAG = -lglfw3 -lopengl32 -lgdi32
 endif
 
-
-UTIL_FILE = puterror.c \
-		    putreport.c \
-			is_same_str.c \
-			is_right_extension.c \
-			is_file_valid.c \
-			is_file_readable.c \
-			get_rgba.c \
-			get_rad.c \
-			get_png_texture.c \
-			ft_cos.c \
-			ft_sin.c \
-			get_direction.c \
-			free_two_d.c
-			
-
 UTIL_DIR = $(SRC_DIR)/util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
 
-PARSER_FILE = parser.c get_texture_file.c get_maps_array.c read.c
 PARSER_DIR = $(SRC_DIR)/parser/
 PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
-
-RENDER_FILE = clear_image.c\
-			  draw_map.c\
-			  draw_squre.c\
-			  prepare_render.c\
-			  main_render.c
-			  
+  
 RENDER_DIR = $(SRC_DIR)/render/
 RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 
+FREE_DIR = $(SRC_DIR)/free/
+FREE_SRCS = $(addprefix $(FREE_DIR), $(FREE_FILE))
+
 SRCS = $(UTIL_SRCS) \
+	   $(FREE_SRCS) \
 	   $(PARSER_SRCS) \
 	   $(RENDER_SRCS) \
 	   ./src/main.c
-
-
 
 OBJS = $(SRCS:.c=.o)
 
