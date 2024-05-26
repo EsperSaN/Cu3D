@@ -17,6 +17,14 @@ CC = cc
 # CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = ./src
+INC_DIR = ./include/
+
+HEADER_FILE = cube.h\
+		 	define.h\
+		 	free.h\
+		 	parser.h\
+		 	render.h\
+		 	util.h
 
 RENDER_FILE = clear_image.c\
 			  draw_map.c\
@@ -25,6 +33,7 @@ RENDER_FILE = clear_image.c\
 			  set_maps_data.c\
 			  set_texture_assets.c\
 			  prepare_render.c\
+			  key_hook.c\
 			  main_render.c
 
 UTIL_FILE = puterror.c \
@@ -87,6 +96,8 @@ RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 FREE_DIR = $(SRC_DIR)/free/
 FREE_SRCS = $(addprefix $(FREE_DIR), $(FREE_FILE))
 
+HEADER_SRC = $(addprefix $(INC_DIR), $(HEADER_FILE))
+
 SRCS = $(UTIL_SRCS) \
 	   $(FREE_SRCS) \
 	   $(PARSER_SRCS) \
@@ -95,7 +106,7 @@ SRCS = $(UTIL_SRCS) \
 
 OBJS = $(SRCS:.c=.o)
 
-%.o: %.c $(HEADER_FILE)
+%.o: %.c $(HEADER_SRC)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
 
 all : libft libmlx $(NAME)
