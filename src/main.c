@@ -62,10 +62,9 @@ int	main(int ac, char **av)
 	set_from_parser_data(d);
 	if (prepare_render(d) == false)
 	 	return (terminate_and_cleanup(&d), 1);
-	//mlx_key_hook(d->mlx, );
 	//mlx_loop_hook(d->mlx, main_render, (void *)d);
 	// mlx_loop_hook(d->mlx, hook, NULL);
-	// mlx_loop(d->mlx);
+	mlx_loop(d->mlx);
 	terminate_and_cleanup(&d);
 	return (0);
 }
