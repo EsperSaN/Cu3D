@@ -35,10 +35,10 @@ bool init_event_hook(t_data *data)
 
 bool init_first_frame(t_data *data)
 {
-    if (data->img_maps)
-        clear_image(data->img_maps, data->parser_data->ceil_color);
-    if (data->img_game)
-        clear_image(data->img_game, data->parser_data->floor_color);
+    // if (data->img_maps)
+    //     clear_image(data->img_maps, data->parser_data->ceil_color);
+    // if (data->img_game)
+    //     clear_image(data->img_game, data->parser_data->floor_color);
     return (true);
 }
 
