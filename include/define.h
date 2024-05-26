@@ -31,7 +31,7 @@
 
 // error msg
 
-# define WIN_WIDTH     800
+# define WIN_WIDTH     1600
 # define WIN_HIGHT     800
 # define WIN_TITLE     "RAY CASTING"
 # define WIN_RESIZE    false
