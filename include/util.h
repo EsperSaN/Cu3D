@@ -27,4 +27,7 @@ float		abs_deg(float dregree);
 t_texture	*get_texture_png(char *tex_file);
 void		free2d(char **ptr);
 void        terminate_and_cleanup(t_data **d_ptr);
+t_float_point rotate_vector(t_float_point vec, float angle);
+float	ft_cos(float degree);
+float	ft_sin(float degree);
 #endif

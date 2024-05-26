@@ -25,6 +25,7 @@ void	            clear_image(mlx_image_t *frm, int color);
 void	            draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data);
 bool                prepare_render(t_data *data);
 void                main_render(void *d);
+int                 draw_line(mlx_image_t *img, t_int_point head, t_int_point tail, int color);
 
 
 #endif
