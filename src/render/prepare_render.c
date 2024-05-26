@@ -1,14 +1,5 @@
 #include "render.h"
 
-# define WIN_WIDTH 800
-# define WIN_HIGHT 800
-# define WIN_TITLE "RAY CASTING"
-# define WIN_RESIZE false
-# define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"
-# define MLX_IMG_FAIL "MLX FAIL TO CREATE IMG"
-# define DEMO_MODE true
-
-
 bool init_window(t_data *data)
 {
     data->mlx = mlx_init(WIN_WIDTH, WIN_HIGHT, WIN_TITLE, WIN_RESIZE);
@@ -37,10 +28,17 @@ bool init_window(t_data *data)
 
 bool init_event_hook(t_data *data)
 {
+    //mlx_key_hook(data->mlx, adjust_and_render, (void *)data);
+    //mlx_close_hook(data->mlx, terminate_and_cleanup, (void **)&data);
     return (true);
 }
+
 bool init_first_frame(t_data *data)
 {
+    if (data->img_maps)
+        clear_image(data->img_maps, data->parser_data->ceil_color);
+    if (data->img_game)
+        clear_image(data->img_game, data->parser_data->floor_color);
     return (true);
 }
 
@@ -50,6 +48,5 @@ bool prepare_render(t_data *data)
             init_event_hook(data) == false || \
                 init_first_frame(data) == false)
         return (false);
-	//mlx_image_to_window(data->mlx, data->img_game, 0, 0);
     return (true);
 }

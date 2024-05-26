@@ -23,6 +23,7 @@
 # include "get_next_line.h"
 # include "define.h"
 # include "util.h"
+# include "free.h"
 # include "parser.h"
 # include "render.h"
 
