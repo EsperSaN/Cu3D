@@ -12,7 +12,7 @@
 
 NAME = cub3d
 
-CC = clang
+CC = cc
 
 # CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
