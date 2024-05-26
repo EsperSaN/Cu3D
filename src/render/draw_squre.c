@@ -50,7 +50,7 @@ void	draw_square(mlx_image_t *image, t_int_point pos, int size, int color)
 		h = 0;
 		while (h < size)
 		{
-			// if ((tmp > 0 && pos.x > 0) && (tmp < image->height && pos.x < image->width))
+			if ((tmp > 0 && pos.x > 0) && (tmp < image->height && pos.x < image->width))
 				mlx_put_pixel(image, pos.x, tmp, color);
 			tmp++;
 			h++;
