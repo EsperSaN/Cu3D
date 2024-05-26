@@ -31,7 +31,7 @@ void	draw_maps(mlx_image_t *image, t_maps_data *maps_data)
 {
 	int			i;
 	int			j;
-	t_int_pos	pos;
+	t_int_point	pos;
 	int			scale;
 
 	scale = get_maps_scale(maps_data, image);
