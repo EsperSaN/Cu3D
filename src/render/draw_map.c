@@ -23,20 +23,19 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	p_pos.y = (int)(d->player->pos.y * scale);
 	p_dir.x = (int)(p_pos.x + (d->player->dir.x * scale));
 	p_dir.y = (int)(p_pos.y + (d->player->dir.y * scale));
+	draw_line(img, p_pos, p_dir, get_rgba(255,0,0,255));
 	draw_square_center(img, p_pos, 5, get_rgba(255,255,255,255));
 	draw_square_center(img, p_dir, 5, get_rgba(0,255,0,255));
-	p_dirr.x = ((d->player->dir.x * cosf(get_rad(FIELD_OF_VIEW / 2))) - (d->player->dir.y * sinf(get_rad(FIELD_OF_VIEW / 2))));
-	p_dirr.y = ((d->player->dir.x * sinf(get_rad(FIELD_OF_VIEW / 2))) + (d->player->dir.y * cosf(get_rad(FIELD_OF_VIEW / 2))));
-	dprintf(2, "FOV is [%f] [%f] sum [%f]\n", p_dirr.x , p_dirr.y, p_dirr.x + p_dirr.y);
+	p_dirr = rotate_vector(d->player->dir, FIELD_OF_VIEW/2);
 	p_fov.x = (int)(p_pos.x + (p_dirr.x * scale));
 	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
 	draw_square_center(img, p_fov, 5, get_rgba(100,100,100,255));
-	p_dirr.x = ((d->player->dir.x * cosf(get_rad(-(FIELD_OF_VIEW / 2)))) - (d->player->dir.y * sinf(get_rad(-(FIELD_OF_VIEW / 2)))));
-	p_dirr.y = ((d->player->dir.x * sinf(get_rad(-(FIELD_OF_VIEW / 2)))) + (d->player->dir.y * cosf(get_rad(-(FIELD_OF_VIEW / 2)))));
+	draw_line(img, p_pos, p_fov, get_rgba(255,0,0,255));
+	p_dirr = rotate_vector(d->player->dir, (-(FIELD_OF_VIEW /2)));
 	p_fov.x = (int)(p_pos.x + (p_dirr.x * scale));
 	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
 	draw_square_center(img, p_fov, 5, get_rgba(100,100,100,255));
-	dprintf(2, "FOV is [%f] [%f] sum [%f]\n", p_dirr.x , p_dirr.y, p_dirr.x + p_dirr.y);
+	draw_line(img, p_pos, p_fov, get_rgba(255,0,0,255));
 }
 
 static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)
