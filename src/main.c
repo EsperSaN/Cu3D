@@ -11,10 +11,8 @@
 /* ************************************************************************** */
 
 #include "cube.h"
-
-	// branch name/topic/feof
-	// header -I
-
+// branch name/topic/feof
+// header -I
 void struct_print(t_data *data)
 {
 	int i;
@@ -39,12 +37,6 @@ void struct_print(t_data *data)
 	dprintf(2, "---------------------------------------\n");
 }
 
-
-void hook(void *d)
-{
-	dprintf(2, "ha");
-}
-
 int	main(int ac, char **av)
 {
 	t_data	*d;
@@ -64,6 +56,8 @@ int	main(int ac, char **av)
 	 	return (terminate_and_cleanup(&d), 1);
 	//mlx_loop_hook(d->mlx, main_render, (void *)d);
 	// mlx_loop_hook(d->mlx, hook, NULL);
+	mlx_loop_hook(d->mlx, key_hook, (void *)d);
+	mlx_loop_hook(d->mlx, main_render, (void *)d);
 	mlx_loop(d->mlx);
 	terminate_and_cleanup(&d);
 	return (0);
