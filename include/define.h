@@ -18,7 +18,7 @@
 # define FIELD_OF_VIEW 60
 
 # define MOVE_SPEED 0.05
-# define ROT_SPEED 0.5
+# define ROT_SPEED 1
 
 // DONT CHANGE
 # define TRUE 1
@@ -31,8 +31,8 @@
 
 // error msg
 
-# define WIN_WIDTH     1600
-# define WIN_HIGHT     800
+# define WIN_WIDTH     1200
+# define WIN_HIGHT     600   
 # define WIN_TITLE     "RAY CASTING"
 # define WIN_RESIZE    false
 # define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"
@@ -51,7 +51,11 @@ enum	e_direction
 	NE,
 	NW,
 	SE,
-	SW
+	SW,
+	FORWARD,
+	BACKWARD,
+	LEFT,
+	RIGHT
 };
 
 typedef struct s_point_int
@@ -111,6 +115,7 @@ typedef struct s_player_data
 {
 	t_float_point pos;
 	t_float_point dir;
+	t_float_point pane;
 	float	angle;
 }	t_player_data;
 
