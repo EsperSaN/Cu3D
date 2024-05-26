@@ -12,6 +12,33 @@
 
 #include "render.h"
 
+void draw_player(t_data *d, mlx_image_t *img, int scale)
+{
+	t_int_point p_pos;
+	t_int_point p_dir;
+	t_int_point p_fov;
+	t_float_point p_dirr;
+
+	p_pos.x = (int)(d->player->pos.x * scale);
+	p_pos.y = (int)(d->player->pos.y * scale);
+	p_dir.x = (int)(p_pos.x + (d->player->dir.x * scale));
+	p_dir.y = (int)(p_pos.y + (d->player->dir.y * scale));
+	draw_square_center(img, p_pos, 5, get_rgba(255,255,255,255));
+	draw_square_center(img, p_dir, 5, get_rgba(0,255,0,255));
+	p_dirr.x = ((d->player->dir.x * cosf(get_rad(FIELD_OF_VIEW / 2))) - (d->player->dir.y * sinf(get_rad(FIELD_OF_VIEW / 2))));
+	p_dirr.y = ((d->player->dir.x * sinf(get_rad(FIELD_OF_VIEW / 2))) + (d->player->dir.y * cosf(get_rad(FIELD_OF_VIEW / 2))));
+	dprintf(2, "FOV is [%f] [%f] sum [%f]\n", p_dirr.x , p_dirr.y, p_dirr.x + p_dirr.y);
+	p_fov.x = (int)(p_pos.x + (p_dirr.x * scale));
+	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
+	draw_square_center(img, p_fov, 5, get_rgba(100,100,100,255));
+	p_dirr.x = ((d->player->dir.x * cosf(get_rad(-(FIELD_OF_VIEW / 2)))) - (d->player->dir.y * sinf(get_rad(-(FIELD_OF_VIEW / 2)))));
+	p_dirr.y = ((d->player->dir.x * sinf(get_rad(-(FIELD_OF_VIEW / 2)))) + (d->player->dir.y * cosf(get_rad(-(FIELD_OF_VIEW / 2)))));
+	p_fov.x = (int)(p_pos.x + (p_dirr.x * scale));
+	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
+	draw_square_center(img, p_fov, 5, get_rgba(100,100,100,255));
+	dprintf(2, "FOV is [%f] [%f] sum [%f]\n", p_dirr.x , p_dirr.y, p_dirr.x + p_dirr.y);
+}
+
 static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)
 {
 	int	scale_x;
@@ -27,7 +54,7 @@ static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)
 	return (scale);
 }
 
-void	draw_maps(mlx_image_t *image, t_maps_data *maps_data)
+void	draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data)
 {
 	int			i;
 	int			j;
@@ -37,12 +64,15 @@ void	draw_maps(mlx_image_t *image, t_maps_data *maps_data)
 	scale = get_maps_scale(maps_data, image);
 	i = 0;
 	pos.x = 0;
+	putreport("get scale done");
+	dprintf(2, "img %d x %d\n", image->width, image->height);
 	while (i < maps_data->maps_width)
 	{
 		pos.y = 0;
 		j = 0;
-		while (j < maps_data->maps_width)
+		while (j < maps_data->maps_height)
 		{
+			dprintf(2, "try draw y [%d] x [%d] in [%d][%d] tile\n", pos.y, pos.x, j, i);
 			if (maps_data->maps_array[j][i] != FLOOR)
 				draw_square(image, pos, scale - 1, get_rgba(255, 0, 0, 1000));
 			else
@@ -53,4 +83,5 @@ void	draw_maps(mlx_image_t *image, t_maps_data *maps_data)
 		pos.x += scale;
 		i++;
 	}
+	draw_player(d, image, scale);
 }
