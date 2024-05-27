@@ -12,56 +12,59 @@
 
 #include "parser.h"
 
-t_parser_data	*init_map(t_parser_data *data, int width, int height)
+char	**init_map(char **smap, int width, int height)
 {
 	char	**map;
 	int		i;
 
 	i = 0;
-	map = malloc(sizeof(char *) * (height + 1));
+	(void)width;
+	map = (char **)malloc(sizeof(char *) * (height + 1));
 	map[height] = NULL;
-	while (map[i])
+	while (i < height)
 	{
-		map[i] = malloc(sizeof(char) * (width + 1));
-		map[i][width] = '\0';
+		map[i] = ft_strdup(smap[i + 6]);
 		i++;
 	}
-	data->maps_data = map;
-	return (data);
+	free2d(smap);
+	return (map);
 }
 
 void	print_map(char **map)
 {
 	int	i;
+	int j;
 
 	i = 0;
 	while (map[i])
 	{
-		printf("%s\n", map[i]);
+		j = 0;
+		printf("[");
+		while (map[i][j])
+		{
+			printf("%c", map[i][j]);
+			j++;
+		}
+		printf("]\n");
 		i++;
 	}
 }
 
 void	print_map_data(t_parser_data *res)
 {
-	int				i;
-
-	i = 0;
-
-	dprintf(2,"%s\n%s\n%s\n%s\n", res->west_texture, res->south_texture, res->north_texture, res->east_texture);
-	// printf("%d %d %d %d\n", res->floor_color[0], res->floor_color[1], res->floor_color[2], res->floor_color[3]);
-	// printf("%d %d %d %d\n", res->ceil_color[0], res->ceil_color[1], res->ceil_color[2], res->ceil_color[3]);
-	while (res->maps_data[i])
-	{
-		printf("%d = {%s\n}", i ,res->maps_data[i]);
-		i++;
-	}
+	printf("NO : [%s]\n", res->north_texture);
+	printf("SO : [%s]\n", res->south_texture);
+	printf("WE : [%s]\n", res->west_texture);
+	printf("EA : [%s]\n", res->east_texture);
+    printf("floor : [%u]\n", res->floor_color);
+	printf("ceil : [%u]\n", res->ceil_color);
 }
 
-char	*file_reader(int fd)
+char	**file_reader(int fd)
 {
 	char	*tmp;
 	char	*chdata;
+	char	**map;
 	char	*buffer;
 	int		read_count;
 
@@ -77,36 +80,86 @@ char	*file_reader(int fd)
 		buffer[read_count] = '\0';
 		free(tmp);
 	}
+	free(buffer);
 	if (read_count < -1)
 		perror("FILE READER : ");
-	// scan
-	// map = ft_split(chdata, '\n');
-	// word_cut(chdata);
-	// free(chdata);
-	return (chdata);
+	if (scanner(chdata) == 0)
+	{
+		free(chdata);
+		return(NULL);
+	}
+	map = ft_split(chdata, '\n');
+	free(chdata);
+	return (map);
 }
 
 t_parser_data	*main_parser(char *file_name)
 {
 	t_parser_data	*res;
 	int				fd;
-	char			*data;
+	char			**data;
 
 	res = ft_calloc(sizeof(t_parser_data), 1);
-	// init_map(res, 3, 3);
-	// print_map_data(res);
 	if (!is_file_valid(file_name, ".cub"))
+	{
+		free(res);
 		return (0);
+	}
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
+	{
+		free(res);
 		return (0);
+	}
 	data = file_reader(fd);
-	//find height
-	//find width
-	//assign map value
-	//free data
-	//check all
-	// close(fd);
-	(void)data;
+	if (data == NULL)
+	{
+		printf("Map is not ok due to sus line\n");
+		free(res);
+		return (NULL);
+	}
+	if (count_value_line(data) == -1)
+	{
+		printf("more than 6 element line\n");
+		free(res);
+		free2d(data);
+		return (NULL);
+	}
+	if (!check_resource(data, res))
+	{
+		printf("more than 2 element\n");
+		free_texture(res);
+		free(res);
+		free2d(data);
+		return (NULL);
+	}
+	if (!src_checker(res))
+	{
+		printf("suspicious element: cant open or null\n");
+		free_texture(res);
+		free2d(data);
+		free(res);
+		return (NULL);
+	}
+	res->maps_data = init_map(data, find_width(data), find_height(data));
+	if (!scan4player(res->maps_data))
+	{
+		printf("multiple player found\n");
+		free_texture(res);
+		free2d(res->maps_data);
+		free(res);
+		return (NULL);
+	}
+	if (!border_checker(res->maps_data))
+	{
+		printf("border not ok\n");
+		free_texture(res);
+		free2d(res->maps_data);
+		free(res);
+		return (NULL);
+	}
+	close(fd);
+	print_map_data(res);
+	print_map(res->maps_data);
 	return (res);
 }

@@ -21,6 +21,12 @@ int	main(int ac, char **av)
 	d = ft_calloc(sizeof(t_data), 1);
 	if (d == NULL)
 		return (1);
-	(void)av;
 	d->parser_data = main_parser(av[1]);
+	if (d->parser_data)
+	{
+		free_texture(d->parser_data);
+		free2d(d->parser_data->maps_data);
+		free(d->parser_data);
+	}
+	free(d);
 }
