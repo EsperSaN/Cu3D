@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./util.h"
+#include "util.h"
 
 // to check for the last file extention consider the filename.txt.cub
 

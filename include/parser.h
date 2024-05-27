@@ -13,7 +13,8 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "../cube.h"
+# include "cube.h"
+
 # define BUFFER_SIZE 1
 
 char	        **init_map(char **smap, int width, int height);

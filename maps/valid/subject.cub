@@ -2,10 +2,14 @@ NO ./texture/test/north_texture.png
 SO ./texture/test/south_texture.png
 WE ./texture/test/west_texture.png
 EA ./texture/test/east_texture.png
+<<<<<<< HEAD
 
+=======
+>>>>>>> testm
 
 C 225,30,0
 
+<<<<<<< HEAD
 F 220,100,0
 
 
@@ -23,3 +27,13 @@ F 220,100,0
 11000001110101011111011110N01
 11110111 1110101 101111010001
 11111111 1111111 111111111111
+=======
+11111111
+10000001
+1100W001
+10000001
+11100001
+10000001
+11111101
+11111111
+>>>>>>> testm

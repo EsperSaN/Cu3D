@@ -15,12 +15,10 @@
 
 // SETTING
 
-# define SCREEN_HIGHT 800
-# define SCREEN_WIDTH  1600
 # define FIELD_OF_VIEW 60
-# define WIN_TITLE "RAY CASTING"
+
 # define MOVE_SPEED 0.05
-# define ROT_SPEED 0.5
+# define ROT_SPEED 1
 
 // DONT CHANGE
 # define TRUE 1
@@ -32,6 +30,14 @@
 # define WALL '1'
 
 // error msg
+
+# define WIN_WIDTH     1200
+# define WIN_HIGHT     600   
+# define WIN_TITLE     "RAY CASTING"
+# define WIN_RESIZE    false
+# define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"
+# define MLX_IMG_FAIL  "MLX FAIL TO CREATE IMG"
+# define DEMO_MODE     true
 
 #define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
 #define WRG_ARG_NO "Invalid arguments number!"
@@ -45,14 +51,24 @@ enum	e_direction
 	NE,
 	NW,
 	SE,
-	SW
+	SW,
+	FORWARD,
+	BACKWARD,
+	LEFT,
+	RIGHT
 };
 
-typedef struct s_position_int
+typedef struct s_point_int
 {
 	int	x;
 	int	y;
-}	t_int_pos;
+}	t_int_point;
+
+typedef struct s_point_float
+{
+	float x;
+	float y;
+}	t_float_point;
 
 typedef struct s_texture_data
 {
@@ -90,13 +106,16 @@ typedef struct s_parser_raw_data
 	char	*south_texture;
 	int		floor_color;
 	int		ceil_color;
+	int		height;
+	int		width;
 	char	**maps_data;
 }	t_parser_data;
 
 typedef struct s_player_data
 {
-	float	pos_x;
-	float	pos_y;
+	t_float_point pos;
+	t_float_point dir;
+	t_float_point pane;
 	float	angle;
 }	t_player_data;
 
@@ -105,7 +124,6 @@ typedef struct s_data
 	mlx_t				*mlx;
 	mlx_image_t			*img_game;
 	mlx_image_t			*img_maps;
-	mlx_image_t			*data;
 	t_parser_data		*parser_data;
 	// check file before assign
 	t_texture_assets	*texture;

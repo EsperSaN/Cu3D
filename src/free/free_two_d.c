@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   free_two_d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 16:03:37 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/04/21 19:03:12 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/04/21 19:08:26 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-#define RENDER_H
+#include "util.h"
 
-#include "../cube.h"
+void	free2d(char **ptr)
+{
+	char	**tmp;
 
-void	draw_square(mlx_image_t *image, t_int_pos pos, int size, int color);
-void	clear_image(mlx_image_t *frm, int color);
-void	draw_maps(mlx_image_t *image, t_maps_data *maps_data);
-
-
-#endif
+	tmp = ptr;
+	while (*ptr)
+	{
+		free(*ptr);
+		ptr++;
+	}
+	free(tmp);
+}

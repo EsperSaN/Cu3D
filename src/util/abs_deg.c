@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./util.h"
+#include "util.h"
 
 // control the deg value to not over the 0 and 360
 

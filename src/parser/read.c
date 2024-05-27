@@ -12,6 +12,7 @@
 
 #include "parser.h"
 
+<<<<<<< HEAD
 int is_map_element(char c)
 {
     if (c == 'S' || c == 'W' || c == 'E' \

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./util.h"
+#include "util.h"
 
 // this function will mallc the new int array 
 // according to the each pixel of the png propery
@@ -53,11 +53,25 @@ t_texture	*get_texture_png(char *tex_file)
 	if (m_tex == NULL)
 		return (puterror("Texture Cannot load"), NULL);
 	ret = ft_calloc(sizeof(t_texture), 1);
+	if (ret == NULL)
+		return (NULL);
 	ret->pixel_array = ft_calloc(sizeof(int *), m_tex->height);
+	if (ret->pixel_array == NULL)
+	{
+		free(ret);
+		return (NULL);
+	}
 	i = 0;
 	while (i < m_tex->height)
 	{
 		ret->pixel_array[i] = ft_calloc(sizeof(int), m_tex->width);
+		if (ret->pixel_array[i] == NULL)
+		{
+			free2d(ret->pixel_array);
+			free(ret->pixel_array);
+			free(ret);
+			return (NULL);
+		}
 		i++;
 	}
 	copy_texture_prop(m_tex, ret);
