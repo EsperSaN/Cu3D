@@ -63,6 +63,7 @@ FREE_FILE = free_maps_data.c\
 			free_texture.c\
 			term_and_cleanup.c\
 			free_two_d.c
+
 LIB_DIR = ./lib
 LIB_MLX_DIR = $(LIB_DIR)/MLX42
 LIB_FT_DIR = $(LIB_DIR)/libft
