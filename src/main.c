@@ -48,16 +48,13 @@ int	main(int ac, char **av)
 		return (puterror("Malloc::faill to alloc the thing!!!"), 1);
 	d->parser_data = main_parser(av[1]);
 	struct_print(d);
-	// gerpdata from above
 	if (d->parser_data == NULL)
 		return (terminate_and_cleanup(&d), 1);
 	set_from_parser_data(d);
 	if (prepare_render(d) == false)
 	 	return (terminate_and_cleanup(&d), 1);
-	//mlx_loop_hook(d->mlx, main_render, (void *)d);
-	// mlx_loop_hook(d->mlx, hook, NULL);
-	mlx_loop_hook(d->mlx, key_hook, (void *)d);
 	mlx_loop_hook(d->mlx, main_render, (void *)d);
+	mlx_loop_hook(d->mlx, key_hook, (void *)d);
 	mlx_loop(d->mlx);
 	terminate_and_cleanup(&d);
 	return (0);
