@@ -35,6 +35,9 @@ RENDER_FILE = clear_image.c\
 			  set_texture_assets.c\
 			  prepare_render.c\
 			  key_hook.c\
+			  floor_cast.c\
+			  ceil_cast.c\
+			  ray_casting.c\
 			  main_render.c
 
 UTIL_FILE = puterror.c \
