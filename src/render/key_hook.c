@@ -8,16 +8,12 @@ void player_rotate(t_data *d, int dir)
 	if (dir == LEFT)
 	{
 		d->player->dir = rotate_vector(d->player->dir, (ROT_SPEED * -1));
-		// tmp.x = d->player.pane.x;
-		// d->player.pane.x = d->player.pane.x * cosf(a) - d->player.pane.y * sinf(a);
-		// d->player.pane.y = tmp.x * sinf(a) + d->player.pane.y * cosf(a);
+		d->player->pane = rotate_vector(d->player->pane, (ROT_SPEED * -1));
 	}
 	if (dir == RIGHT)
 	{
 		d->player->dir = rotate_vector(d->player->dir, (ROT_SPEED));
-		// tmp.x = d->player.pane.x;
-		// d->player.pane.x = d->player.pane.x * cosf(a) - d->player.pane.y * sinf(a);
-		// d->player.pane.y = tmp.x * sinf(a) + d->player.pane.y * cosf(a);
+		d->player->pane = rotate_vector(d->player->pane, (ROT_SPEED));
 	}
 }
 

@@ -63,15 +63,12 @@ void	draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data)
 	scale = get_maps_scale(maps_data, image);
 	i = 0;
 	pos.x = 0;
-	putreport("get scale done");
-	dprintf(2, "img %d x %d\n", image->width, image->height);
 	while (i < maps_data->maps_width)
 	{
 		pos.y = 0;
 		j = 0;
 		while (j < maps_data->maps_height)
 		{
-			dprintf(2, "try draw y [%d] x [%d] in [%d][%d] tile\n", pos.y, pos.x, j, i);
 			if (maps_data->maps_array[j][i] != FLOOR)
 				draw_square(image, pos, scale - 1, get_rgba(255, 0, 0, 1000));
 			else
