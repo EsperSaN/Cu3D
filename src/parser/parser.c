@@ -128,7 +128,7 @@ t_parser_data	*main_parser(char *file_name)
 	if (!check_resource(data, res))
 	{
 		printf("more than 2 element\n");
-		free_texture(res);
+	//	free_texture(res);
 		free(res);
 		free2d(data);
 		return (NULL);
@@ -136,7 +136,7 @@ t_parser_data	*main_parser(char *file_name)
 	if (!src_checker(res))
 	{
 		printf("suspicious element: cant open or null\n");
-		free_texture(res);
+	//	free_texture(res);
 		free2d(data);
 		free(res);
 		return (NULL);
@@ -145,7 +145,7 @@ t_parser_data	*main_parser(char *file_name)
 	if (!scan4player(res->maps_data))
 	{
 		printf("multiple player found\n");
-		free_texture(res);
+	//	free_texture(res);
 		free2d(res->maps_data);
 		free(res);
 		return (NULL);
@@ -153,11 +153,24 @@ t_parser_data	*main_parser(char *file_name)
 	if (!border_checker(res->maps_data))
 	{
 		printf("border not ok\n");
-		free_texture(res);
+	//	free_texture(res);
 		free2d(res->maps_data);
 		free(res);
 		return (NULL);
 	}
+	// plese fix this
+	int	height = 0;
+	int width = 0;
+	int tmp = 0;
+	while (res->maps_data[height])
+	{
+		tmp = ft_strlen(res->maps_data[height]);
+		if (tmp > width)
+			width = tmp;
+		height++;
+	}
+	res->height = height;
+	res->width = width;
 	close(fd);
 	print_map_data(res);
 	print_map(res->maps_data);

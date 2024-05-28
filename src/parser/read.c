@@ -12,7 +12,6 @@
 
 #include "parser.h"
 
-<<<<<<< HEAD
 int is_map_element(char c)
 {
     if (c == 'S' || c == 'W' || c == 'E' \
@@ -249,17 +248,18 @@ int src_checker(t_parser_data *res)
     return (1);
 }
 
-void free_texture(t_parser_data *res)
-{
-    if (res->east_texture)
-		free(res->east_texture);
-	if (res->north_texture)
-		free(res->north_texture);
-	if (res->west_texture)
-		free(res->west_texture);
-	if (res->south_texture)
-		free(res->south_texture);
-}
+//     ******************  repucate to free ********************
+// void free_texture(t_parser_data *res)
+// {
+//     if (res->east_texture)
+// 		free(res->east_texture);
+// 	if (res->north_texture)
+// 		free(res->north_texture);
+// 	if (res->west_texture)
+// 		free(res->west_texture);
+// 	if (res->south_texture)
+// 		free(res->south_texture);
+// }
 
 int scan4player (char **map)
 {

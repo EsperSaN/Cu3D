@@ -45,17 +45,6 @@ int	main(int ac, char **av)
 		return (puterror(WRG_ARG_NO), 1);
 	d = ft_calloc(sizeof(t_data), 1);
 	if (d == NULL)
-<<<<<<< HEAD
-		return (1);
-	d->parser_data = main_parser(av[1]);
-	if (d->parser_data)
-	{
-		free_texture(d->parser_data);
-		free2d(d->parser_data->maps_data);
-		free(d->parser_data);
-	}
-	free(d);
-=======
 		return (puterror("Malloc::faill to alloc the thing!!!"), 1);
 	d->parser_data = main_parser(av[1]);
 	struct_print(d);
@@ -69,5 +58,4 @@ int	main(int ac, char **av)
 	mlx_loop(d->mlx);
 	terminate_and_cleanup(&d);
 	return (0);
->>>>>>> testm
 }
