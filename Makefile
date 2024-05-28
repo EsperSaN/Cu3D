@@ -29,11 +29,15 @@ HEADER_FILE = cube.h\
 RENDER_FILE = clear_image.c\
 			  draw_map.c\
 			  draw_squre.c\
+			  draw_line.c\
 			  set_from_parser_data.c\
 			  set_maps_data.c\
 			  set_texture_assets.c\
 			  prepare_render.c\
 			  key_hook.c\
+			  floor_cast.c\
+			  ceil_cast.c\
+			  ray_casting.c\
 			  main_render.c
 
 UTIL_FILE = puterror.c \
@@ -48,7 +52,7 @@ UTIL_FILE = puterror.c \
 			ft_cos.c \
 			ft_sin.c \
 			get_direction.c \
-			free_two_d.c
+			rotate_vector.c
 
 PARSER_FILE = parser.c \
 			  get_texture_file.c\
@@ -60,7 +64,9 @@ FREE_FILE = free_maps_data.c\
 			free_player_data.c\
 			free_texture_assets.c\
 			free_texture.c\
-			term_and_cleanup.c
+			term_and_cleanup.c\
+			free_two_d.c
+
 LIB_DIR = ./lib
 LIB_MLX_DIR = $(LIB_DIR)/MLX42
 LIB_FT_DIR = $(LIB_DIR)/libft

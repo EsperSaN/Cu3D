@@ -5,25 +5,15 @@ void player_rotate(t_data *d, int dir)
 	t_float_point tmp;
 	float           a;
 
-	a = get_rad(ROT_SPEED);
-	tmp.x = d->player->dir.x;
-	tmp.y = d->player->dir.y;
 	if (dir == LEFT)
 	{
-		a = -1 * a;
-		d->player->dir.x = d->player->dir.x * cosf(a) - d->player->dir.y * sinf(a);
-		d->player->dir.y = tmp.x * sinf(a) + d->player->dir.y * cosf(a);
-		// tmp.x = d->player.pane.x;
-		// d->player.pane.x = d->player.pane.x * cosf(a) - d->player.pane.y * sinf(a);
-		// d->player.pane.y = tmp.x * sinf(a) + d->player.pane.y * cosf(a);
+		d->player->dir = rotate_vector(d->player->dir, (ROT_SPEED * -1));
+		d->player->pane = rotate_vector(d->player->pane, (ROT_SPEED * -1));
 	}
 	if (dir == RIGHT)
 	{
-		d->player->dir.x = d->player->dir.x * cosf(a) - d->player->dir.y * sinf(a);
-		d->player->dir.y = tmp.x * sinf(a) + d->player->dir.y * cosf(a);
-		// tmp.x = d->player.pane.x;
-		// d->player.pane.x = d->player.pane.x * cosf(a) - d->player.pane.y * sinf(a);
-		// d->player.pane.y = tmp.x * sinf(a) + d->player.pane.y * cosf(a);
+		d->player->dir = rotate_vector(d->player->dir, (ROT_SPEED));
+		d->player->pane = rotate_vector(d->player->pane, (ROT_SPEED));
 	}
 }
 
@@ -48,7 +38,6 @@ void    player_sidemove(t_data *d, int dir)
 		if (maps[(int)d->player->pos.y][(int)(d->player->pos.x - mdr.y)] == '0')
 			d->player->pos.x -= mdr.y;
 	}
-    putreport("side");
 }
 
 void    player_move(t_data *d, int dir)
@@ -73,7 +62,6 @@ void    player_move(t_data *d, int dir)
 		if (maps[(int)d->player->pos.y][(int)(d->player->pos.x - mdr.x)] == '0')
 			d->player->pos.x -= mdr.x;
 	}
-    putreport("move");
 }
 
 void    key_hook(void *data)

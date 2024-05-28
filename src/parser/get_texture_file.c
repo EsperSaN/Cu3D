@@ -21,9 +21,9 @@ char	*get_texture_file(char **map, char *indicater)
 	i = 0;
 	while (map[i])
 	{
-		tmp = ft_split(map[i], ' ');
-		//dprintf(2, "[%s] -> %s -> %s\n", map[i], tmp[0], tmp[1]);
-		//dprintf(2, "here\n");
+		tmp = ft_split(map[i], ' ');//tmp's len == 2
+		dprintf(2, "[%s] -> %s -> %s\n", map[i], tmp[0], tmp[1]);
+		dprintf(2, "here\n");
 		if (tmp != NULL && is_same_str(tmp[0], indicater) && tmp[1] != NULL)
 		{
 			ret = ft_strdup(tmp[1]);
