@@ -17,6 +17,7 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	t_int_point p_pos;
 	t_int_point p_dir;
 	t_int_point p_fov;
+	t_int_point p_pane;
 	t_float_point p_dirr;
 
 	p_pos.x = (int)(d->player->pos.x * scale);
@@ -26,6 +27,14 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	draw_line(img, p_pos, p_dir, get_rgba(255,0,0,255));
 	draw_square_center(img, p_pos, 5, get_rgba(255,255,255,255));
 	draw_square_center(img, p_dir, 5, get_rgba(0,255,0,255));
+	p_pane = p_dir;
+	p_pane.x += d->player->pane.x * scale;
+	p_pane.y += d->player->pane.y * scale;
+	draw_line(img, p_dir, p_pane, get_rgba(255,0,0,255));
+	p_pane = p_dir;
+	p_pane.x -= d->player->pane.x * scale;
+	p_pane.y -= d->player->pane.y * scale;
+	draw_line(img, p_dir, p_pane, get_rgba(255,0,0,255));
 	p_dirr = rotate_vector(d->player->dir, FIELD_OF_VIEW/2);
 	p_fov.x = (int)(p_pos.x + (p_dirr.x * scale));
 	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));

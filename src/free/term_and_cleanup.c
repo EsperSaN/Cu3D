@@ -20,15 +20,12 @@ void terminate_and_cleanup(t_data **d_ptr)
 		data->texture = free_texture_assets(data->texture);
 	dprintf(2, "FREE TEX\n");
 	// clen the mlx stuff img instant blasssss
-
 	if (data->img_game)
 		mlx_delete_image(data->mlx, data->img_game);
 	if (data->img_maps)
 		mlx_delete_image(data->mlx, data->img_maps);
-	dprintf(2, "FREE IMG");
-	if (data->mlx)
-		mlx_terminate(data->mlx);
+	dprintf(2, "FREE IMG\n");
+	mlx_terminate(data->mlx);
 	dprintf(2,"FREE MLX\n");
 	free(data);
-	ft_memset(data, 0, sizeof(t_data));
 }
