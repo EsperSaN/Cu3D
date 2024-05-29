@@ -66,31 +66,26 @@ int in_line(char *str, int start, int stop)
 int scanner(char *data)
 {
     int i;
-    int k;
-    int f;
-    int num[2];
+    int num[4];
     
-    f = 0;
+    i = -1;
+	while (i < 4)
+		num[i++] = 0;
     i = 0;
-    k = 0;
-    num[0] = 0;
-    num[1] = 0;
     while (data[i])
     {
         if (data[i] == '\n')
         {
-            if (num[0] && !in_line(data, i-k+f, i))
-                num[1]++;
-            num[0] = in_line(data, i-k+f, i);
-            k = 0;
-            f = 1;
+            num[1] += scanner_checker (num, 4, i, data);
+            num[0] = in_line(data, i-num[2]+num[3], i);
+            num[2] = 0;
+            num[3] = 1;
         }
-        k++;
+        num[2]++;
         i++;
     }
-    if (num[0] && !in_line(data, i-k+f, i))
-        num[1]++;
-    num[0] = in_line(data, i-k+f, i);
+    num[1] += scanner_checker (num, 4, i, data);
+    num[0] = in_line(data, i-num[2]+num[3], i);
     if ((num[0] + num[1]) > 1)
         return (0);
     return (1);
@@ -237,29 +232,16 @@ int src_checker(t_parser_data *res)
     || !res->west_texture || !res->east_texture \
     || !res->ceil_color || !res->floor_color)
         return (0);
-    if (!is_file_readable(res->north_texture))
+    if (!is_file_readable(res->north_texture) || !is_right_extension(res->north_texture, ".png"))
         return (0);
-    if (!is_file_readable(res->south_texture))
+    if (!is_file_readable(res->south_texture) || !is_right_extension(res->south_texture, ".png"))
         return (0);
-    if (!is_file_readable(res->west_texture))
+    if (!is_file_readable(res->west_texture) || !is_right_extension(res->west_texture, ".png"))
         return (0);
-    if (!is_file_readable(res->east_texture))
+    if (!is_file_readable(res->east_texture) || !is_right_extension(res->east_texture, ".png"))
         return (0);
     return (1);
 }
-
-//     ******************  repucate to free ********************
-// void free_texture(t_parser_data *res)
-// {
-//     if (res->east_texture)
-// 		free(res->east_texture);
-// 	if (res->north_texture)
-// 		free(res->north_texture);
-// 	if (res->west_texture)
-// 		free(res->west_texture);
-// 	if (res->south_texture)
-// 		free(res->south_texture);
-// }
 
 int scan4player (char **map)
 {
@@ -274,19 +256,15 @@ int scan4player (char **map)
 		j = 0;
 		while (map[i][j])
 		{
-            if (map[i][j] == 'W')
+            if (map[i][j] == 'W' || map[i][j] == 'N')
                 co++;
-            if (map[i][j] == 'N')
-                co++;
-            if (map[i][j] == 'E')
-                co++;
-            if (map[i][j] == 'S')
+            if (map[i][j] == 'E' || map[i][j] == 'S')
                 co++;
 			j++;
 		}
 		i++;
 	}
-    if (co > 1)
+    if (co > 1 || co == 0)
         return (0);
     return (1);
 }
@@ -295,8 +273,10 @@ int border_checker(char **map)
 {
     int	i;
 	int j;
+    int h;
 
 	i = 0;
+    h = find_height(map) + 5;
 	while (map[i])
 	{
 		j = 0;
@@ -304,13 +284,13 @@ int border_checker(char **map)
 		{
             if (map[i][j] != '1' && is_map_element_not_sp(map[i][j]))
             {
-                if (!is_map_element_not_sp(map[i][j-1]))
+                if (i == 0 || i == h)
                     return (0);
-                if (!is_map_element_not_sp(map[i-1][j]))
+                if (!is_map_element_not_sp(map[i][j-1]) \
+                    || !is_map_element_not_sp(map[i+1][j]))
                     return (0);
-                if (!is_map_element_not_sp(map[i][j+1]))
-                    return (0);
-                if (!is_map_element_not_sp(map[i+1][j]))
+                if (!is_map_element_not_sp(map[i-1][j]) \
+                    || !is_map_element_not_sp(map[i][j+1]))
                     return (0);
             }
 			j++;
@@ -318,4 +298,11 @@ int border_checker(char **map)
 		i++;
 	}
     return (1);
+}
+
+int scanner_checker (int num[], int n, int i, char *data)
+{
+    if (num[0] && !in_line(data, i-num[2]+num[3], i))
+        return (1);
+    return (0);
 }

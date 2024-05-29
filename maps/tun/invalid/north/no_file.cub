@@ -1,7 +1,7 @@
 NO /window10.dos
-SO ./asset/set4/east.xpm
-WE ./asset/set4/east.xpm
-EA ./asset/set4/east.xpm
+SO ./texture/test/south_texture.png
+WE ./texture/test/west_texture.png
+EA ./texture/test/east_texture.png
 
 F 5,15,5
 C 20,40,75

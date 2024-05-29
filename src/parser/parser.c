@@ -78,12 +78,17 @@ char	**file_reader(int fd)
 		read_count = read(fd, buffer, BUFFER_SIZE);
 		chdata = ft_strjoin(tmp, buffer);
 		buffer[read_count] = '\0';
+		if (!(buffer[0] > 31 && buffer[0] < 128) && buffer[0] != '\n' && read_count > 0)
+		{
+			read_count = 0;
+		}	//printf("<%c> not printable!!!!\n", buffer[0]);
 		free(tmp);
+		// printf("-------------------------done read-------------------------\n");
 	}
 	free(buffer);
 	if (read_count < -1)
 		perror("FILE READER : ");
-	if (scanner(chdata) == 0)
+	if (scanner(chdata) == 0 || !ft_strlen(chdata))
 	{
 		free(chdata);
 		return(NULL);
@@ -114,63 +119,53 @@ t_parser_data	*main_parser(char *file_name)
 	data = file_reader(fd);
 	if (data == NULL)
 	{
-		printf("Map is not ok due to sus line\n");
+		printf("Data in file not good\n");
 		free(res);
 		return (NULL);
 	}
 	if (count_value_line(data) == -1)
 	{
-		printf("more than 6 element line\n");
+		printf("incorrect element no.\n");
 		free(res);
 		free2d(data);
 		return (NULL);
 	}
 	if (!check_resource(data, res))
 	{
-		printf("more than 2 element\n");
-	//	free_texture(res);
-		free(res);
+		printf("incorrect value no.\n");
 		free2d(data);
+		free_parser(res);
 		return (NULL);
 	}
 	if (!src_checker(res))
 	{
-		printf("suspicious element: cant open or null\n");
-	//	free_texture(res);
+		printf("Texture element: cant open or null, not .png extention\n");
 		free2d(data);
-		free(res);
+		free_parser(res);
+		return (NULL);
+	}
+	res->height = find_height(data);
+	res->width = find_width(data);
+	if (res->height == 0 || res->width == 0)
+	{
+		printf("empty map\n");
+		free2d(data);
+		free_parser(res);
 		return (NULL);
 	}
 	res->maps_data = init_map(data, find_width(data), find_height(data));
 	if (!scan4player(res->maps_data))
 	{
-		printf("multiple player found\n");
-	//	free_texture(res);
-		free2d(res->maps_data);
-		free(res);
+		printf("incorrect player no.\n");
+		free_parser(res);
 		return (NULL);
 	}
 	if (!border_checker(res->maps_data))
 	{
 		printf("border not ok\n");
-	//	free_texture(res);
-		free2d(res->maps_data);
-		free(res);
+		free_parser(res);
 		return (NULL);
 	}
-	// plese fix this
-	int	height = 0;
-	int width = 0;
-	int tmp = 0;
-	while (res->maps_data[height])
-	{
-		tmp = ft_strlen(res->maps_data[height]);
-		if (tmp > width)
-			width = tmp;
-		height++;
-	}
-	res->height = height;
-	res->width = width;
 	close(fd);
 	print_map_data(res);
 	print_map(res->maps_data);

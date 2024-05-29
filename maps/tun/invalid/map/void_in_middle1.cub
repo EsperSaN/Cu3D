@@ -1,8 +1,7 @@
-NO ./asset/set4/north.xpm
-SO ./asset/set4/north.xpm
-WE ./asset/set4/north.xpm
-EA ./asset/set4/north.xpm
-
+NO ./texture/test/north_texture.png
+SO ./texture/test/south_texture.png
+WE ./texture/test/west_texture.png
+EA ./texture/test/east_texture.png
 F 20,10,0
 C 4,67,137
 
