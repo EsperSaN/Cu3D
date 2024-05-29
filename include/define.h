@@ -119,6 +119,20 @@ typedef struct s_player_data
 	float	angle;
 }	t_player_data;
 
+typedef struct s_raycast 
+{
+    // t_float_point   head;
+    // t_float_point   end;
+    t_int_point     pos;
+    t_float_point   dir;
+    t_float_point   side_dist;
+    t_float_point   delta_dis;
+    t_int_point   step_inc;
+    float           size;
+    int             hit_side;
+    int             is_hit;
+}   t_ray;
+
 typedef struct s_data
 {
 	mlx_t				*mlx;

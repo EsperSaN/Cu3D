@@ -83,4 +83,5 @@ void    key_hook(void *data)
         player_rotate(d, LEFT);
     if (mlx_is_key_down(d->mlx, MLX_KEY_RIGHT))
         player_rotate(d, RIGHT);
+	//main_render((void *)data);
 }

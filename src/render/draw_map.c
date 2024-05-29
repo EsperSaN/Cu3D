@@ -45,6 +45,47 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
 	draw_square_center(img, p_fov, 5, get_rgba(100,100,100,255));
 	draw_line(img, p_pos, p_fov, get_rgba(255,0,0,255));
+
+	int             cur_w;
+    t_ray           ray;
+    float           cam_on_pane;
+    t_player_data   p;
+    
+    cur_w = 0;
+    p = *(d->player);
+    while (cur_w <= img->width)
+    {    
+        cam_on_pane = 2 * cur_w / (float)img->width - 1; // why!!!!
+        // ray = prepare_ray_for_dda(p, cam_on_pane);
+        // putreport("prepare done");
+        // printray(ray);
+        // ray = dda_till_hit(ray, d->maps->maps_array);
+        // putreport("DDA done\n");
+        // printray(ray);
+        // project_from_ray(img, ray, cur_w);
+        // cur_w++;
+        ray.pos.x = (int)p.pos.x;
+        ray.pos.y = (int)p.pos.y;
+        ray.dir.x = p.dir.x + p.pane.x * cam_on_pane;
+        ray.dir.y = p.dir.y + p.pane.y * cam_on_pane;
+        dprintf(2, "--------------------\nx = [%d]/[%d]\n\ncam = %f\npos = x [%d] y [%d]\nmap x = [%f]\nmap y = [%f]\n dir x [%f] y[%f]\n", cur_w, img->width,cam_on_pane, ray.pos.x,ray.pos.y,p.pos.x, p.pos.y, ray.dir.x, ray.dir.y);
+        ray.delta_dis.x = fabsf(1 / ray.dir.x);
+        if (ray.dir.x == 0)
+            ray.delta_dis.x = 3.4e38;
+        ray.delta_dis.y = fabsf(1 / ray.dir.y);
+        if (ray.dir.y == 0)
+            ray.delta_dis.y = 3.4e38;
+        
+        dprintf(2, "dx = [%f]\ndy = [%f]\n--------------------------\n", ray.delta_dis.x, ray.delta_dis.y);
+		p_fov.x = (int)(p_pos.x + (ray.dir.x * scale));
+		p_fov.y = (int)(p_pos.y + (ray.dir.y * scale));
+		draw_line(img, p_pos ,p_fov, get_rgba(111,222,122,255));
+		// t_int_point deltaY;
+		// deltaY.x = p_pos.x;
+		// deltaY.y = (int)(p_pos.y + (ray.delta_dis.y * scale));
+		// draw_line(img, p_pos, deltaY, get_rgba(255, 1 , 1 ,255));
+        cur_w++;
+    }
 }
 
 static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)
