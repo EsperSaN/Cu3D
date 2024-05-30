@@ -47,9 +47,10 @@ int	main(int ac, char **av)
 	if (d == NULL)
 		return (puterror("Malloc::faill to alloc the thing!!!"), 1);
 	d->parser_data = main_parser(av[1]);
-	struct_print(d);
+
 	if (d->parser_data == NULL)
 		return (terminate_and_cleanup(&d), 1);
+	struct_print(d);
 	set_from_parser_data(d);
 	if (prepare_render(d) == false)
 	 	return (terminate_and_cleanup(&d), 1);

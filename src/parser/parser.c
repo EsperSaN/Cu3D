@@ -78,16 +78,15 @@ char	**file_reader(int fd)
 		read_count = read(fd, buffer, BUFFER_SIZE);
 		chdata = ft_strjoin(tmp, buffer);
 		buffer[read_count] = '\0';
+		if (!(buffer[0] > 31 && buffer[0] < 128) && buffer[0] != '\n' && read_count > 0)
+			read_count = 0;
 		free(tmp);
 	}
 	free(buffer);
 	if (read_count < -1)
 		perror("FILE READER : ");
-	if (scanner(chdata) == 0)
-	{
-		free(chdata);
-		return(NULL);
-	}
+	if (scanner(chdata) == 0 || !ft_strlen(chdata))
+		return(free(chdata), NULL);
 	map = ft_split(chdata, '\n');
 	free(chdata);
 	return (map);
@@ -101,78 +100,48 @@ t_parser_data	*main_parser(char *file_name)
 
 	res = ft_calloc(sizeof(t_parser_data), 1);
 	if (!is_file_valid(file_name, ".cub"))
-	{
-		free(res);
-		return (0);
-	}
+		return (free(res), 0);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-	{
-		free(res);
-		return (0);
-	}
+		return (free(res), 0);
 	data = file_reader(fd);
 	if (data == NULL)
-	{
-		printf("Map is not ok due to sus line\n");
-		free(res);
-		return (NULL);
-	}
+		return (free(res), NULL);
 	if (count_value_line(data) == -1)
-	{
-		printf("more than 6 element line\n");
-		free(res);
-		free2d(data);
-		return (NULL);
-	}
+		return (free_2dwithres(res, data), NULL);
 	if (!check_resource(data, res))
-	{
-		printf("more than 2 element\n");
-	//	free_texture(res);
-		free(res);
-		free2d(data);
-		return (NULL);
-	}
+		return (free_2dwithres(res, data), NULL);
 	if (!src_checker(res))
-	{
-		printf("suspicious element: cant open or null\n");
-	//	free_texture(res);
-		free2d(data);
-		free(res);
-		return (NULL);
-	}
+		return (free_2dwithres(res, data), NULL);
+	res->height = find_height(data);
+	res->width = find_width(data);
+	if (res->height == 0 || res->width == 0)
+		return (free_2dwithres(res, data), NULL);
 	res->maps_data = init_map(data, find_width(data), find_height(data));
 	if (!scan4player(res->maps_data))
-	{
-		printf("multiple player found\n");
-	//	free_texture(res);
-		free2d(res->maps_data);
-		free(res);
-		return (NULL);
-	}
+		return (free_parser(res), NULL);
 	if (!border_checker(res->maps_data))
-	{
-		printf("border not ok\n");
-	//	free_texture(res);
-		free2d(res->maps_data);
-		free(res);
-		return (NULL);
-	}
-	// plese fix this
-	int	height = 0;
-	int width = 0;
-	int tmp = 0;
-	while (res->maps_data[height])
-	{
-		tmp = ft_strlen(res->maps_data[height]);
-		if (tmp > width)
-			width = tmp;
-		height++;
-	}
-	res->height = height;
-	res->width = width;
+		return (free_parser(res), NULL);
 	close(fd);
 	print_map_data(res);
 	print_map(res->maps_data);
 	return (res);
+}
+
+void free_2dwithres(t_parser_data *res, char **data)
+{
+	free2d(data);
+	free_parser(res);
+}
+
+void get_texture_check(char *type, char *text, t_parser_data *res)
+{
+	if (is_same_str(type, "NO") && !res->north_texture)
+		res->north_texture = ft_strdup(text);
+	if (is_same_str(type, "SO") && !res->south_texture)
+		res->south_texture = ft_strdup(text);
+	if (is_same_str(type, "EA") && !res->east_texture)
+		res->east_texture = ft_strdup(text);
+	if (is_same_str(type, "WE") && !res->west_texture)
+		res->west_texture = ft_strdup(text);
 }
