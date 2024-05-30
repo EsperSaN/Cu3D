@@ -31,9 +31,11 @@ int             count_value_line(char **data);
 int             check_resource(char **map, t_parser_data *res);
 int             get_ceil_floor(char *str, t_parser_data *res, char mode);
 int             src_checker(t_parser_data *res);
-// void            free_texture(t_parser_data *res); < rep to free func
+int             scanner_checker (int num[], int n, int i, char *data);
 int             scan4player(char **map);
 int             border_checker(char **map);
 int             is_map_element_not_sp(char c);
+void            free_2dwithres(t_parser_data *res, char **data);
+void            get_texture_check(char *type, char *text, t_parser_data *res);
 
 #endif

@@ -30,5 +30,5 @@ void terminate_and_cleanup(t_data **d_ptr)
 		mlx_terminate(data->mlx);
 	dprintf(2,"FREE MLX\n");
 	free(data);
-	ft_memset(data, 0, sizeof(t_data));
+	// ft_memset(data, 0, sizeof(t_data));
 }

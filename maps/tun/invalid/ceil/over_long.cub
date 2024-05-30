@@ -1,7 +1,7 @@
-NO ./asset/set5/north.xpm
-SO ./asset/set5/north.xpm
-WE ./asset/set5/north.xpm
-EA ./asset/set5/north.xpm
+NO ./texture/test/north_texture.png
+SO ./texture/test/south_texture.png
+WE ./texture/test/west_texture.png
+EA ./texture/test/east_texture.png
 
 F 5,5,5
 C 5,5,9223372036854775808
