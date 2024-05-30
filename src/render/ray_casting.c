@@ -89,6 +89,8 @@ int ray_casting(mlx_image_t *img, t_data *d)
             ray.color = get_rgba(255,0 ,0, 145);
         dprintf(2, "prep wall [%d] start [%d] end [%d]\n", ray.line_hight, ray.line_s, ray.line_e);
         draw_verline(d->img_game, cur_w, ray.line_s, ray.line_e, ray.color);
+        // start texture
+        
         cur_w++;
     }
 }

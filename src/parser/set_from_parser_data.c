@@ -59,8 +59,8 @@ t_player_data *set_player_data(t_data *data)
     res->pane.x = -fabs((tan(get_rad(FIELD_OF_VIEW) / 2)));
     res->pane.y = 0;
     data->maps->maps_array[(int)res->pos.y][(int)res->pos.x] = FLOOR;
-    res->pos.x -= 0.5;
-    res->pos.y -= 0.5;
+    res->pos.x += 0.5;
+    res->pos.y += 0.5;
     return (res);
 }
 
