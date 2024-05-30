@@ -1,10 +1,10 @@
 NO ./texture/test/north_texture.png
-SO ./texture/test/south_texture.png
 WE ./texture/test/west_texture.png
 EA ./texture/test/east_texture.png
+SO ./texture/test/south_texture.png
 
 C 225,30,0
-F 220,100,0
+F 220,200,0
 
 
 

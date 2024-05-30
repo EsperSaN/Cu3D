@@ -165,23 +165,14 @@ int get_ceil_floor(char *str, t_parser_data *res, char mode)
 	while (num[i])
 	{
 		if (ft_atoi(num[i]) < 0 || ft_atoi(num[i]) > 255)
-        {
-            free2d(num);
-			return (0);//error not 0-255
-        }
+			return (free2d(num), 0);
 		i++;
 	}
 	if (i != 3)
-    {
-        free2d(num);
-		return (0);
-    }
-	i = 0;
-	while (num[i])
-	{
+		return (free2d(num), 0);
+	i = -1;
+	while (num[++i])
 		color[i] = ft_atoi(num[i]);
-		i++;
-	}
     rgb = get_rgba(color[0], color[1], color[2], 255);
     if (mode == 'c' && res->ceil_color == 0)
         res->ceil_color = rgb;
@@ -209,14 +200,7 @@ int check_resource(char **map, t_parser_data *res)
             return(0);   
         }
         i++;
-        if (is_same_str(element[0], "NO") && !res->north_texture)
-            res->north_texture = ft_strdup(element[1]);
-        if (is_same_str(element[0], "SO") && !res->south_texture)
-            res->south_texture = ft_strdup(element[1]);
-        if (is_same_str(element[0], "EA") && !res->east_texture)
-            res->east_texture = ft_strdup(element[1]);
-        if (is_same_str(element[0], "WE") && !res->west_texture)
-            res->west_texture = ft_strdup(element[1]);
+        get_texture_check(element[0], element[1], res);
         if (is_same_str(element[0], "C"))
             get_ceil_floor(element[1], res, 'c');
         if (is_same_str(element[0], "F"))
@@ -275,9 +259,9 @@ int border_checker(char **map)
 	int j;
     int h;
 
-	i = 0;
+	i = -1;
     h = find_height(map) + 5;
-	while (map[i])
+	while (map[++i])
 	{
 		j = 0;
 		while (map[i][j])
@@ -287,15 +271,13 @@ int border_checker(char **map)
                 if (i == 0 || i == h)
                     return (0);
                 if (!is_map_element_not_sp(map[i][j-1]) \
-                    || !is_map_element_not_sp(map[i+1][j]))
-                    return (0);
-                if (!is_map_element_not_sp(map[i-1][j]) \
+                    || !is_map_element_not_sp(map[i+1][j]) \
+                    || !is_map_element_not_sp(map[i-1][j]) \
                     || !is_map_element_not_sp(map[i][j+1]))
                     return (0);
             }
 			j++;
 		}
-		i++;
 	}
     return (1);
 }

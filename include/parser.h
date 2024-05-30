@@ -35,5 +35,7 @@ int             scanner_checker (int num[], int n, int i, char *data);
 int             scan4player(char **map);
 int             border_checker(char **map);
 int             is_map_element_not_sp(char c);
+void            free_2dwithres(t_parser_data *res, char **data);
+void            get_texture_check(char *type, char *text, t_parser_data *res);
 
 #endif
