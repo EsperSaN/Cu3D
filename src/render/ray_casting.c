@@ -1,108 +1,6 @@
 #include "render.h"
 
-t_ray   prepare_ray_for_dda(t_player_data p, int x_cam_pane)
-{
-    t_ray res;
-
-    res.pos.x = (int)p.pos.x;
-    res.pos.y = (int)p.pos.y;
-    res.is_hit = 0;
-    res.dir.x = p.dir.x + p.pane.x * x_cam_pane;
-    res.dir.y = p.dir.y + p.pane.y * x_cam_pane;
-
-    res.delta_dis.x = fabsf(1 / res.dir.x);
-    res.delta_dis.y = fabsf(1 / res.dir.y);
-    if (res.dir.x == 0)
-        res.delta_dis.x = 1e30;
-    if (res.dir.y == 0)
-        res.delta_dis.y = 1e30;
-    if (res.dir.x < 0)
-    {
-        res.step_inc.x = -1;
-        res.side_dist.x = (p.pos.x - res.pos.x) * res.delta_dis.x;
-    }
-    else
-    {
-        res.step_inc.x = 1;
-        res.side_dist.x = ((res.pos.x + 1.0) - p.pos.x) * res.delta_dis.x;
-    }
-    if (res.dir.y < 0)
-    {
-        res.step_inc.y = -1;
-        res.side_dist.y = (p.pos.y - res.pos.y) * res.delta_dis.y;
-    }
-    else
-    {
-        res.step_inc.y = 1;
-        res.side_dist.y = (res.pos.y + 1.0 - p.pos.y) * res.delta_dis.y;
-    }
-    return (res);
-}
-
-#define y_line 0
-#define x_line 1
-
-t_ray   dda_till_hit(t_ray r, char **maps)
-{
-    t_ray ray;
-
-    ray = r;
-    while (ray.is_hit == 0)
-    {
-        if (ray.side_dist.x < ray.side_dist.y)
-        {
-            ray.side_dist.x += ray.delta_dis.x;
-            ray.pos.x += ray.step_inc.x;
-            ray.hit_side = x_line;
-        }
-        else
-        {
-            ray.side_dist.y += ray.delta_dis.y;
-            ray.pos.y += ray.step_inc.y;
-            ray.hit_side = y_line;
-        }
-        if (maps[ray.pos.y][ray.pos.x] != '0')
-            ray.is_hit = 1;
-    }
-    dprintf(2, "check for y [%d] x [%d]\n", ray.pos.y, ray.pos.x);
-    dprintf(2, "here at [%c]\n",  maps[ray.pos.y][ray.pos.x]);
-    if (ray.hit_side = x_line)
-        ray.size = ray.side_dist.x - ray.delta_dis.x;
-    else
-        ray.size = ray.side_dist.y - ray.delta_dis.y;
-    
-    return (ray);
-}
-
-void project_from_ray(mlx_image_t *img, t_ray ray, int x_to_draw)
-{
-    int         line_draw_size;
-    t_int_point start;
-    t_int_point end;
-    int         color;
-
-    color = get_rgba(122, 22, 122, 255);
-
-    line_draw_size = (int)(img->height / ray.size);
-    start.x = x_to_draw;
-    end.x = x_to_draw;
-    
-    start.y = (int)(((line_draw_size * -1) / 2) + img->height / 2);
-
-    if (start.y < 1)
-        start.y = 1;
-    end.y = (line_draw_size / 2) + (img->height / 2);
-
-    if (end.y >= img->height)
-        end.y = img->height - 1;
-    
-    if (ray.hit_side == x_line)
-        color = color / 2;
-    dprintf(2, "start x [%d] y [%d] end x[%d] y[%d]\n", start.x, start.y, end.x, end.y);
-    draw_line(img, start, end, color);
-}
-
-void printray(t_ray ray)
+void printray(t_raydata ray)
 {
     dprintf(2, "ray_pos x[%d]y[%d]\n", ray.pos.x, ray.pos.y);
 }
@@ -110,37 +8,87 @@ void printray(t_ray ray)
 int ray_casting(mlx_image_t *img, t_data *d)
 {
     int             cur_w;
-    t_ray           ray;
-    float           cam_on_pane;
+    t_raydata       ray;
     t_player_data   p;
     
     cur_w = 0;
     p = *(d->player);
-    // while (cur_w <= img->width)
-    // {    
-    //     cam_on_pane = 2 * cur_w / (float)img->width - 1; // why!!!!
-    //     // ray = prepare_ray_for_dda(p, cam_on_pane);
-    //     // putreport("prepare done");
-    //     // printray(ray);
-    //     // ray = dda_till_hit(ray, d->maps->maps_array);
-    //     // putreport("DDA done\n");
-    //     // printray(ray);
-    //     // project_from_ray(img, ray, cur_w);
-    //     // cur_w++;
-    //     ray.pos.x = (int)p.pos.x;
-    //     ray.pos.y = (int)p.pos.y;
-    //     ray.dir.x = p.dir.x + p.pane.x * cam_on_pane;
-    //     ray.dir.y = p.dir.y + p.pane.y * cam_on_pane;
-    //     dprintf(2, "--------------------\nx = [%d]/[%d]\n\ncam = %f\npos = x [%d] y [%d]\nmap x = [%f]\nmap y = [%f]\n dir x [%f] y[%f]\n", cur_w, img->width,cam_on_pane, ray.pos.x,ray.pos.y,p.pos.x, p.pos.y, ray.dir.x, ray.dir.y);
-    //     ray.delta_dis.x = fabsf(1 / ray.dir.x);
-    //     if (ray.dir.x == 0)
-    //         ray.delta_dis.x = 3.4e38;
-    //     ray.delta_dis.y = fabsf(1 / ray.dir.y);
-    //     if (ray.dir.y == 0)
-    //         ray.delta_dis.y = 3.4e38;
+    while (cur_w < img->width)
+    {
+        ray.pos.x = (int)p.pos.x;
+        ray.pos.y = (int)p.pos.y;
+        ray.is_hit = 0;
+        ray.camera.x = 2 * (cur_w / (float)img->width) - 1.0f;
+        ray.ray_dir.x = p.dir.x + p.pane.x * ray.camera.x;
+        ray.ray_dir.y = p.dir.y + p.pane.y * ray.camera.x;
+
+        if (ray.ray_dir.x == 0)
+            ray.ray_dir.x = 1e30;
+        if (ray.ray_dir.y == 0)
+            ray.ray_dir.y = 1e30;
+        ray.delta_distant.x = fabs(1 / ray.ray_dir.x);
+        ray.delta_distant.y = fabs(1 / ray.ray_dir.y);
+        dprintf(2,"ray dir x[%f] y[%f]\n", ray.ray_dir.x, ray.ray_dir.y);
+        dprintf(2,"ray delta x[%f] y[%f]\n", ray.delta_distant.x, ray.delta_distant.y);
         
-    //     dprintf(2, "dx = [%f]\ndy = [%f]\n--------------------------\n", ray.delta_dis.x, ray.delta_dis.y);
+        if (ray.ray_dir.x < 0)
+        {
+            ray.step.x = -1;
+            ray.side_distant.x = (p.pos.x - ray.pos.x) * ray.delta_distant.x;
+        }
+        else
+        {
+            ray.step.x = 1;
+            ray.side_distant.x = (ray.pos.x + 1.0 - p.pos.x) * ray.delta_distant.x;
+        }
+        if (ray.ray_dir.y < 0)
+        {
+            ray.step.y = -1;
+            ray.side_distant.y = (p.pos.y - ray.pos.y) * ray.delta_distant.y;
+        }
+        else
+        {
+            ray.step.y = 1;
+            ray.side_distant.y = (ray.pos.y + 1.0 - p.pos.y) * ray.delta_distant.y;
+        }
+        // init done
+        while (ray.is_hit == 0)
+        {
+            if (ray.side_distant.x < ray.side_distant.y)
+            {
+                ray.side_distant.x += ray.delta_distant.x;
+                ray.pos.x += ray.step.x;
+                ray.hit_side = 0;
+            }
+            else
+            {
+                ray.side_distant.y += ray.delta_distant.y;
+                ray.pos.y += ray.step.y;
+                ray.hit_side = 1;
+            }
+            if (d->maps->maps_array[ray.pos.y][ray.pos.x] != '0')
+                ray.is_hit = 1;
+        }
+        if (ray.hit_side == 0)
+            ray.perp_wall_distant = (ray.side_distant.x - ray.delta_distant.x);
+        else
+            ray.perp_wall_distant = (ray.side_distant.y - ray.delta_distant.y);
         
-    //     cur_w++;
-    // }
+        ray.line_hight = (int)(img->height / ray.perp_wall_distant);
+
+        ray.line_s = (-ray.line_hight / 2) + (img->height / 2);
+        if (ray.line_s < 0)
+            ray.line_s = 0;
+        ray.line_e = (ray.line_hight / 2) + (img->height / 2);
+        if (ray.line_e >= img->height)
+            ray.line_e = img->height - 1;
+        
+        if (ray.hit_side == 1)
+            ray.color = get_rgba(255, 0, 0, 255);
+        else
+            ray.color = get_rgba(255,0 ,0, 145);
+        dprintf(2, "prep wall [%d] start [%d] end [%d]\n", ray.line_hight, ray.line_s, ray.line_e);
+        draw_verline(d->img_game, cur_w, ray.line_s, ray.line_e, ray.color);
+        cur_w++;
+    }
 }

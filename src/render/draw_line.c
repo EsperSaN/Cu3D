@@ -1,5 +1,19 @@
 #include "render.h"
 
+int	draw_verline(mlx_image_t *frame, int x, int y, int to_y, int color)
+{
+	int	tmp;
+
+	if (x >= frame->width)
+		x = frame->width - 1;
+	if (y == 0)
+		y = 1;
+	if (to_y >= frame->height)
+		y = frame->height - 1;
+	while (y++ < to_y)
+		mlx_put_pixel(frame, x, y, color);
+}
+
 int draw_line(mlx_image_t *img, t_int_point head, t_int_point tail, int color)
 {
     t_int_point     delta;

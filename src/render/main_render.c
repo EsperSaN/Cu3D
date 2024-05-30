@@ -23,12 +23,12 @@ void	main_render(void *d)
 
     clear_image(data->img_maps, get_rgba(125,125,125,255));
     putreport("clear map done");
-    draw_maps(data ,data->img_maps, data->maps);
-    putreport("map done");
     floor_cast(data->img_game, data->texture->floor_color);
     putreport("floor done");
     ceil_cast(data->img_game, data->texture->ceil_color);
     putreport("ceil done");
+    draw_maps(data ,data->img_maps, data->maps);
+    putreport("map done");
     ray_casting(data->img_game, data);
     putreport("rc done\n");
     
