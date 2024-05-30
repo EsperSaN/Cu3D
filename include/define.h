@@ -119,19 +119,36 @@ typedef struct s_player_data
 	float	angle;
 }	t_player_data;
 
-typedef struct s_raycast 
+// typedef struct s_raycast 
+// {
+//     // t_float_point   head;
+//     // t_float_point   end;
+//     t_int_point     pos;
+//     t_float_point   dir;
+//     t_float_point   side_dist;
+//     t_float_point   delta_dis;
+//     t_int_point   step_inc;
+//     float           size;
+//     int             hit_side;
+//     int             is_hit;
+// }   t_ray;
+
+typedef struct s_ray_data
 {
-    // t_float_point   head;
-    // t_float_point   end;
-    t_int_point     pos;
-    t_float_point   dir;
-    t_float_point   side_dist;
-    t_float_point   delta_dis;
-    t_int_point   step_inc;
-    float           size;
-    int             hit_side;
-    int             is_hit;
-}   t_ray;
+	t_float_point		camera;
+	t_float_point 		ray_dir;
+	t_float_point		side_distant;
+	t_float_point		delta_distant;
+	t_int_point 		step;
+	t_int_point 		pos;
+	int					color;
+	float				perp_wall_distant;
+	int				is_hit;
+	int				hit_side;
+	int				line_s;
+	int				line_e;
+	int				line_hight;
+}	t_raydata;
 
 typedef struct s_data
 {

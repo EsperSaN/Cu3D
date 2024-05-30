@@ -29,5 +29,5 @@ int                 draw_line(mlx_image_t *img, t_int_point head, t_int_point ta
 void                floor_cast(mlx_image_t *img, int color);
 void                ceil_cast(mlx_image_t *img, int color);
 int                 ray_casting(mlx_image_t *img, t_data *d);
-
+int	draw_verline(mlx_image_t *frame, int x, int y, int to_y, int color);
 #endif
