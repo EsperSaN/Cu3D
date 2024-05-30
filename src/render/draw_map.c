@@ -17,6 +17,7 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	t_int_point p_pos;
 	t_int_point p_dir;
 	t_int_point p_fov;
+	t_int_point p_pane;
 	t_float_point p_dirr;
 
 	p_pos.x = (int)(d->player->pos.x * scale);
@@ -26,6 +27,14 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	draw_line(img, p_pos, p_dir, get_rgba(255,0,0,255));
 	draw_square_center(img, p_pos, 5, get_rgba(255,255,255,255));
 	draw_square_center(img, p_dir, 5, get_rgba(0,255,0,255));
+	p_pane = p_dir;
+	p_pane.x += d->player->pane.x * scale;
+	p_pane.y += d->player->pane.y * scale;
+	draw_line(img, p_dir, p_pane, get_rgba(255,0,0,255));
+	p_pane = p_dir;
+	p_pane.x -= d->player->pane.x * scale;
+	p_pane.y -= d->player->pane.y * scale;
+	draw_line(img, p_dir, p_pane, get_rgba(255,0,0,255));
 	p_dirr = rotate_vector(d->player->dir, FIELD_OF_VIEW/2);
 	p_fov.x = (int)(p_pos.x + (p_dirr.x * scale));
 	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
@@ -36,6 +45,144 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
 	p_fov.y = (int)(p_pos.y + (p_dirr.y * scale));
 	draw_square_center(img, p_fov, 5, get_rgba(100,100,100,255));
 	draw_line(img, p_pos, p_fov, get_rgba(255,0,0,255));
+
+	// int             cur_w;
+    // t_ray           ray;
+    // float           cam_on_pane;
+    // t_player_data   p;
+    
+    // cur_w = img->width / 2;
+    // p = *(d->player);
+    // while (cur_w <= img->width)
+    // {    
+    //     cam_on_pane = 2 * (cur_w / (float)img->width) - 1.0f; // why!!!!
+    //     // ray = prepare_ray_for_dda(p, cam_on_pane);
+    //     // putreport("prepare done");
+    //     // printray(ray);
+    //     // ray = dda_till_hit(ray, d->maps->maps_array);
+    //     // putreport("DDA done\n");
+    //     // printray(ray);
+    //     // project_from_ray(img, ray, cur_w);
+    //     // cur_w++;
+    //     ray.pos.x = (int)p.pos.x;
+    //     ray.pos.y = (int)p.pos.y;
+    //     ray.dir.x = p.dir.x + p.pane.x * cam_on_pane;
+    //     ray.dir.y = p.dir.y + p.pane.y * cam_on_pane;
+    //     dprintf(2, "--------------------\nx = [%d]/[%d]\n\ncam = %f\npos = x [%d] y [%d]\nmap x = [%f]\nmap y = [%f]\n dir x [%f] y[%f]\n", cur_w, img->width,cam_on_pane, ray.pos.x,ray.pos.y,p.pos.x, p.pos.y, ray.dir.x, ray.dir.y);
+
+    //     if (ray.dir.x == 0)
+    //         ray.dir.x = 1e30;
+	// 	ray.delta_dis.x = fabs(1 / (float)ray.dir.x);
+    //     if (ray.dir.y == 0)
+    //         ray.dir.y = 1e30;
+	// 	ray.delta_dis.y = fabs(1 / (float)ray.dir.y);
+        
+    //     dprintf(2, "dx = [%lf]\ndy = [%f]\n--------------------------\n", ray.delta_dis.x, ray.delta_dis.y);
+	// 	// ----------------------------------------------------------
+	// 	p_fov.x = (int)(p_pos.x + (ray.dir.x * scale));
+	// 	p_fov.y = (int)(p_pos.y + (ray.dir.y * scale));
+	// 	draw_line(img, p_pos ,p_fov, get_rgba(111,222,122,255));
+	// 	t_int_point delta;
+	// 	delta.x = p_pos.x;
+	// 	delta.y = (int)(d->player->pos.y + ray.delta_dis.y) * scale;
+	// 	//draw_line(img, p_pos, delta, get_rgba(255, 1 , 1 ,255));
+	// 	delta.y = p_pos.y;
+	// 	delta.x = (int)(d->player->pos.x + ray.delta_dis.x) * scale;
+	// 	//draw_line(img, p_pos, delta, get_rgba(255, 255 , 1 ,255));
+	// 	delta.x = (int)(d->player->pos.x + ray.delta_dis.x) * scale;
+	// 	delta.y = (int)(d->player->pos.y + ray.delta_dis.y) * scale;
+	// 	//draw_line(img, p_pos, delta, get_rgba(255, 255 , 1 ,255));
+    //     // -----------------------------------------------------------
+
+	// 	if (ray.dir.x < 0)
+	// 	{
+	// 		ray.step_inc.x = -1;
+	// 		ray.side_dist.x = \
+	// 		(p.pos.x - (int)p.pos.x) * ray.delta_dis.x;
+	// 	}
+	// 	else
+	// 	{
+	// 		ray.step_inc.x = 1;
+	// 		ray.side_dist.x = \
+	// 		((int)p.pos.x + 1.0 - p.pos.x) * ray.delta_dis.x;
+	// 	}
+	// 	if (ray.dir.y < 0)
+	// 	{
+	// 		ray.step_inc.y = -1;
+	// 		ray.side_dist.y = \
+	// 		(p.pos.y - ((int)p.pos.y)) * ray.delta_dis.y;
+	// 	}
+	// 	else
+	// 	{
+	// 		ray.step_inc.y = 1;
+	// 		ray.side_dist.y = \
+	// 		((int)p.pos.y + 1.0 - p.pos.y) * ray.delta_dis.y;
+	// 	}
+
+
+	// 	//--------------------------------------------------
+	// 	t_int_point sd;
+	// 	sd.x = (int)(p.pos.x + ray.side_dist.x) * scale;
+	// 	sd.y = p_pos.y;
+	// 	draw_line(img, p_pos, sd, get_rgba(100,100,0,255));
+	// 	sd.y = (int)(p.pos.y + ray.side_dist.y) * scale;
+	// 	sd.x = p_pos.x;
+	// 	draw_line(img, p_pos, sd, get_rgba(100,200,0,255));
+	// 	sd.y = (int)(p.pos.y + ray.side_dist.y) * scale;
+	// 	sd.x = (int)(p.pos.x + ray.side_dist.x) * scale;
+	// 	draw_line(img, p_pos, sd, get_rgba(100,200,200,255));
+	// 	//----------------------------------------------
+	// 	ray.is_hit == 0;
+	// 	while (ray.is_hit == 0)
+	// 	{
+	// 		if (ray.side_dist.x < ray.side_dist.y)
+	// 		{
+	// 			ray.side_dist.x += ray.delta_dis.x;
+	// 			ray.pos.x += ray.step_inc.x;
+	// 			ray.hit_side = 0;
+	// 		}
+	// 		else
+	// 		{
+	// 			ray.side_dist.y += ray.delta_dis.y;
+	// 			ray.pos.y += ray.step_inc.y;
+	// 			ray.hit_side = 1;
+	// 		}
+	// 		if (d->maps->maps_array[ray.pos.y][ray.pos.x] != '0')
+	// 			ray.is_hit = 1;
+	// 	}
+
+	// 	if (ray.hit_side == 0)
+	// 		ray.size = ray.side_dist.x - ray.delta_dis.x;
+	// 	else
+	// 		ray.size = ray.side_dist.y - ray.delta_dis.y;
+
+	// 	int lineH;
+
+	// 	dprintf(2, "raysize [%f]\n", ray.size);
+	// 	lineH = (int)(img->height / ray.size);
+	// 	int draw_start = -lineH / 2 + img->height / 2;
+	// 	if (draw_start < 1)
+	// 		draw_start = 1;
+	// 	int draw_end;
+		
+	// 	draw_end = (lineH / 2) + (img->height / 2);
+	// 	if (draw_end > img->height)
+	// 		draw_end = img->height - 1;
+
+	// 	t_int_point draw_s;
+	// 	t_int_point draw_e;
+
+	// 	draw_s.x = cur_w;
+	// 	draw_e.x = cur_w;
+	// 	draw_s.y =draw_start;
+	// 	draw_e.y = draw_end;
+
+	// 	dprintf(2, "lineH [%d]\ndraw start [%d] end [%d] from img height [%d]\n",lineH ,draw_start, draw_end, img->height);
+	// 	//draw_line(d->img_game, draw_s, draw_e, get_rgba(255, 255, 255, 255));
+	// 	draw_verline(d->img_game, cur_w, draw_s.y, draw_e.y, get_rgba(65,255,10,255));
+		
+	// cur_w++;
+    // }
 }
 
 static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)

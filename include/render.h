@@ -28,6 +28,6 @@ void                main_render(void *d);
 int                 draw_line(mlx_image_t *img, t_int_point head, t_int_point tail, int color);
 void                floor_cast(mlx_image_t *img, int color);
 void                ceil_cast(mlx_image_t *img, int color);
-int                 ray_casting(mlx_image_t *img, t_player_data *p, char **maps);
-
+int                 ray_casting(mlx_image_t *img, t_data *d);
+int	draw_verline(mlx_image_t *frame, int x, int y, int to_y, int color);
 #endif

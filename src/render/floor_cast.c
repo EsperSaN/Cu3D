@@ -9,7 +9,7 @@ void floor_cast(mlx_image_t *img, int color)
 
     cur_x = 1;
     start.y = img->height / 2;
-    end.y = img->height;
+    end.y = img->height - 1;
 
     while (cur_x < img->width)
     {

@@ -1,12 +1,96 @@
 #include "render.h"
 
-int ray_casting(mlx_image_t *img, t_player_data *p, char **maps)
+void printray(t_raydata ray)
+{
+    dprintf(2, "ray_pos x[%d]y[%d]\n", ray.pos.x, ray.pos.y);
+}
+
+int ray_casting(mlx_image_t *img, t_data *d)
 {
     int             cur_w;
-
+    t_raydata       ray;
+    t_player_data   p;
+    
+    cur_w = 0;
+    p = *(d->player);
     while (cur_w < img->width)
     {
+        ray.pos.x = (int)p.pos.x;
+        ray.pos.y = (int)p.pos.y;
+        ray.is_hit = 0;
+        ray.camera.x = 2 * (cur_w / (float)img->width) - 1.0f;
+        ray.ray_dir.x = p.dir.x + p.pane.x * ray.camera.x;
+        ray.ray_dir.y = p.dir.y + p.pane.y * ray.camera.x;
 
+        if (ray.ray_dir.x == 0)
+            ray.ray_dir.x = 1e30;
+        if (ray.ray_dir.y == 0)
+            ray.ray_dir.y = 1e30;
+        ray.delta_distant.x = fabs(1 / ray.ray_dir.x);
+        ray.delta_distant.y = fabs(1 / ray.ray_dir.y);
+        dprintf(2,"ray dir x[%f] y[%f]\n", ray.ray_dir.x, ray.ray_dir.y);
+        dprintf(2,"ray delta x[%f] y[%f]\n", ray.delta_distant.x, ray.delta_distant.y);
+        
+        if (ray.ray_dir.x < 0)
+        {
+            ray.step.x = -1;
+            ray.side_distant.x = (p.pos.x - ray.pos.x) * ray.delta_distant.x;
+        }
+        else
+        {
+            ray.step.x = 1;
+            ray.side_distant.x = (ray.pos.x + 1.0 - p.pos.x) * ray.delta_distant.x;
+        }
+        if (ray.ray_dir.y < 0)
+        {
+            ray.step.y = -1;
+            ray.side_distant.y = (p.pos.y - ray.pos.y) * ray.delta_distant.y;
+        }
+        else
+        {
+            ray.step.y = 1;
+            ray.side_distant.y = (ray.pos.y + 1.0 - p.pos.y) * ray.delta_distant.y;
+        }
+        // init done
+        while (ray.is_hit == 0)
+        {
+            if (ray.side_distant.x < ray.side_distant.y)
+            {
+                ray.side_distant.x += ray.delta_distant.x;
+                ray.pos.x += ray.step.x;
+                ray.hit_side = 0;
+            }
+            else
+            {
+                ray.side_distant.y += ray.delta_distant.y;
+                ray.pos.y += ray.step.y;
+                ray.hit_side = 1;
+            }
+            if (d->maps->maps_array[ray.pos.y][ray.pos.x] != '0')
+                ray.is_hit = 1;
+        }
+        if (ray.hit_side == 0)
+            ray.perp_wall_distant = (ray.side_distant.x - ray.delta_distant.x);
+        else
+            ray.perp_wall_distant = (ray.side_distant.y - ray.delta_distant.y);
+        
+        ray.line_hight = (int)(img->height / ray.perp_wall_distant);
+
+        ray.line_s = (-ray.line_hight / 2) + (img->height / 2);
+        if (ray.line_s < 0)
+            ray.line_s = 0;
+        ray.line_e = (ray.line_hight / 2) + (img->height / 2);
+        if (ray.line_e >= img->height)
+            ray.line_e = img->height - 1;
+        
+        if (ray.hit_side == 1)
+            ray.color = get_rgba(255, 0, 0, 255);
+        else
+            ray.color = get_rgba(255,0 ,0, 145);
+        dprintf(2, "prep wall [%d] start [%d] end [%d]\n", ray.line_hight, ray.line_s, ray.line_e);
+        draw_verline(d->img_game, cur_w, ray.line_s, ray.line_e, ray.color);
+        // start texture
+        
         cur_w++;
     }
 }

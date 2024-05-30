@@ -30,9 +30,6 @@ RENDER_FILE = clear_image.c\
 			  draw_map.c\
 			  draw_squre.c\
 			  draw_line.c\
-			  set_from_parser_data.c\
-			  set_maps_data.c\
-			  set_texture_assets.c\
 			  prepare_render.c\
 			  key_hook.c\
 			  floor_cast.c\
@@ -55,6 +52,9 @@ UTIL_FILE = puterror.c \
 			rotate_vector.c
 
 PARSER_FILE = parser.c \
+			  set_from_parser_data.c\
+			  set_maps_data.c\
+			  set_texture_assets.c\
 			  get_texture_file.c\
 			  get_maps_array.c\
 			  read.c
