@@ -11,21 +11,17 @@ bool is_in_set(char *set, char c)
     return (false);
 }
 
-t_float_point find_player_dir(char p)
+int find_player_angle(char p)
 {
-    t_float_point res;
-    
-    res.x = 0;
-    res.y = 0;
+    // N = 90;
     if (p == 'N')
-        res.y = -1;
+        return (180);
     if (p == 'S')
-        res.y = 1;
+        return (0);
     if (p == 'E')
-        res.x = -1;
+        return (-90);
     if (p == 'W')
-        res.x = 1;
-    return (res);
+        return (90);
 }
 
 t_float_point find_player_pos(char **maps)
@@ -50,14 +46,17 @@ t_float_point find_player_pos(char **maps)
 t_player_data *set_player_data(t_data *data)
 {
     t_player_data *res;
+    int            angle;
 
     res = ft_calloc(sizeof(t_player_data), 1);
     res->pos = find_player_pos(data->maps->maps_array);
     res->dir.x = 0;
     res->dir.y = 1;
-    //res->dir = find_player_dir(data->maps->maps_array[(int)res->pos.y][(int)res->pos.x]);
+    angle = find_player_angle(data->maps->maps_array[(int)res->pos.y][(int)res->pos.x]);
     res->pane.x = -fabs((tan(get_rad(FIELD_OF_VIEW) / 2)));
     res->pane.y = 0;
+    res->dir = rotate_vector(res->dir, angle);
+    res->pane = rotate_vector(res->pane, angle);
     data->maps->maps_array[(int)res->pos.y][(int)res->pos.x] = FLOOR;
     res->pos.x += 0.5;
     res->pos.y += 0.5;
