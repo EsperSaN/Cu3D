@@ -57,7 +57,8 @@ PARSER_FILE = parser.c \
 			  set_texture_assets.c\
 			  get_texture_file.c\
 			  get_maps_array.c\
-			  read.c
+			  read.c\
+			  floodfill.c
 
 FREE_FILE = free_maps_data.c\
 			free_parser_data.c\

@@ -17,7 +17,7 @@
 
 # define FIELD_OF_VIEW 60
 
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.1
 # define ROT_SPEED 1
 
 // DONT CHANGE

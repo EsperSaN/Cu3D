@@ -33,9 +33,14 @@ int             get_ceil_floor(char *str, t_parser_data *res, char mode);
 int             src_checker(t_parser_data *res);
 int             scanner_checker (int num[], int n, int i, char *data);
 int             scan4player(char **map);
-int             border_checker(char **map);
+int             border_checker(t_parser_data *data, char **map);
 int             is_map_element_not_sp(char c);
 void            free_2dwithres(t_parser_data *res, char **data);
 void            get_texture_check(char *type, char *text, t_parser_data *res);
-
+char            **ft_floodfill(t_parser_data *data);
+t_int_point     get_player_pos4(char **map);
+int             get_visit_status (char **map, int i, int j);
+char            **create_visitmap (int w, int h);
+void            ft_floodfill_util(t_parser_data *data, char **visited, int x, int y);
+t_float_point   find_player_pos(char **maps);
 #endif

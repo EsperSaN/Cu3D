@@ -120,11 +120,12 @@ t_parser_data	*main_parser(char *file_name)
 	res->maps_data = init_map(data, find_width(data), find_height(data));
 	if (!scan4player(res->maps_data))
 		return (free_parser(res), NULL);
-	if (!border_checker(res->maps_data))
+	if (!border_checker(res, res->maps_data))
 		return (free_parser(res), NULL);
 	close(fd);
 	print_map_data(res);
 	print_map(res->maps_data);
+	printf("---------------------------------------\n");
 	return (res);
 }
 
