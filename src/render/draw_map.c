@@ -69,22 +69,85 @@ void draw_player(t_data *d, mlx_image_t *img, int scale)
         ray.dir.x = p.dir.x + p.pane.x * cam_on_pane;
         ray.dir.y = p.dir.y + p.pane.y * cam_on_pane;
         dprintf(2, "--------------------\nx = [%d]/[%d]\n\ncam = %f\npos = x [%d] y [%d]\nmap x = [%f]\nmap y = [%f]\n dir x [%f] y[%f]\n", cur_w, img->width,cam_on_pane, ray.pos.x,ray.pos.y,p.pos.x, p.pos.y, ray.dir.x, ray.dir.y);
-        ray.delta_dis.x = fabsf(1 / ray.dir.x);
+        ray.delta_dis.x = abs(1 / ray.dir.x);
         if (ray.dir.x == 0)
-            ray.delta_dis.x = 3.4e38;
-        ray.delta_dis.y = fabsf(1 / ray.dir.y);
+            ray.delta_dis.x = 9999;
+        ray.delta_dis.y = abs(1 / ray.dir.y);
         if (ray.dir.y == 0)
-            ray.delta_dis.y = 3.4e38;
+            ray.delta_dis.y = 9999;
         
         dprintf(2, "dx = [%f]\ndy = [%f]\n--------------------------\n", ray.delta_dis.x, ray.delta_dis.y);
+		// ----------------------------------------------------------
 		p_fov.x = (int)(p_pos.x + (ray.dir.x * scale));
 		p_fov.y = (int)(p_pos.y + (ray.dir.y * scale));
 		draw_line(img, p_pos ,p_fov, get_rgba(111,222,122,255));
-		// t_int_point deltaY;
-		// deltaY.x = p_pos.x;
-		// deltaY.y = (int)(p_pos.y + (ray.delta_dis.y * scale));
-		// draw_line(img, p_pos, deltaY, get_rgba(255, 1 , 1 ,255));
-        cur_w++;
+		t_int_point delta;
+		delta.x = p_pos.x;
+		delta.y = (int)(d->player->pos.y + ray.delta_dis.y) * scale;
+		//draw_line(img, p_pos, delta, get_rgba(255, 1 , 1 ,255));
+		delta.y = p_pos.y;
+		delta.x = (int)(d->player->pos.x + ray.delta_dis.x) * scale;
+		//draw_line(img, p_pos, delta, get_rgba(255, 255 , 1 ,255));
+		delta.x = (int)(d->player->pos.x + ray.delta_dis.x) * scale;
+		delta.y = (int)(d->player->pos.y + ray.delta_dis.y) * scale;
+		//draw_line(img, p_pos, delta, get_rgba(255, 255 , 1 ,255));
+        // -----------------------------------------------------------
+
+		if (ray.dir.x < 0)
+		{
+			ray.step_inc.x = -1;
+			ray.side_dist.x = (p.pos.x - (int)p.pos.x) * ray.delta_dis.x;
+		}
+		else
+		{
+			ray.step_inc.x = 1;
+			ray.side_dist.x = ((int)p.pos.x + 1.0 - (p.pos.x)) * ray.delta_dis.x;
+		}
+		if (ray.dir.y < 0)
+		{
+			ray.step_inc.y = -1;
+			ray.side_dist.y = (p.pos.y - ((int)p.pos.y) * ray.delta_dis.y);
+		}
+		else
+		{
+			ray.step_inc.y = 1;
+			ray.side_dist.y = ((int)p.pos.y + 1.0 - p.pos.y) * ray.delta_dis.y;
+		}
+
+
+		//--------------------------------------------------
+		t_int_point sd;
+		sd.x = (int)(p.pos.x + ray.side_dist.x) * scale;
+		sd.y = p_pos.y;
+		draw_line(img, p_pos, sd, get_rgba(100,100,0,255));
+		sd.y = (int)(p.pos.y + ray.side_dist.y) * scale;
+		sd.x = p_pos.x;
+		draw_line(img, p_pos, sd, get_rgba(100,200,0,255));
+		sd.y = (int)(p.pos.y + ray.side_dist.y) * scale;
+		sd.x = (int)(p.pos.x + ray.side_dist.x) * scale;
+		draw_line(img, p_pos, sd, get_rgba(100,200,200,255));
+		//----------------------------------------------
+		ray.is_hit == 0;
+		while (ray.is_hit == 0)
+		{
+			if (ray.side_dist.x < ray.side_dist.y)
+			{
+				ray.side_dist.x += ray.delta_dis.x;
+				ray.pos.x += ray.step_inc.x;
+			}
+			else
+			{
+				ray.side_dist.y += ray.delta_dis.y;
+				ray.pos.y += ray.step_inc.y;
+			}
+			if (d->maps->maps_array[ray.pos.y][ray.pos.x] != '0')
+				ray.is_hit == 1;
+		}
+		sd.y = (int)(ray.side_dist.y * scale);
+		sd.x = (int)(ray.side_dist.x * scale);
+		draw_line(img, p_pos, sd, get_rgba(0,0,255,255));
+
+		cur_w++;
     }
 }
 

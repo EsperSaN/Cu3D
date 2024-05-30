@@ -18,7 +18,8 @@ int draw_line(mlx_image_t *img, t_int_point head, t_int_point tail, int color)
     cur.y = head.y;
     while (step >= 0)
     {
-        mlx_put_pixel(img, (int)cur.x, (int)cur.y, color);
+        if (cur.x > 0 && cur.x < img->height && cur.y > 0 && cur.y < img->height)
+            mlx_put_pixel(img, (int)cur.x, (int)cur.y, color);
         cur.x += inc.x;
         cur.y += inc.y;
         step--;

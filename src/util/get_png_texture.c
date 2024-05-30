@@ -67,7 +67,7 @@ t_texture	*get_texture_png(char *tex_file)
 		ret->pixel_array[i] = ft_calloc(sizeof(int), m_tex->width);
 		if (ret->pixel_array[i] == NULL)
 		{
-			free2d(ret->pixel_array);
+			//free2d(ret->pixel_array);
 			free(ret->pixel_array);
 			free(ret);
 			return (NULL);
