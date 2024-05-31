@@ -11,8 +11,13 @@ int ray_casting(mlx_image_t *img, t_data *d)
     t_raydata       ray;
     t_player_data   p;
     
+    // t_int_point     map;
+    // need new var to improve int
     cur_w = 0;
     p = *(d->player);
+    // map.x = (int)p.pos.x;
+    // map.y = (int)p.pos.y;
+
     while (cur_w < img->width)
     {
         ray.pos.x = (int)p.pos.x;
@@ -90,7 +95,36 @@ int ray_casting(mlx_image_t *img, t_data *d)
         dprintf(2, "prep wall [%d] start [%d] end [%d]\n", ray.line_hight, ray.line_s, ray.line_e);
         draw_verline(d->img_game, cur_w, ray.line_s, ray.line_e, ray.color);
         // start texture
+        float wallX;
+
+        if (ray.hit_side == 0)
+            wallX = p.pos.y + ray.perp_wall_distant * ray.ray_dir.y;
+        else
+            wallX = p.pos.x + ray.perp_wall_distant * ray.ray_dir.x;
+        wallX -= floor(wallX);
+
+        int tex_cor_x = (int)(wallX * (float)d->texture->north_texture->width);
+        if (ray.hit_side == 0 && ray.ray_dir.x > 0)
+            tex_cor_x = d->texture->north_texture->width - tex_cor_x - 1;
+        if (ray.hit_side == 1 && ray.ray_dir.y < 0)
+            tex_cor_x = d->texture->north_texture->width - tex_cor_x - 1;
         
+        float step_tex;
+        step_tex = (d->texture->north_texture->height * 1.0 / ray.line_hight * 1.0);
+        float tex_pos = (ray.line_s - img->height / 2 + ray.line_hight / 2) * step_tex;
+        int cur_y;
+        int tex_cor_y;
+        cur_y = ray.line_s;
+        while (cur_y < ray.line_e)
+        {
+            tex_cor_y = (int)tex_pos & (d->texture->north_texture->height - 1);
+            tex_pos += step_tex;
+            int color = d->texture->north_texture->pixel_array[tex_cor_y][tex_cor_x];
+            if (ray.hit_side == 1)
+                color = (color >> 1) & 8355711;
+            mlx_put_pixel(d->img_game, cur_w, cur_y, color);
+            cur_y++;
+        }
         cur_w++;
     }
 }
