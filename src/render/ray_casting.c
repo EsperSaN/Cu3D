@@ -98,9 +98,9 @@ int ray_casting(mlx_image_t *img, t_data *d)
         float wallX;
 
         if (ray.hit_side == 0)
-            wallX = ray.pos.y + (ray.perp_wall_distant * ray.ray_dir.y);
+            wallX = p.pos.y + ray.perp_wall_distant * ray.ray_dir.y;
         else
-            wallX = ray.pos.x + (ray.perp_wall_distant * ray.ray_dir.x);
+            wallX = p.pos.x + ray.perp_wall_distant * ray.ray_dir.x;
         wallX -= floor(wallX);
 
         int tex_cor_x = (int)(wallX * (float)d->texture->north_texture->width);
@@ -110,7 +110,7 @@ int ray_casting(mlx_image_t *img, t_data *d)
             tex_cor_x = d->texture->north_texture->width - tex_cor_x - 1;
         
         float step_tex;
-        step_tex = 1.0 * (d->texture->north_texture->height / ray.line_hight);
+        step_tex = (d->texture->north_texture->height * 1.0 / ray.line_hight * 1.0);
         float tex_pos = (ray.line_s - img->height / 2 + ray.line_hight / 2) * step_tex;
         int cur_y;
         int tex_cor_y;
