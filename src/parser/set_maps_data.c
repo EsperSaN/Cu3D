@@ -25,6 +25,7 @@ t_maps_data *set_maps_data(t_data *data)
             free(res);
             return(NULL);
         }
+        dprintf(2, "[%s]\n", res->maps_array[i]);
         i++;
     }
     res->maps_width = data->parser_data->width;

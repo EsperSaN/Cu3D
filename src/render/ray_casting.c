@@ -33,8 +33,8 @@ int ray_casting(mlx_image_t *img, t_data *d)
             ray.ray_dir.y = 1e30;
         ray.delta_distant.x = fabs(1 / ray.ray_dir.x);
         ray.delta_distant.y = fabs(1 / ray.ray_dir.y);
-        dprintf(2,"ray dir x[%f] y[%f]\n", ray.ray_dir.x, ray.ray_dir.y);
-        dprintf(2,"ray delta x[%f] y[%f]\n", ray.delta_distant.x, ray.delta_distant.y);
+        // dprintf(2,"ray dir x[%f] y[%f]\n", ray.ray_dir.x, ray.ray_dir.y);
+        // dprintf(2,"ray delta x[%f] y[%f]\n", ray.delta_distant.x, ray.delta_distant.y);
         
         if (ray.ray_dir.x < 0)
         {
@@ -92,7 +92,7 @@ int ray_casting(mlx_image_t *img, t_data *d)
             ray.color = get_rgba(255, 0, 0, 255);
         else
             ray.color = get_rgba(255,0 ,0, 145);
-        dprintf(2, "prep wall [%d] start [%d] end [%d]\n", ray.line_hight, ray.line_s, ray.line_e);
+        // dprintf(2, "prep wall [%d] start [%d] end [%d]\n", ray.line_hight, ray.line_s, ray.line_e);
         draw_verline(d->img_game, cur_w, ray.line_s, ray.line_e, ray.color);
         // start texture
         float wallX;
