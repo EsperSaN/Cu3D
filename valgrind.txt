@@ -1,0 +1,3 @@
+ 1544  valgrind --leak-check=full --show-reachable=yes --error-limit=no --gen-suppressions=all --suppressions=kranuiwave.supp --log-file=memcheck.log  ./cub3d maps/valid/subject.cub 
+ 1545  cat memcheck.log | ./supstar.sh >> kranuiwave.supp
+ 1546  valgrind  --suppressions=kranuiwave.supp ./cub3d maps/valid/subject.cub 
