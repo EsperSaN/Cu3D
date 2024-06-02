@@ -12,35 +12,35 @@
 
 #include "parser.h"
 
-char **create_visitmap (int w, int h)
+char	**create_visitmap(int w, int h)
 {
-    int i;
-    int j;
-    char **visited;
+	int		i;
+	int		j;
+	char	**visited;
 
 	i = 0;
-    visited = (char **)malloc(sizeof(char *) * (h + 1));
-    visited[h] = NULL;
-    while (i < h)
+	visited = (char **)malloc(sizeof(char *) * (h + 1));
+	visited[h] = NULL;
+	while (i < h)
 	{
 		visited[i] = (char *)malloc(sizeof(char) * (w + 1));
-	    j = 0;
+		j = 0;
 		while (j < w)
-        {
-            visited[i][j] = '0';
-            j++;
-        }
-        visited[i][w] = '0';
-        i++;
+		{
+			visited[i][j] = '0';
+			j++;
+		}
+		visited[i][w] = '0';
+		i++;
 	}
-    return (visited);
+	return (visited);
 }
 
 void	ft_floodfill_util(t_parser_data *data, char **visited, int x, int y)
 {
 	if (y > -1 && y < data->width && x > -1 && x < data->height \
-        && data->maps_data[x][y] != NULL && visited[x][y] == '0' \
-        && data->maps_data[x][y] != '1')
+		&& data->maps_data[x][y] && visited[x][y] == '0' \
+		&& data->maps_data[x][y] != '1')
 	{
 		visited[x][y] = '3';
 		ft_floodfill_util(data, visited, x + 1, y);
@@ -50,42 +50,26 @@ void	ft_floodfill_util(t_parser_data *data, char **visited, int x, int y)
 	}
 }
 
-char **ft_floodfill(t_parser_data *data)
+char	**ft_floodfill(t_parser_data *data)
 {
-	t_int_point pos;
-    char **visited;
+	t_int_point	pos;
+	char		**visited;
+	int			h;
+	int			w;
 
-    int h;
-    int w;
-
-    pos = get_player_pos4(data->maps_data);
+	pos = get_player_pos4(data->maps_data);
 	h = data->height;
 	w = data->width;
 	visited = create_visitmap(w, h);
 	ft_floodfill_util(data, visited, pos.y, pos.x);
-    int	i;
-	int j;
-
-	i = 0;
-	while (i < h)
-	{
-		j = 0;
-		printf("[");
-		while (j < w)
-		{
-			printf("%c", visited[i][j]);
-			j++;
-		}
-		printf("]\n");
-		i++;
-	}
-    return(visited);
+	return (visited);
 }
-t_int_point get_player_pos4(char **map)
+
+t_int_point	get_player_pos4(char **map)
 {
-    t_int_point pos;
-    int	i;
-	int j;
+	t_int_point	pos;
+	int			i;
+	int			j;
 
 	i = 0;
 	while (map[i])
@@ -93,13 +77,13 @@ t_int_point get_player_pos4(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-            if (map[i][j] == 'W' || map[i][j] == 'N' \
-                || map[i][j] == 'E' || map[i][j] == 'S')
-            {
-                pos.x = j;
-                pos.y = i;
-                return (pos);
-            }
+			if (map[i][j] == 'W' || map[i][j] == 'N' \
+				|| map[i][j] == 'E' || map[i][j] == 'S')
+			{
+				pos.x = j;
+				pos.y = i;
+				return (pos);
+			}
 			j++;
 		}
 		i++;

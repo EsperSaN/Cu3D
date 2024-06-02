@@ -30,36 +30,6 @@ char	**init_map(char **smap, int width, int height)
 	return (map);
 }
 
-void	print_map(char **map)
-{
-	int	i;
-	int j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		printf("[");
-		while (map[i][j])
-		{
-			printf("%c", map[i][j]);
-			j++;
-		}
-		printf("]\n");
-		i++;
-	}
-}
-
-void	print_map_data(t_parser_data *res)
-{
-	printf("NO : [%s]\n", res->north_texture);
-	printf("SO : [%s]\n", res->south_texture);
-	printf("WE : [%s]\n", res->west_texture);
-	printf("EA : [%s]\n", res->east_texture);
-    printf("floor : [%u]\n", res->floor_color);
-	printf("ceil : [%u]\n", res->ceil_color);
-}
-
 char	**file_reader(int fd)
 {
 	char	*tmp;
@@ -72,21 +42,9 @@ char	**file_reader(int fd)
 	buffer = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	buffer[BUFFER_SIZE] = '\0';
 	chdata = ft_calloc(sizeof(char), 1);
-	while (read_count > 0)
-	{
-		tmp = chdata;
-		read_count = read(fd, buffer, BUFFER_SIZE);
-		chdata = ft_strjoin(tmp, buffer);
-		buffer[read_count] = '\0';
-		if (!(buffer[0] > 31 && buffer[0] < 128) && buffer[0] != '\n' && read_count > 0)
-			read_count = 0;
-		free(tmp);
-	}
-	free(buffer);
-	if (read_count < -1)
-		perror("FILE READER : ");
+	chdata = read_loop(read_count, chdata, fd, buffer);
 	if (scanner(chdata) == 0 || !ft_strlen(chdata))
-		return(free(chdata), NULL);
+		return (free(chdata), NULL);
 	map = ft_split(chdata, '\n');
 	free(chdata);
 	return (map);
@@ -100,19 +58,13 @@ t_parser_data	*main_parser(char *file_name)
 
 	res = ft_calloc(sizeof(t_parser_data), 1);
 	if (!is_file_valid(file_name, ".cub"))
-		return (free(res), 0);
+		return (free(res), NULL);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		return (free(res), 0);
-	data = file_reader(fd);
-	if (data == NULL)
 		return (free(res), NULL);
-	if (count_value_line(data) == -1)
-		return (free_2dwithres(res, data), NULL);
-	if (!check_resource(data, res))
-		return (free_2dwithres(res, data), NULL);
-	if (!src_checker(res))
-		return (free_2dwithres(res, data), NULL);
+	data = file_reader(fd);
+	if (!checklist(res, data))
+		return (NULL);
 	res->height = find_height(data);
 	res->width = find_width(data);
 	if (res->height == 0 || res->width == 0)
@@ -123,19 +75,16 @@ t_parser_data	*main_parser(char *file_name)
 	if (!border_checker(res, res->maps_data))
 		return (free_parser(res), NULL);
 	close(fd);
-	print_map_data(res);
-	print_map(res->maps_data);
-	printf("---------------------------------------\n");
 	return (res);
 }
 
-void free_2dwithres(t_parser_data *res, char **data)
+void	free_2dwithres(t_parser_data *res, char **data)
 {
 	free2d(data);
 	free_parser(res);
 }
 
-void get_texture_check(char *type, char *text, t_parser_data *res)
+void	get_texture_check(char *type, char *text, t_parser_data *res)
 {
 	if (is_same_str(type, "NO") && !res->north_texture)
 		res->north_texture = ft_strdup(text);

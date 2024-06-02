@@ -56,9 +56,11 @@ PARSER_FILE = parser.c \
 			  set_maps_data.c\
 			  set_texture_assets.c\
 			  get_texture_file.c\
-			  get_maps_array.c\
-			  read.c\
-			  floodfill.c
+			  checker1.c\
+			  checker2.c\
+			  checker3.c\
+			  floodfill.c\
+			  print.c
 
 FREE_FILE = free_maps_data.c\
 			free_parser_data.c\
@@ -119,8 +121,8 @@ OBJS = $(SRCS:.c=.o)
 all : libft libmlx $(NAME)
 
 val : $(NAME)
-	valgrind --leak-check=full  -s ./$(NAME) maps/valid/subject.cub
-#	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) maps/valid/subject.cub
+#	valgrind --leak-check=full  -s ./$(NAME) maps/valid/subject.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) maps/valid/subject.cub
 libft :
 	@make -C $(LIB_FT_DIR)
 
