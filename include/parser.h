@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:14:51 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 21:33:56 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:36:45 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 # define PARSER_H
 
 # include "cube.h"
-
 # define BUFFER_SIZE 1
 
-char	        **init_map(char **smap, int width, int height);
+char			**init_map(char **smap, int width, int height);
 void			print_map(char **map);
 void			print_map_data(t_parser_data *res);
 char			**file_reader(int fd);
 t_parser_data	*main_parser(char *file_name);
 char			*get_texture_file(char **map, char *indicater);
 char			**get_maps_array(char **maps);
-int             find_height(char **data);
-int             find_width(char **data);
-int             scanner(char *data);
-int             count_value_line(char **data);
-int             check_resource(char **map, t_parser_data *res);
-int             get_ceil_floor(char *str, t_parser_data *res, char mode);
-int             src_checker(t_parser_data *res);
-int             scanner_checker (int num[], int n, int i, char *data);
-int             scan4player(char **map);
-int             border_checker(char **map);
-int             is_map_element_not_sp(char c);
-void            free_2dwithres(t_parser_data *res, char **data);
-void            get_texture_check(char *type, char *text, t_parser_data *res);
+int				find_height(char **data);
+int				find_width(char **data);
+int				scanner(char *data);
+int				count_value_line(char **data);
+int				check_resource(char **map, t_parser_data *res);
+int				get_ceil_floor(char *str, t_parser_data *res, char mode);
+int				src_checker(t_parser_data *res);
+int				scanner_checker (int *num, int n, int i, char *data);
+int				scan4player(char **map);
+int				border_checker(char **map);
+int				is_map_element_not_sp(char c);
+void			free_2dwithres(t_parser_data *res, char **data);
+void			get_texture_check(char *type, char *text, t_parser_data *res);
 
 #endif
