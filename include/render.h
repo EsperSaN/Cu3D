@@ -15,6 +15,7 @@
 
 # include "cube.h"
 
+
 bool				set_from_parser_data(t_data *data);
 
 t_maps_data			*set_maps_data(t_data *data);
@@ -56,5 +57,6 @@ int					ray_casting(mlx_image_t *img, t_data *d);
 int					draw_verline(mlx_image_t *frame, \
 										int x, int y, int to_y, int color);
 void				init_ray(t_raydata *ray, t_player_data *play_data);
+
 
 #endif

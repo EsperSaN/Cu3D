@@ -1,34 +1,42 @@
-#include "render.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_maps_data.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/02 22:31:37 by tpoungla          #+#    #+#             */
+/*   Updated: 2024/06/02 22:31:37 by tpoungla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_maps_data *set_maps_data(t_data *data)
+#include "parser.h"
+
+t_maps_data	*set_maps_data(t_data *data)
 {
-    t_maps_data *res;
-    int         i;
+	t_maps_data	*res;
+	int			i;
 
-    res = ft_calloc(sizeof(t_maps_data), 1);
-    if (res == NULL)
-        return (NULL);
-    res->maps_array = ft_calloc(sizeof(char *), data->parser_data->height + 1);
-    if (res->maps_array == NULL)
-    {
-        free(res);
-        return (NULL);
-    }
-    i = 0;
-    while (data->parser_data->maps_data[i])
-    {
-        res->maps_array[i] = \
-                ft_strdup(data->parser_data->maps_data[i]);
-        if (res->maps_array[i] == NULL)
-        {
-            free2d(res->maps_array);
-            free(res);
-            return(NULL);
-        }
-        dprintf(2, "[%s]\n", res->maps_array[i]);
-        i++;
-    }
-    res->maps_width = data->parser_data->width;
-    res->maps_height = data->parser_data->height;
-    return (res);
+	res = ft_calloc(sizeof(t_maps_data), 1);
+	if (res == NULL)
+		return (NULL);
+	res->maps_array = ft_calloc(sizeof(char *), data->parser_data->height + 1);
+	if (res->maps_array == NULL)
+		return (free(res), NULL);
+	i = 0;
+	while (data->parser_data->maps_data[i])
+	{
+		res->maps_array[i] = \
+				ft_strdup(data->parser_data->maps_data[i]);
+		if (res->maps_array[i] == NULL)
+		{
+			free_maps(res);
+			return (NULL);
+		}
+		dprintf(2, "[%s]\n", res->maps_array[i]);
+		i++;
+	}
+	res->maps_width = data->parser_data->width;
+	res->maps_height = data->parser_data->height;
+	return (res);
 }
