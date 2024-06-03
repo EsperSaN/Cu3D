@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:18:34 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/02 17:54:44 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/03 16:17:04 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,4 @@ void	main_render(void *d)
 	ceil_cast(data->img_game, data->texture->ceil_color);
 	draw_maps(data, data->img_maps, data->maps);
 	ray_casting(data->img_game, data);
-
-
 }

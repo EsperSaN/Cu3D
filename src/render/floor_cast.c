@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:50:23 by wave              #+#    #+#             */
-/*   Updated: 2024/06/02 17:51:03 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/03 16:17:24 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	floor_cast(mlx_image_t *img, int color)
 	cur_x = 1;
 	start.y = img->height / 2;
 	end.y = img->height - 1;
-
 	while (cur_x < img->width)
 	{
 		start.x = cur_x;

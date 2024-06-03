@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:55:02 by wave              #+#    #+#             */
-/*   Updated: 2024/06/02 17:56:56 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/03 16:16:53 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,21 @@ bool	init_window(t_data *data)
 	return (true);
 }
 
-bool init_event_hook(t_data *data)
+bool	init_event_hook(t_data *data)
 {
-    //mlx_key_hook(data->mlx, adjust_and_render, (void *)data);
-    //mlx_close_hook(data->mlx, terminate_and_cleanup, (void **)&data);
-    return (true);
+	return (true);
 }
 
-bool init_first_frame(t_data *data)
+bool	init_first_frame(t_data *data)
 {
-    // if (data->img_maps)
-    //     clear_image(data->img_maps, data->parser_data->ceil_color);
-    // if (data->img_game)
-    //     clear_image(data->img_game, data->parser_data->floor_color);
-    return (true);
+	return (true);
 }
 
-bool prepare_render(t_data *data)
+bool	prepare_render(t_data *data)
 {
-    if (init_window(data) == false || \
-            init_event_hook(data) == false || \
-                init_first_frame(data) == false)
-        return (false);
-    return (true);
+	if (init_window(data) == false || \
+			init_event_hook(data) == false || \
+				init_first_frame(data) == false)
+		return (false);
+	return (true);
 }

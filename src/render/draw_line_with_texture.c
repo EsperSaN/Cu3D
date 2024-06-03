@@ -6,50 +6,41 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:39:22 by wave              #+#    #+#             */
-/*   Updated: 2024/06/03 15:41:27 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/03 16:33:46 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static t_texture	*find_tex_to_draw(t_data *d, t_raydata *ray)
+static t_texture	*select_tex_side(int side, t_texture *lhs, t_texture *rhs)
+{
+	if (side == Y_LINE)
+		return (lhs);
+	return (rhs);
+}
+
+static t_texture	*find_tex_to_draw(t_texture_assets *t, t_raydata *ray)
 {
 	if (ray->ray_dir.x < 0 && ray->ray_dir.y < 0)
-	{
-		if (ray->hit_side == Y_LINE)
-			return (d->texture->north_texture);
-		else
-			return (d->texture->west_texture);
-	}
+		return (select_tex_side(ray->hit_side, \
+					t->north_texture, t->west_texture));
 	if (ray->ray_dir.x == 0 && ray->ray_dir.y < 0)
-		return (d->texture->north_texture);
+		return (t->north_texture);
 	if (ray->ray_dir.x > 0 && ray->ray_dir.y < 0)
-	{
-		if (ray->hit_side == Y_LINE)
-			return (d->texture->north_texture);
-		else
-			return (d->texture->east_texture);
-	}
+		return (select_tex_side(ray->hit_side, \
+					t->north_texture, t->east_texture));
 	if (ray->ray_dir.x > 0 && ray->ray_dir.y == 0)
-		return (d->texture->east_texture);
+		return (t->east_texture);
 	if (ray->ray_dir.x > 0 && ray->ray_dir.y > 0)
-	{
-		if (ray->hit_side == Y_LINE)
-			return (d->texture->south_texture);
-		else
-			return (d->texture->east_texture);
-	}
+		return (select_tex_side(ray->hit_side, \
+					t->south_texture, t->east_texture));
 	if (ray->ray_dir.x == 0 && ray->ray_dir.y > 0)
-		return (d->texture->south_texture);
+		return (t->south_texture);
 	if (ray->ray_dir.x < 0 && ray->ray_dir.y > 0)
-	{
-		if (ray->hit_side == Y_LINE)
-			return (d->texture->south_texture);
-		else
-			return (d->texture->west_texture);
-	}
+		return (select_tex_side(ray->hit_side, \
+					t->south_texture, t->west_texture));
 	if (ray->ray_dir.x < 0 && ray->ray_dir.y == 0)
-		return (d->texture->west_texture);
+		return (t->west_texture);
 }
 
 static void	put_texture(t_raydata *ray, t_dtex t, \
@@ -84,7 +75,7 @@ void	draw_line_with_texture(t_raydata *ray, t_data *data, \
 		t.wall_cor_x = \
 			data->player->pos.x + ray->perp_wall_distant * ray->ray_dir.x;
 	t.wall_cor_x -= floor(t.wall_cor_x);
-	t.texture = find_tex_to_draw(data, ray);
+	t.texture = find_tex_to_draw(data->texture, ray);
 	t.tex_cor_x = (int)(t.wall_cor_x * (float)t.texture->width);
 	if (ray->hit_side == 0 && ray->ray_dir.x > 0)
 		t.tex_cor_x = t.texture->width - t.tex_cor_x - 1;
