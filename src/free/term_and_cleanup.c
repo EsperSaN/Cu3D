@@ -25,7 +25,8 @@ void terminate_and_cleanup(t_data **d_ptr)
 	if (data->img_maps)
 		mlx_delete_image(data->mlx, data->img_maps);
 	dprintf(2, "FREE IMG\n");
-	mlx_terminate(data->mlx);
+	if (data->mlx)
+		mlx_terminate(data->mlx);
 	dprintf(2,"FREE MLX\n");
 	free(data);
 }
