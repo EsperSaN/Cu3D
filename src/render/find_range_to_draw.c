@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_cast.c                                       :+:      :+:    :+:   */
+/*   find_range_to_draw.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 17:50:23 by wave              #+#    #+#             */
-/*   Updated: 2024/06/02 17:51:03 by wave             ###   ########.fr       */
+/*   Created: 2024/06/03 15:42:00 by wave              #+#    #+#             */
+/*   Updated: 2024/06/03 15:42:13 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	floor_cast(mlx_image_t *img, int color)
+void	find_range_to_draw(t_raydata *ray, int img_height)
 {
-	int			cur_x;
-	int			half;
-	t_int_point	start;
-	t_int_point	end;
-
-	cur_x = 1;
-	start.y = img->height / 2;
-	end.y = img->height - 1;
-
-	while (cur_x < img->width)
-	{
-		start.x = cur_x;
-		end.x = cur_x;
-		draw_line(img, start, end, color);
-		cur_x++;
-	}
+	ray->line_hight = (int)(img_height / ray->perp_wall_distant);
+	ray->line_s = (-ray->line_hight / 2) + (img_height / 2);
+	if (ray->line_s < 0)
+		ray->line_s = 0;
+	ray->line_e = (ray->line_hight / 2) + (img_height / 2);
+	if (ray->line_e >= img_height)
+		ray->line_e = img_height - 1;
 }
