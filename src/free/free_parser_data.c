@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_parser_data.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/02 17:32:35 by wave              #+#    #+#             */
+/*   Updated: 2024/06/02 17:32:49 by wave             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "free.h"
 
-t_parser_data *free_parser(t_parser_data *data)
+t_parser_data	*free_parser(t_parser_data *data)
 {
 	if (data != NULL)
 	{
@@ -14,7 +26,6 @@ t_parser_data *free_parser(t_parser_data *data)
 			free(data->south_texture);
 		if (data->west_texture)
 			free(data->west_texture);
-		//ft_memset(data, 0, sizeof(t_parser_data));
 		free(data);
 	}
 	return (NULL);

@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_player_data.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/02 17:32:53 by wave              #+#    #+#             */
+/*   Updated: 2024/06/02 17:33:07 by wave             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "free.h"
 
-t_player_data *free_player(t_player_data *data)
+t_player_data	*free_player(t_player_data *data)
 {
 	if (data != NULL)
-	{
-		//ft_memset(data, 0, sizeof(t_player_data));
 		free(data);
-	}
 	return (NULL);
 }
