@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:25:08 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/28 00:53:52 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:58:17 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ int	main(int ac, char **av)
 
 	if (d->parser_data == NULL)
 		return (printf("Invalid Data in file\n"), terminate_and_cleanup(&d), 1);
-	// printf("Nice\n");
 	set_from_parser_data(d);
 	if (prepare_render(d) == false)
-	 	return (terminate_and_cleanup(&d), 1);
-	mlx_loop_hook(d->mlx, main_render, (void *)d);
+		return (terminate_and_cleanup(&d), 1);
 	mlx_loop_hook(d->mlx, key_hook, (void *)d);
 	mlx_loop(d->mlx);
 	terminate_and_cleanup(&d);

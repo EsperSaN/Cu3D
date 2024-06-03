@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/03 13:47:03 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/03 19:26:43 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@
 
 // error msg
 
-# define WIN_WIDTH     1200
-# define WIN_HIGHT     600   
+# define WIN_WIDTH     1024
+# define WIN_HIGHT     768 
+# define MINI_MAPS_OFFSET 10
+# define MINI_MAPS_SIZE	  200
 # define WIN_TITLE     "RAY CASTING"
 # define WIN_RESIZE    false
 # define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"

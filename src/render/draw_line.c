@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:48:04 by wave              #+#    #+#             */
-/*   Updated: 2024/06/02 17:49:16 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/03 16:59:28 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	draw_line(mlx_image_t *img, t_int_point head, t_int_point tail, int color)
 	cur.y = head.y;
 	while (step >= 0)
 	{
-		if (cur.x > 0 && cur.x < img->height && \
+		if (cur.x > 0 && cur.x < img->width && \
 					cur.y > 0 && cur.y < img->height)
 			mlx_put_pixel(img, (int)cur.x, (int)cur.y, color);
 		cur.x += inc.x;
