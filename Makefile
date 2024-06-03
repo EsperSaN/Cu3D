@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
+#    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/04/27 09:47:57 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/06/03 15:44:03 by wave             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ HEADER_FILE = cube.h\
 		 	util.h
 
 RENDER_FILE = clear_image.c\
+			  do_dda.c\
+			  draw_line_with_texture.c\
+			  find_range_to_draw.c\
+			  init_ray.c\
 			  draw_map.c\
 			  draw_squre.c\
 			  draw_line.c\

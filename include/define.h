@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 18:58:35 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:47:03 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 // DONT CHANGE
 # define TRUE 1
 # define FALSE 0
+# define X_LINE 0
+# define Y_LINE 1
 # define SUCCESS 1
 # define FAIL 0
 # define PI 3.14123456789098765432123456789876543212345678909876543f
@@ -39,8 +41,8 @@
 # define MLX_IMG_FAIL  "MLX FAIL TO CREATE IMG"
 # define DEMO_MODE     true
 
-#define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
-#define WRG_ARG_NO "Invalid arguments number!"
+# define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
+# define WRG_ARG_NO "Invalid arguments number!"
 
 enum	e_direction
 {
@@ -66,8 +68,8 @@ typedef struct s_point_int
 
 typedef struct s_point_float
 {
-	float x;
-	float y;
+	float	x;
+	float	y;
 }	t_float_point;
 
 typedef struct s_texture_data
@@ -76,6 +78,15 @@ typedef struct s_texture_data
 	int				height;
 	unsigned int	**pixel_array;
 }	t_texture;
+
+typedef struct s_draw_tex
+{
+	float		wall_cor_x;
+	int			tex_cor_x;
+	float		step_tex;
+	int			color;
+	t_texture	*texture;
+}	t_dtex;
 
 typedef struct s_texture
 {
@@ -113,41 +124,27 @@ typedef struct s_parser_raw_data
 
 typedef struct s_player_data
 {
-	t_float_point pos;
-	t_float_point dir;
-	t_float_point pane;
-	float	angle;
+	t_float_point	pos;
+	t_float_point	dir;
+	t_float_point	pane;
+	float			angle;
 }	t_player_data;
-
-// typedef struct s_raycast 
-// {
-//     // t_float_point   head;
-//     // t_float_point   end;
-//     t_int_point     pos;
-//     t_float_point   dir;
-//     t_float_point   side_dist;
-//     t_float_point   delta_dis;
-//     t_int_point   step_inc;
-//     float           size;
-//     int             hit_side;
-//     int             is_hit;
-// }   t_ray;
 
 typedef struct s_ray_data
 {
 	t_float_point		camera;
-	t_float_point 		ray_dir;
+	t_float_point		ray_dir;
 	t_float_point		side_distant;
 	t_float_point		delta_distant;
-	t_int_point 		step;
-	t_int_point 		pos;
+	t_int_point			step;
+	t_int_point			pos;
 	int					color;
 	float				perp_wall_distant;
-	int				is_hit;
-	int				hit_side;
-	int				line_s;
-	int				line_e;
-	int				line_hight;
+	int					is_hit;
+	int					hit_side;
+	int					line_s;
+	int					line_e;
+	int					line_hight;
 }	t_raydata;
 
 typedef struct s_data

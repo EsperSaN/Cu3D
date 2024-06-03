@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   draw_squre.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:43:35 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 15:48:26 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:50:10 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	draw_square_center(mlx_image_t *image, t_int_point pos, int size, int color)
+void	draw_square_center(mlx_image_t *image, t_int_point pos, \
+											int size, int color)
 {
 	int	w;
 	int	h;
@@ -26,7 +27,8 @@ void	draw_square_center(mlx_image_t *image, t_int_point pos, int size, int color
 		h = 0;
 		while (h < size)
 		{
-			if ((tmp > 0 && pos.x > 0) && (tmp <= image->height && pos.x <= image->width))
+			if ((tmp > 0 && pos.x > 0) && \
+					(tmp <= image->height && pos.x <= image->width))
 				mlx_put_pixel(image, pos.x - (size / 2), tmp, color);
 			tmp++;
 			h++;
@@ -50,7 +52,8 @@ void	draw_square(mlx_image_t *image, t_int_point pos, int size, int color)
 		h = 0;
 		while (h < size)
 		{
-			if ((tmp > 0 && pos.x > 0) && (tmp < image->height && pos.x < image->width))
+			if ((tmp > 0 && pos.x > 0) && \
+					(tmp < image->height && pos.x < image->width))
 				mlx_put_pixel(image, pos.x, tmp, color);
 			tmp++;
 			h++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:05:54 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/11 20:25:50 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:42:29 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@
 # include "free.h"
 # include "parser.h"
 # include "render.h"
-
-
 
 #endif

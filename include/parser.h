@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:14:51 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 21:33:56 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:36:45 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "cube.h"
-
 # define BUFFER_SIZE 1
 
 char				**init_map(char **smap, int width, int height);
@@ -51,5 +50,6 @@ char				*read_loop(int read_co, char *chdata, int fd, \
 						char *buffer);
 int					is_map_element(char c);
 int					in_line(char *str, int start, int stop);
+
 
 #endif

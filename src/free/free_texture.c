@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_texture.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/02 17:34:06 by wave              #+#    #+#             */
+/*   Updated: 2024/06/02 17:34:10 by wave             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "free.h"
 
-t_texture *free_texture(t_texture *data)
+t_texture	*free_texture(t_texture *data)
 {
 	int		height;
 
@@ -14,7 +26,6 @@ t_texture *free_texture(t_texture *data)
 			height++;
 		}
 		free(data->pixel_array);
-		//ft_memset(data, 0, sizeof(t_texture));
 		free(data);
 	}
 	return (NULL);
