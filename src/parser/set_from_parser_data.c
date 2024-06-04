@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:59:12 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/04 10:18:55 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 14:50:26 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,14 @@ bool	set_from_parser_data(t_data *data)
 	data->maps = set_maps_data(data);
 	if (data->maps == NULL)
 		return (false);
+	putreport("set map done");
 	data->texture = set_texture_assets(data);
 	if (data->texture == NULL)
 		return (false);
+	putreport("set tex done");
 	data->player = set_player_data(data);
 	if (data->player == NULL)
 		return (false);
+	putreport("set play");
 	return (true);
 }

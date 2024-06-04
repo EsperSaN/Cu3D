@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:43:35 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/02 17:50:10 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 11:12:16 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw_square_center(mlx_image_t *image, t_int_point pos, \
 		while (h < size)
 		{
 			if ((tmp > 0 && pos.x > 0) && \
-					(tmp <= image->height && pos.x <= image->width))
+					(tmp <= (int)image->height && pos.x <= (int)image->width))
 				mlx_put_pixel(image, pos.x - (size / 2), tmp, color);
 			tmp++;
 			h++;
@@ -53,7 +53,7 @@ void	draw_square(mlx_image_t *image, t_int_point pos, int size, int color)
 		while (h < size)
 		{
 			if ((tmp > 0 && pos.x > 0) && \
-					(tmp < image->height && pos.x < image->width))
+					(tmp < (int)image->height && pos.x < (int)image->width))
 				mlx_put_pixel(image, pos.x, tmp, color);
 			tmp++;
 			h++;
