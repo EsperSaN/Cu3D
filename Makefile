@@ -6,7 +6,7 @@
 #    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/04 10:17:16 by wave             ###   ########.fr        #
+#    Updated: 2024/06/04 17:42:25 by wave             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
-SRC_DIR = ./src
+SRC_DIR = src
 INC_DIR = ./include/
+BUILD_DIR = build
 
 HEADER_FILE = cube.h\
 		 	define.h\
@@ -117,7 +118,8 @@ SRCS = $(UTIL_SRCS) \
 	   $(RENDER_SRCS) \
 	   ./src/main.c
 
-OBJS = $(SRCS:.c=.o)
+#OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 %.o: %.c $(HEADER_SRC)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
@@ -136,15 +138,25 @@ libmlx :
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
 
+$(OBJS): $(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	@$(CC) -g $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
+
 clean :
 	make -C $(LIB_FT_DIR) clean
-	rm -f $(OBJS)
+	$(RM) -r $(BUILD_DIR)
 
 fclean : clean
 	make -C $(LIB_FT_DIR) fclean
 	make -C $(LIB_MLX_DIR)/build/ clean
+	$(RM) -r $(BUILD_DIR)
 	rm -f $(NAME)
+
+norm : 
+	norminette $(SRCS)
+	norminette -R CheckDefine $(HEADER_SRC)
+	norminette $(LIB_FT_DIR)
 
 re : fclean all
 
-.PHONY: all clean fclean re libmlx
+.PHONY: all clean fclean norm re libmlx

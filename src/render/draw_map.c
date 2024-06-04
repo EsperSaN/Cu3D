@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:50:07 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/04 14:45:40 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 16:10:42 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,4 @@ void	draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data)
 		pos.y += scale;
 		i++;
 	}
-	//draw_player(d, image, scale);
 }

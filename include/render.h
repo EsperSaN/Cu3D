@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/04 11:13:56 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 15:50:35 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RENDER_H
 
 # include "cube.h"
-
 
 bool				set_from_parser_data(t_data *data);
 
@@ -55,6 +54,5 @@ void				draw_line_with_texture(t_raydata *ray, t_data *data, \
 int					ray_casting(mlx_image_t *img, t_data *d);
 
 void				init_ray(t_raydata *ray, t_player_data *play_data);
-
 
 #endif
