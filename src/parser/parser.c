@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/04/25 18:31:54 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:48:37 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_parser_data	*main_parser(char *file_name)
 	if (!border_checker(res, res->maps_data))
 		return (free_parser(res), NULL);
 	close(fd);
+	printf("done norm\n");
 	return (res);
 }
 

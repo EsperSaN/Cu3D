@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:51:10 by wave              #+#    #+#             */
-/*   Updated: 2024/06/02 17:53:10 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 11:17:05 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	player_rotate(t_data *d, int dir)
 {
-	t_float_point	tmp;
-
 	if (dir == LEFT)
 	{
 		d->player->dir = rotate_vector(d->player->dir, (ROT_SPEED * -1));

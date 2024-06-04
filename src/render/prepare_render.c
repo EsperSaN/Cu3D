@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:55:02 by wave              #+#    #+#             */
-/*   Updated: 2024/06/03 19:23:26 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 11:16:54 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,9 @@ bool	init_window(t_data *data)
 	return (true);
 }
 
-bool	init_event_hook(t_data *data)
-{
-	return (true);
-}
-
-bool	init_first_frame(t_data *data)
-{
-	return (true);
-}
-
 bool	prepare_render(t_data *data)
 {
-	if (init_window(data) == false || \
-			init_event_hook(data) == false || \
-				init_first_frame(data) == false)
+	if (init_window(data) == false)
 		return (false);
 	return (true);
 }

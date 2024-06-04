@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:21:53 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/03 15:45:49 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 11:13:56 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void				draw_line_with_texture(t_raydata *ray, t_data *data, \
 
 int					ray_casting(mlx_image_t *img, t_data *d);
 
-int					draw_verline(mlx_image_t *frame, \
-										int x, int y, int to_y, int color);
 void				init_ray(t_raydata *ray, t_player_data *play_data);
 
 

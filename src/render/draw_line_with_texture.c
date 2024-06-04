@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:39:22 by wave              #+#    #+#             */
-/*   Updated: 2024/06/04 10:03:41 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 11:05:52 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static t_texture	*find_tex_to_draw(t_texture_assets *t, t_raydata *ray)
 					t->south_texture, t->west_texture));
 	if (ray->ray_dir.x < 0 && ray->ray_dir.y == 0)
 		return (t->west_texture);
+	return (t->north_texture);
 }
 
 static void	put_texture(t_raydata *ray, t_dtex t, \

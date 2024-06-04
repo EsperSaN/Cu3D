@@ -6,15 +6,11 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 01:31:14 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/04 10:18:00 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 15:23:08 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "util.h"
-
-// this function will mallc the new int array 
-// according to the each pixel of the png propery
-// the free must contain after this
 
 static void	copy_texture_prop(mlx_texture_t *m_tex, t_texture *ret)
 {
@@ -41,33 +37,42 @@ static void	copy_texture_prop(mlx_texture_t *m_tex, t_texture *ret)
 	ret->height = m_tex->height;
 }
 
+static bool	check_init(char *tex_file, mlx_texture_t **m_tex, t_texture **ret)
+{
+	if (!is_file_valid(tex_file, ".png"))
+		return (puterror("wrong texture file ext"), false);
+	*ret = ft_calloc(sizeof(t_texture), 1);
+	if (ret == NULL)
+		return (puterror("Malloc error"), false);
+	*m_tex = mlx_load_png(tex_file);
+	if (*m_tex == false)
+		return (puterror("Texture Cannot load"), free(*ret), false);
+	if ((*m_tex)->height != (*m_tex)->width)
+		return (puterror("Texture should be Square!!!"), \
+				free(*ret), mlx_delete_texture(*m_tex), false);
+	(*ret)->pixel_array = ft_calloc(sizeof(int *), (*m_tex)->height);
+	if ((*ret)->pixel_array == NULL)
+		return (free(*ret), mlx_delete_texture(*m_tex), false);
+	return (true);
+}
+
 t_texture	*get_texture_png(char *tex_file)
 {
 	mlx_texture_t	*m_tex;
 	t_texture		*ret;
 	unsigned int	i;
 
-	if (!is_file_valid(tex_file, ".png"))
-		return (puterror("wrong texture file ext"), NULL);
-	ret = ft_calloc(sizeof(t_texture), 1);
-	if (ret == NULL)
+	m_tex = NULL;
+	ret = NULL;
+	if (check_init(tex_file, &m_tex, &ret) == false)
 		return (NULL);
-	m_tex = mlx_load_png(tex_file);
-	if (m_tex == NULL)
-		return (puterror("Texture Cannot load"), free(ret), NULL);
-	if (m_tex->height != m_tex->width)
-		return (puterror("Texture should be Square!!!"), \
-				free(ret), mlx_delete_texture(m_tex), NULL);
-	ret->pixel_array = ft_calloc(sizeof(int *), m_tex->height);
-	if (ret->pixel_array == NULL)
-		return (free(ret), NULL);
 	i = 0;
 	while (i < m_tex->height)
 	{
 		ret->pixel_array[i] = ft_calloc(sizeof(int), m_tex->width);
 		if (ret->pixel_array[i] == NULL)
-			return (free(ret->pixel_array), free(ret), \
-						mlx_delete_texture(m_tex), NULL); // need free free
+			return (free_texture2(ret, i), \
+						mlx_delete_texture(m_tex), NULL);
 		i++;
 	}
 	copy_texture_prop(m_tex, ret);
