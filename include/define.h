@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/03 19:26:43 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 18:55:06 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 // SETTING
 
-# define FIELD_OF_VIEW 60
+# define FIELD_OF_VIEW 66
 
-# define MOVE_SPEED 0.1
-# define ROT_SPEED 1
+# define MOVE_SPEED 0.2
+# define ROT_SPEED 3
 
 // DONT CHANGE
 # define TRUE 1

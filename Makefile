@@ -6,7 +6,7 @@
 #    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/04 17:42:25 by wave             ###   ########.fr        #
+#    Updated: 2024/06/04 18:53:13 by wave             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,9 +121,6 @@ SRCS = $(UTIL_SRCS) \
 #OBJS = $(SRCS:.c=.o)
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
-%.o: %.c $(HEADER_SRC)
-	$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
-
 all : libft libmlx $(NAME)
 
 val : $(NAME)
@@ -138,7 +135,7 @@ libmlx :
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
 
-$(OBJS): $(BUILD_DIR)/%.o: %.c
+$(OBJS): $(BUILD_DIR)/%.o: %.c $(HEADER_SRC)
 	@mkdir -p $(@D)
 	@$(CC) -g $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
 

@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:50:07 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/04 16:10:42 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 18:38:58 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /*void draw_player(t_data *d, mlx_image_t *img, int scale)
 {
-	t_int_point p_pos;
+
 	t_int_point p_dir;
 	t_int_point p_fov;
 	t_int_point p_pane;
 	t_float_point p_dirr;
-
+	t_int_point p_pos;
 	p_pos.x = (int)(d->player->pos.x * scale);
 	p_pos.y = (int)(d->player->pos.y * scale);
 	p_dir.x = (int)(p_pos.x + (d->player->dir.x * scale));
@@ -89,4 +89,7 @@ void	draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data)
 		pos.y += scale;
 		i++;
 	}
+	pos.x = (int)(d->player->pos.x * scale);
+	pos.y = (int)(d->player->pos.y * scale);
+	draw_square_center(image, pos, scale - 2, get_rgba(255, 255, 255, 255));
 }
