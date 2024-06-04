@@ -6,15 +6,15 @@
 #    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/03 15:44:03 by wave             ###   ########.fr        #
+#    Updated: 2024/06/04 10:17:16 by wave             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-CC = cc -g
+CC = cc
 
-# CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = ./src
 INC_DIR = ./include/
