@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_png_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 01:31:14 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/12 02:37:06 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:41:11 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,22 @@ t_texture	*get_texture_png(char *tex_file)
 
 	if (!is_file_valid(tex_file, ".png"))
 		return (puterror("wrong texture file ext"), NULL);
-	m_tex = mlx_load_png(tex_file);
-	if (m_tex == NULL)
-		return (puterror("Texture Cannot load"), NULL);
 	ret = ft_calloc(sizeof(t_texture), 1);
 	if (ret == NULL)
 		return (NULL);
+	m_tex = mlx_load_png(tex_file);
+	if (m_tex == NULL)
+		return (puterror("Texture Cannot load"), free(ret), NULL);
 	ret->pixel_array = ft_calloc(sizeof(int *), m_tex->height);
 	if (ret->pixel_array == NULL)
-	{
-		free(ret);
-		return (NULL);
-	}
+		return (free(ret), NULL);
 	i = 0;
 	while (i < m_tex->height)
 	{
 		ret->pixel_array[i] = ft_calloc(sizeof(int), m_tex->width);
 		if (ret->pixel_array[i] == NULL)
-		{
-			//free2d(ret->pixel_array);
-			free(ret->pixel_array);
-			free(ret);
-			return (NULL);
-		}
+			return (free(ret), free(ret->pixel_array), \
+						mlx_delete_texture(m_tex), NULL); // need free free
 		i++;
 	}
 	copy_texture_prop(m_tex, ret);
