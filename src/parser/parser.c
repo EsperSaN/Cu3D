@@ -32,7 +32,6 @@ char	**init_map(char **smap, int width, int height)
 
 char	**file_reader(int fd)
 {
-	char	*tmp;
 	char	*chdata;
 	char	**map;
 	char	*buffer;

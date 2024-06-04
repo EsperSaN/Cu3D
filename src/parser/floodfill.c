@@ -72,6 +72,8 @@ t_int_point	get_player_pos4(char **map)
 	int			j;
 
 	i = 0;
+	pos.x = 0;
+	pos.y = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -88,4 +90,5 @@ t_int_point	get_player_pos4(char **map)
 		}
 		i++;
 	}
+	return (pos);
 }

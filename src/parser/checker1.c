@@ -77,7 +77,7 @@ int	scanner(char *data)
 	{
 		if (data[i] == '\n')
 		{
-			num[1] += scanner_checker (num, 4, i, data);
+			num[1] += scanner_checker (num, i, data);
 			num[0] = in_line(data, i - num[2] + num[3], i);
 			num[2] = 0;
 			num[3] = 1;
@@ -85,7 +85,7 @@ int	scanner(char *data)
 		num[2]++;
 		i++;
 	}
-	num[1] += scanner_checker (num, 4, i, data);
+	num[1] += scanner_checker (num, i, data);
 	num[0] = in_line(data, i - num[2] + num[3], i);
 	if ((num[0] + num[1]) > 1)
 		return (0);
