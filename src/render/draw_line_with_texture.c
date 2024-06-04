@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:39:22 by wave              #+#    #+#             */
-/*   Updated: 2024/06/03 16:33:46 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 10:03:41 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,8 @@ void	draw_line_with_texture(t_raydata *ray, t_data *data, \
 	t.wall_cor_x -= floor(t.wall_cor_x);
 	t.texture = find_tex_to_draw(data->texture, ray);
 	t.tex_cor_x = (int)(t.wall_cor_x * (float)t.texture->width);
-	if (ray->hit_side == 0 && ray->ray_dir.x > 0)
-		t.tex_cor_x = t.texture->width - t.tex_cor_x - 1;
-	if (ray->hit_side == 1 && ray->ray_dir.y < 0)
+	if (t.texture == data->texture->south_texture || \
+				t.texture == data->texture->west_texture)
 		t.tex_cor_x = t.texture->width - t.tex_cor_x - 1;
 	t.step_tex = (t.texture->height * 1.0 / ray->line_hight * 1.0);
 	put_texture(ray, t, img, x_to_draw);
