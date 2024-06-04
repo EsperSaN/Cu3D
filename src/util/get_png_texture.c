@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 01:31:14 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/03 22:41:11 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/04 10:18:00 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ t_texture	*get_texture_png(char *tex_file)
 	m_tex = mlx_load_png(tex_file);
 	if (m_tex == NULL)
 		return (puterror("Texture Cannot load"), free(ret), NULL);
+	if (m_tex->height != m_tex->width)
+		return (puterror("Texture should be Square!!!"), \
+				free(ret), mlx_delete_texture(m_tex), NULL);
 	ret->pixel_array = ft_calloc(sizeof(int *), m_tex->height);
 	if (ret->pixel_array == NULL)
 		return (free(ret), NULL);
@@ -63,7 +66,7 @@ t_texture	*get_texture_png(char *tex_file)
 	{
 		ret->pixel_array[i] = ft_calloc(sizeof(int), m_tex->width);
 		if (ret->pixel_array[i] == NULL)
-			return (free(ret), free(ret->pixel_array), \
+			return (free(ret->pixel_array), free(ret), \
 						mlx_delete_texture(m_tex), NULL); // need free free
 		i++;
 	}

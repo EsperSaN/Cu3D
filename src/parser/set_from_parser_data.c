@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_from_parser_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:59:12 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 21:59:12 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/04 10:18:55 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	find_player_angle(char p)
 		return (-90);
 	if (p == 'W')
 		return (90);
+	return (180);
 }
 
 t_float_point	find_player_pos(char **maps)
