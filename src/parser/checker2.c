@@ -117,7 +117,7 @@ int	border_checker(t_parser_data *data, char **map)
 	return (free2d(visited), 1);
 }
 
-int	scanner_checker(int num[], int n, int i, char *data)
+int	scanner_checker(int num[], int i, char *data)
 {
 	if (num[0] && !in_line(data, i - num[2] + num[3], i))
 		return (1);

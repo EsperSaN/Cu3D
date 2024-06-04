@@ -60,7 +60,7 @@ char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 		read_co = read(fd, buffer, BUFFER_SIZE);
 		chdata = ft_strjoin(tmp, buffer);
 		buffer[read_co] = '\0';
-		if (!(buffer[0] > 31 && buffer[0] < 128) \
+		if ((buffer[0] < 32 || buffer[0] > 126) \
 			&& buffer[0] != '\n' && read_co > 0)
 			read_co = 0;
 		free(tmp);
