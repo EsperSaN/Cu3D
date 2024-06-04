@@ -50,6 +50,6 @@ char				*read_loop(int read_co, char *chdata, int fd, \
 						char *buffer);
 int					is_map_element(char c);
 int					in_line(char *str, int start, int stop);
-
+int					try_get_texture(t_texture_assets *res);
 
 #endif

@@ -12,6 +12,17 @@
 
 #include "parser.h"
 
+int	try_get_texture(t_texture_assets *res)
+{
+	if (!res->east_texture || !res->west_texture \
+		|| !res->north_texture || !res->south_texture)
+	{
+		printf("NULL here-bad png\n");
+		return (0);
+	}
+	return (1);
+}
+
 t_texture_assets	*set_texture_assets(t_data *data)
 {
 	t_texture_assets	*res;
@@ -25,5 +36,10 @@ t_texture_assets	*set_texture_assets(t_data *data)
 	res->west_texture = get_texture_png(data->parser_data->west_texture);
 	res->north_texture = get_texture_png(data->parser_data->north_texture);
 	res->south_texture = get_texture_png(data->parser_data->south_texture);
+	if (!try_get_texture(res))
+	{
+		free_texture_assets(res);
+		return (NULL);
+	}
 	return (res);
 }

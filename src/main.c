@@ -50,7 +50,11 @@ int	main(int ac, char **av)
 
 	if (d->parser_data == NULL)
 		return (printf("Invalid Data in file\n"), terminate_and_cleanup(&d), 1);
-	set_from_parser_data(d);
+	if (!set_from_parser_data(d))
+	{
+		printf("nopee\n");
+		return (terminate_and_cleanup(&d), 1);
+	}
 	if (prepare_render(d) == false)
 		return (terminate_and_cleanup(&d), 1);
 	mlx_loop_hook(d->mlx, key_hook, (void *)d);
