@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:37:13 by wave              #+#    #+#             */
-/*   Updated: 2024/06/03 15:38:48 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/05 15:56:05 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_ray(t_raydata *ray, t_player_data *play_data)
 {
 	ray->pos.x = (int)play_data->pos.x;
 	ray->pos.y = (int)play_data->pos.y;
-	ray->is_hit = FALSE;
+	ray->is_hit = false;
 	ray->ray_dir.x = play_data->dir.x + play_data->pane.x * ray->camera.x;
 	ray->ray_dir.y = play_data->dir.y + play_data->pane.y * ray->camera.x;
 	if (ray->ray_dir.x == 0)

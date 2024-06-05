@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:14:51 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/02 17:36:45 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/05 14:26:50 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ char				*read_loop(int read_co, char *chdata, int fd, \
 int					is_map_element(char c);
 int					in_line(char *str, int start, int stop);
 int					try_get_texture(t_texture_assets *res);
-
+int					is_numline(char *str);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:40:55 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/04/21 20:30:27 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:15:57 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 	{
 		tmp = chdata;
 		read_co = read(fd, buffer, BUFFER_SIZE);
-		chdata = ft_strjoin(tmp, buffer);
 		buffer[read_co] = '\0';
+		chdata = ft_strjoin(tmp, buffer);
 		if ((buffer[0] < 32 || buffer[0] > 126) \
 			&& buffer[0] != '\n' && read_co > 0)
 			read_co = 0;
@@ -69,4 +69,24 @@ char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 	if (read_co < -1)
 		perror("FILE READER : ");
 	return (chdata);
+}
+
+int	is_numline(char *str)
+{
+	int i;
+	int co;
+
+	co = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			co++;
+		else if (str[i] > '9' || str[i] < '0')
+			return (0);
+		i++;
+	}
+	if (co > 2)
+		return (0);
+	return (1);
 }

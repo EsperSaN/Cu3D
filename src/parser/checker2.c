@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:40:26 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 21:40:26 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:38:22 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	check_resource(char **map, t_parser_data *res)
 		}
 		i++;
 		get_texture_check(element[0], element[1], res);
-		if (is_same_str(element[0], "C"))
+		if (is_same_str(element[0], "C") && is_numline(element[1]))
 			get_ceil_floor(element[1], res, 'c');
-		if (is_same_str(element[0], "F"))
+		if (is_same_str(element[0], "F") && is_numline(element[1]))
 			get_ceil_floor(element[1], res, 'f');
 		free2d(element);
 	}

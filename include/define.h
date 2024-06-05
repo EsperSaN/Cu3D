@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/04 18:55:06 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/05 16:49:19 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 
 # define FIELD_OF_VIEW 66
 
-# define MOVE_SPEED 0.2
-# define ROT_SPEED 3
+# define MOVE_SPEED 0.4
+# define ROT_SPEED 2
 
 // DONT CHANGE
-# define TRUE 1
-# define FALSE 0
 # define X_LINE 0
 # define Y_LINE 1
 # define SUCCESS 1
@@ -37,7 +35,7 @@
 # define WIN_HIGHT     768 
 # define MINI_MAPS_OFFSET 10
 # define MINI_MAPS_SIZE	  200
-# define WIN_TITLE     "RAY CASTING"
+# define WIN_TITLE     "cub3d"
 # define WIN_RESIZE    false
 # define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"
 # define MLX_IMG_FAIL  "MLX FAIL TO CREATE IMG"
@@ -161,5 +159,5 @@ typedef struct s_data
 	t_maps_data			*maps;
 	t_player_data		*player;
 }	t_data;
-
+//need to check the define
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_from_parser_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:59:12 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/04 14:50:26 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/05 13:59:06 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	find_player_angle(char p)
 	if (p == 'N')
 		return (180);
 	if (p == 'S')
-		return (0);
+		return (360);
 	if (p == 'E')
 		return (-90);
 	if (p == 'W')

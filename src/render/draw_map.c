@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 15:50:07 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/04 18:38:58 by wave             ###   ########.fr       */
+/*   Created: 2024/06/05 13:24:31 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/05 16:07:37 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,49 +47,78 @@
 	draw_line(img, p_pos, p_fov, get_rgba(255,0,0,255));
 } */
 
-static int	get_maps_scale(t_maps_data *maps_data, mlx_image_t *img)
-{
-	int	scale_x;
-	int	scale_y;
-	int	scale;
+// void	draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data)
+// {
+// 	int			i;
+// 	int			j;
+// 	t_int_point	pos;
+// 	int			scale;
 
-	scale_x = img->width / maps_data->maps_width;
-	scale_y = img->height / maps_data->maps_height;
-	if (scale_x < scale_y)
-		scale = scale_x;
-	else
-		scale = scale_y;
-	return (scale);
-}
+// 	scale = get_maps_scale(maps_data, image);
+// 	scale = 20;
+// 	i = 0;
+// 	pos.y = 0;
+// 	while (maps_data->maps_array[i])
+// 	{
+// 		pos.x = 0;
+// 		j = 0;
+// 		while (maps_data->maps_array[i][j])
+// 		{
+// 			if (maps_data->maps_array[i][j] == WALL)
+// 				draw_square(image, pos, scale - 1, get_rgba(255, 0, 0, 1000));
+// 			else if (maps_data->maps_array[i][j] == FLOOR)
+// 				draw_square(image, pos, scale - 1, get_rgba(0, 0, 0, 255));
+// 			pos.x += scale;
+// 			j++;
+// 		}
+// 		pos.y += scale;
+// 		i++;
+// 	}
+// 	pos.x = (int)(d->player->pos.x * scale);
+// 	pos.y = (int)(d->player->pos.y * scale);
+// 	draw_square_center(image, pos, scale - 2, get_rgba(255, 255, 255, 255));
+// }
 
-void	draw_maps(t_data *d, mlx_image_t *image, t_maps_data *maps_data)
+void	draw_maps(t_data *d, t_raydata ray, mlx_image_t *image, t_maps_data *maps_data)
 {
-	int			i;
-	int			j;
 	t_int_point	pos;
+	t_int_point cur_p;
+	t_int_point draw;
+	t_int_point dir;
 	int			scale;
-
-	(void)d;
-	scale = get_maps_scale(maps_data, image);
-	i = 0;
-	pos.y = 0;
-	while (maps_data->maps_array[i])
+	
+	cur_p.x = ray.ray_dir.x;
+	cur_p.y = 0;
+	scale = image->width / 20;
+	pos.y = (int)(d->player->pos.y) - 10;
+	draw.y = 0;
+	while (cur_p.y < 20)
 	{
-		pos.x = 0;
-		j = 0;
-		while (maps_data->maps_array[i][j])
+		cur_p.x = 0;
+		pos.x = (int)(d->player->pos.x) - 10;
+		draw.x = 0;
+		while (cur_p.x < 20 && pos.y >= 0)
 		{
-			if (maps_data->maps_array[i][j] != FLOOR)
-				draw_square(image, pos, scale - 1, get_rgba(255, 0, 0, 1000));
-			else
-				draw_square(image, pos, scale - 1, get_rgba(0, 0, 0, 255));
-			pos.x += scale;
-			j++;
+			if (pos.x >= 0 && \
+				pos.y >= 0 && \
+				pos.x < maps_data->maps_width && \
+				pos.y < maps_data->maps_height && \
+				maps_data->maps_array[pos.y][pos.x] && \
+				maps_data->maps_array[pos.y][pos.x] == WALL)
+				draw_square(image, draw, scale, get_rgba(255, 0, 0, 255));
+			pos.x++;
+			draw.x += scale;
+			cur_p.x++;
 		}
-		pos.y += scale;
-		i++;
+		draw.y += scale;
+		pos.y++;
+		cur_p.y++;
 	}
-	pos.x = (int)(d->player->pos.x * scale);
-	pos.y = (int)(d->player->pos.y * scale);
-	draw_square_center(image, pos, scale - 2, get_rgba(255, 255, 255, 255));
+	pos.x = image->width / 2;
+	pos.y = image->height / 2;
+	draw_square(image, pos, scale - 5, get_rgba(255, 255, 255, 255));
+	dir.x = (pos.x + 15 * d->player->dir.x);
+	dir.y = (pos.y + 15 * d->player->dir.y);
+	draw_line(image, pos, dir, get_rgba(0, 255, 255, 255));
+
 }
