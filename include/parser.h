@@ -52,4 +52,6 @@ int					is_map_element(char c);
 int					in_line(char *str, int start, int stop);
 int					try_get_texture(t_texture_assets *res);
 int					is_numline(char *str);
+int					ft_isspace(char c);
+
 #endif
