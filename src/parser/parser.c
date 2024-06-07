@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/07 15:32:46 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:57:47 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_parser_data	*main_parser(char *file_name)
 	if (fd < 0)
 		return (free(res), NULL);
 	data = file_reader(fd);
+	close(fd);
 	if (!checklist(res, data))
 		return (NULL);
 	res->height = find_height(data);
@@ -77,7 +78,6 @@ t_parser_data	*main_parser(char *file_name)
 		return (free_parser(res), NULL);
 	if (!border_checker(res, res->maps_data))
 		return (free_parser(res), NULL);
-	close(fd);
 	return (res);
 }
 
