@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture_assets.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 22:32:26 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 22:32:26 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:20:00 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	try_get_texture(t_texture_assets *res)
 	if (!res->east_texture || !res->west_texture \
 		|| !res->north_texture || !res->south_texture)
 	{
-		printf("NULL here-bad png\n");
+		puterror("bad png file");
 		return (0);
 	}
 	return (1);
