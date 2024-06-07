@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/07 15:33:47 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:49:14 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,15 @@ typedef struct s_parser_raw_data
 	int		width;
 	char	**maps_data;
 }	t_parser_data;
+
+typedef struct s_drawmaps
+{
+	t_int_point	pos;
+	t_int_point	cur_p;
+	t_int_point	draw;
+	int			scale;
+
+}	t_dm;
 
 typedef struct s_player_data
 {
