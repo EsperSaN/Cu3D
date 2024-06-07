@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   term_and_cleanup.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:30:41 by wave              #+#    #+#             */
-/*   Updated: 2024/06/04 11:32:21 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/07 17:40:41 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,7 @@ void	terminate_and_cleanup(t_data **d_ptr)
 	if (data->mlx)
 		mlx_terminate(data->mlx);
 	free(data);
+	close(0);
+	close(1);
+	close(2);
 }
