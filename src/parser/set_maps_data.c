@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_maps_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 22:31:37 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 22:31:37 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:57:16 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_maps_data	*set_maps_data(t_data *data)
 			free_maps(res);
 			return (NULL);
 		}
-		dprintf(2, "[%s]\n", res->maps_array[i]);
 		i++;
 	}
 	res->maps_width = data->parser_data->width;

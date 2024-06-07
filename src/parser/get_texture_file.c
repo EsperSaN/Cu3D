@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:40:55 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/05 16:15:57 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:32:05 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*get_texture_file(char **map, char *indicater)
 	while (map[i])
 	{
 		tmp = ft_split(map[i], ' ');
-		dprintf(2, "[%s] -> %s -> %s\n", map[i], tmp[0], tmp[1]);
-		dprintf(2, "here\n");
 		if (tmp != NULL && is_same_str(tmp[0], indicater) && tmp[1] != NULL)
 		{
 			ret = ft_strdup(tmp[1]);
@@ -60,6 +58,8 @@ char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 		read_co = read(fd, buffer, BUFFER_SIZE);
 		buffer[read_co] = '\0';
 		chdata = ft_strjoin(tmp, buffer);
+		if (!chdata)
+			return (puterror(": Fatal"), free(buffer), NULL);
 		if ((buffer[0] < 32 || buffer[0] > 126) \
 			&& buffer[0] != '\n' && read_co > 0)
 			read_co = 0;
@@ -81,7 +81,6 @@ int	is_numline(char *str)
 	i = 0;
 	count.x = 0;
 	count.y = 0;
-	printf("str num is <%s>\n", str);
 	while (str[i])
 	{
 		if (str[i] == ',')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:55:02 by wave              #+#    #+#             */
-/*   Updated: 2024/06/04 11:16:54 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/07 15:04:36 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 bool	init_window(t_data *data)
 {
-	data->mlx = mlx_init(WIN_WIDTH, WIN_HIGHT, WIN_TITLE, WIN_RESIZE);
+	data->mlx = mlx_init(1024, 768, "cub3d", false);
 	if (data->mlx == NULL)
 		return (puterror(MLX_INIT_FAIL), false);
-	data->img_game = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HIGHT);
+	data->img_game = mlx_new_image(data->mlx, 1024, 768);
 	if (data->img_game == NULL || \
 		mlx_image_to_window(data->mlx, data->img_game, 0, 0) == -1)
 		return (puterror(MLX_IMG_FAIL), false);
-	data->img_maps = mlx_new_image(data->mlx, MINI_MAPS_SIZE, MINI_MAPS_SIZE);
+	data->img_maps = mlx_new_image(data->mlx, 200, 200);
 	if (data->img_maps == NULL || \
 		mlx_image_to_window(\
-		data->mlx, data->img_maps, MINI_MAPS_OFFSET, MINI_MAPS_OFFSET) == -1)
+		data->mlx, data->img_maps, 10, 10) == -1)
 		return (puterror(MLX_IMG_FAIL), false);
 	return (true);
 }

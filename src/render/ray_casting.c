@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:57:08 by wave              #+#    #+#             */
-/*   Updated: 2024/06/05 13:27:06 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:15:10 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	ray_casting(mlx_image_t *img, t_data *d)
 		draw_line_with_texture(&ray, d, img, cur_w);
 		cur_w++;
 	}
-	draw_maps(d, ray, d->img_maps, d->maps);
+	draw_maps(d, d->img_maps, d->maps);
 	return (1);
 }

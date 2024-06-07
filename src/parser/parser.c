@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/05 16:19:42 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:32:46 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ char	**file_reader(int fd)
 
 	read_count = 1;
 	buffer = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (puterror(": Fatal"), NULL);
 	buffer[BUFFER_SIZE] = '\0';
 	chdata = ft_calloc(sizeof(char), 1);
+	if (!chdata)
+		return (free(buffer), puterror(": Fatal"), NULL);
 	chdata = read_loop(read_count, chdata, fd, buffer);
 	if (scanner(chdata) == 0 || !ft_strlen(chdata))
 		return (free(chdata), NULL);
@@ -74,7 +78,6 @@ t_parser_data	*main_parser(char *file_name)
 	if (!border_checker(res, res->maps_data))
 		return (free_parser(res), NULL);
 	close(fd);
-	printf("done norm\n");
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/05 16:49:19 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:33:47 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,12 @@
 
 // error msg
 
-# define WIN_WIDTH     1024
-# define WIN_HIGHT     768 
-# define MINI_MAPS_OFFSET 10
-# define MINI_MAPS_SIZE	  200
-# define WIN_TITLE     "cub3d"
-# define WIN_RESIZE    false
+// # define WIN_WIDTH     1024
+// # define WIN_HIGHT     768 
+// # define MINI_MAPS_OFFSET 10
+// # define MINI_MAPS_SIZE	  200
 # define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"
 # define MLX_IMG_FAIL  "MLX FAIL TO CREATE IMG"
-# define DEMO_MODE     true
-
 # define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
 # define WRG_ARG_NO "Invalid arguments number!"
 

@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 01:34:11 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/05 15:54:32 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:36:58 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ bool	is_file_valid(char *file_name, char *extension)
 	if (extension != NULL && !is_right_extension(file_name, extension))
 		return (puterror("file not the right extension"), false);
 	if (!is_file_readable(file_name))
-		return (0);
-	return (puterror("File is Valid"), true);
+		return (false);
+	return (true);
 }
