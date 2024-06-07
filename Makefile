@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
+#    By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/04 18:53:13 by wave             ###   ########.fr        #
+#    Updated: 2024/06/07 15:50:22 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,14 +118,12 @@ SRCS = $(UTIL_SRCS) \
 	   $(RENDER_SRCS) \
 	   ./src/main.c
 
-#OBJS = $(SRCS:.c=.o)
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 all : libft libmlx $(NAME)
 
 val : $(NAME)
-#	valgrind --leak-check=full  -s ./$(NAME) maps/valid/subject.cub
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) maps/valid/subject.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes -s ./$(NAME) maps/valid/subject.cub
 libft :
 	@make -C $(LIB_FT_DIR)
 
@@ -150,9 +148,7 @@ fclean : clean
 	rm -f $(NAME)
 
 norm : 
-	norminette $(SRCS)
-	norminette -R CheckDefine $(HEADER_SRC)
-	norminette $(LIB_FT_DIR)
+	norminette -R CheckDefine $(LIB_FT_DIR) $(HEADER_SRC) $(SRCS)
 
 re : fclean all
 
