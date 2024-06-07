@@ -25,17 +25,14 @@ int	check_resource(char **map, t_parser_data *res)
 		j = 0;
 		while (element[j])
 			j++;
-		if (j < 2)
+		if (j != 2)
 			return (free2d(element), 0);
-		if (j == 2 && (is_same_str(element[0], "NO") \
-			|| is_same_str(element[0], "SO") \
-			|| is_same_str(element[0], "EA") || is_same_str(element[0], "WE")))
-			get_texture_check(element[0], element[1], res);
-		else if (is_same_str(element[0], "C") && is_numline(map[i]))
-			get_ceil_floor(map[i], res, 'c');
-		else if (is_same_str(element[0], "F") && is_numline(map[i]))
-			get_ceil_floor(map[i], res, 'f');
 		i++;
+		get_texture_check(element[0], element[1], res);
+		if (is_same_str(element[0], "C") && is_numline(element[1]))
+			get_ceil_floor(element[1], res, 'c');
+		if (is_same_str(element[0], "F") && is_numline(element[1]))
+			get_ceil_floor(element[1], res, 'f');
 		free2d(element);
 	}
 	return (1);

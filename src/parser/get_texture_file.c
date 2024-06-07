@@ -75,26 +75,18 @@ int	is_numline(char *str)
 {
 	int			i;
 	int			co;
-	t_int_point	count;
 
 	co = 0;
 	i = 0;
-	count.x = 0;
-	count.y = 0;
 	while (str[i])
 	{
 		if (str[i] == ',')
 			co++;
-		else if (str[i] == 'F')
-			count.x++;
-		else if (str[i] == 'C')
-			count.y++;
-		else if (!((str[i] <= '9' && str[i] >= '0') \
-			|| ft_isspace(str[i])))
+		else if (str[i] > '9' || str[i] < '0')
 			return (0);
 		i++;
 	}
-	if (co > 2 || count.x + count.y > 1)
+	if (co > 2)
 		return (0);
 	return (1);
 }
