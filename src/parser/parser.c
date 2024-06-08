@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/07 15:57:47 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 23:04:47 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ char	**file_reader(int fd)
 	if (!chdata)
 		return (free(buffer), puterror(": Fatal"), NULL);
 	chdata = read_loop(read_count, chdata, fd, buffer);
-	if (scanner(chdata) == 0 || !ft_strlen(chdata))
-		return (free(chdata), NULL);
+	// for (int ii = 0; chdata[ii]; ii++)
+	dprintf(2, "----------------------------------------------------------\n");
+	dprintf(2, "-> [%s]\n", chdata);
+	// if (scanner(chdata) == 0 || !ft_strlen(chdata))
+	// 	return (free(chdata), NULL);
 	map = ft_split(chdata, '\n');
 	free(chdata);
 	return (map);
@@ -67,6 +70,7 @@ t_parser_data	*main_parser(char *file_name)
 		return (free(res), NULL);
 	data = file_reader(fd);
 	close(fd);
+	dprintf(2, "file reader done!!\n");
 	if (!checklist(res, data))
 		return (NULL);
 	res->height = find_height(data);

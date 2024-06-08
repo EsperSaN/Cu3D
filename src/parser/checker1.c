@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   checker1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <tpoungla@student.42.fr>          #+#  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-04-27 08:50:50 by tpoungla          #+#    #+#             */
-/*   Updated: 2024-04-27 08:50:50 by tpoungla         ###   ########.fr       */
+/*   Created: 2024/04/27 08:50:50 by tpoungla          #+#    #+#             */
+/*   Updated: 2024/06/07 23:05:47 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,32 @@ int	in_line(char *str, int start, int stop)
 	return (1);
 }
 
+int	ft_isprint_mk2(int c)
+{
+	if ((c >= ' ' && c <= '~') || ft_isspace(c))
+		return (1);
+	else
+		return (0);
+}
+
 int	scanner(char *data)
 {
 	int	i;
 	int	num[4];
+	bool	isnt_print;
 
+	isnt_print = false;
 	i = -1;
 	while (i < 4)
 		num[i++] = 0;
 	i = 0;
 	while (data[i])
 	{
+		// if (false == ft_isprint_mk2(data[i]))
+		// {
+		// 	isnt_print = true;
+		// 	dprintf(2, "the [%c] true\n", data[i]);
+		// }
 		if (data[i] == '\n')
 		{
 			num[1] += scanner_checker (num, i, data);

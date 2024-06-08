@@ -6,34 +6,74 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:40:26 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/05 14:38:22 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:53:11 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+int find_last_of(char *str, char c)
+{
+	int len;
+
+	if (!str)
+		return (-1);
+	len = ft_strlen(str);
+	len = len - 1;
+	while (str[len])
+	{
+		if (str[len] == c)
+			return (len);
+		len--;
+	}
+	return (-1);
+}
+
+int find_first_of_space(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	if (!str)
+		return (-1);
+	while (*str)
+	{
+		if (true == ft_isspace(*str))
+			return(idx);
+		str++;
+		idx++;
+	}
+	return (-1);
+}
+
 int	check_resource(char **map, t_parser_data *res)
 {
 	int		i;
 	int		j;
-	char	**element;
+	char	*element[3];
 
+	element[2] = NULL;
 	i = 0;
 	while (i < 6)
 	{
-		element = ft_split(map[i], ' ');
-		j = 0;
-		while (element[j])
-			j++;
-		if (j != 2)
-			return (free2d(element), 0);
+		dprintf(2, "\n map [%d] is [%s]\n", i, map[i]);
+		int size_to_get = ft_strlen(map[i]) - find_first_of_space(map[i]);
+		element[0] = ft_substr(map[i], 0, find_first_of_space(map[i]));
+		element[1] = ft_substr(map[i], find_first_of_space(map[i]), size_to_get);
+		dprintf(2, "[trim is s ->  [%s] -> [%s]\n]", element[0], element[1]);
+		char *tmp;
+		tmp = element[1];
+		element[1] = ft_strtrim(element[1], " \t\r\v\f");
+		free(tmp);
+		dprintf(2, "after -> [trim is s ->  [%s] -> [%s]\n]", element[0], element[1]);
 		i++;
 		get_texture_check(element[0], element[1], res);
 		if (is_same_str(element[0], "C") && is_numline(element[1]))
 			get_ceil_floor(element[1], res, 'c');
 		if (is_same_str(element[0], "F") && is_numline(element[1]))
 			get_ceil_floor(element[1], res, 'f');
-		free2d(element);
+		free(element[0]);
+		free(element[1]);
 	}
 	return (1);
 }
@@ -56,6 +96,7 @@ int	src_checker(t_parser_data *res)
 	if (!is_file_readable(res->east_texture) \
 		|| !is_right_extension(res->east_texture, ".png"))
 		return (0);
+	dprintf(2, "pass src-> checker\n");
 	return (1);
 }
 

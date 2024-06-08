@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:41:03 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 21:41:03 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/07 21:14:21 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,15 @@ int	count_value_line(char **data)
 	while (data[i])
 	{
 		if (!is_map_line(data[i]))
+		{
+			dprintf(2, "in [%s] k++\n", data[i]);
 			k++;
+		}
 		if (is_map_line(data[i]) && k != 6)
+		{
+			dprintf(2, "k != 6 case\n");
 			return (-1);
+		}
 		i++;
 	}
 	if (k > 6)

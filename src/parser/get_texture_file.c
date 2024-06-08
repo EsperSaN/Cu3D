@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:40:55 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/07 15:32:05 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/07 23:07:22 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int	checklist(t_parser_data *res, char **data)
 {
 	if (data == NULL)
 		return (free(res), 0);
-	if (count_value_line(data) == -1)
-		return (free_2dwithres(res, data), 0);
+	// if (count_value_line(data) == -1)
+	// 	return (puterror("count value line"), free_2dwithres(res, data), 0);
 	if (!check_resource(data, res))
 		return (free_2dwithres(res, data), 0);
 	if (!src_checker(res))
 		return (free_2dwithres(res, data), 0);
+	dprintf(2, "check list done\n");
 	return (1);
 }
 
@@ -60,9 +61,13 @@ char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 		chdata = ft_strjoin(tmp, buffer);
 		if (!chdata)
 			return (puterror(": Fatal"), free(buffer), NULL);
-		if ((buffer[0] < 32 || buffer[0] > 126) \
-			&& buffer[0] != '\n' && read_co > 0)
+		// new check
+		if (false == ft_isprint_mk2(buffer[0]))
 			read_co = 0;
+		// tam maiiiii
+		// if ((buffer[0] < 32 || buffer[0] > 126) \
+		// 	&& buffer[0] != '\n' && read_co > 0)
+		// 	read_co = 0;
 		free(tmp);
 	}
 	free(buffer);
@@ -88,5 +93,6 @@ int	is_numline(char *str)
 	}
 	if (co > 2)
 		return (0);
+	dprintf(2, "[%s] << pass numline \n", str);
 	return (1);
 }
