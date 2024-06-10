@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
+#    By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/09 12:55:28 by wave             ###   ########.fr        #
+#    Updated: 2024/06/10 16:26:30 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,18 +56,34 @@ UTIL_FILE = puterror.c \
 			get_direction.c \
 			rotate_vector.c
 
-PARSER_FILE = parser.c \
-			  ft_isprint_mk2.c\
-			  set_from_parser_data.c\
-			  set_maps_data.c\
-			  set_texture_assets.c\
-			  get_texture_file.c\
-			  checker1.c\
-			  checker2.c\
-			  checker3.c\
-			  floodfill.c\
-			  print.c \
-			  main_parser.c\
+PARSER_FILE = \
+		border_checker.c \
+		check_resource.c \
+		count_value_line.c \
+		file_reader.c \
+		find_first_of.c \
+		find_height_width.c \
+		find_last_of.c \
+		free_2dwithres.c \
+		ft_floodfill.c \
+		ft_isprint_mk2.c \
+		ft_isspace.c \
+		get_ceil_floor.c \
+		get_texture_check.c \
+		get_texture_file.c \
+		init_map.c \
+		is_map_element.c \
+		is_map_line.c \
+		is_numline.c \
+		main_parser.c \
+		print.c \
+		read_loop.c \
+		scan4player.c \
+		scanner.c \
+		set_from_parser_data.c \
+		set_maps_data.c \
+		set_texture_assets.c \
+		src_checker.c 
 
 FREE_FILE = free_maps_data.c\
 			free_parser_data.c\

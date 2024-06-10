@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:25:08 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/09 12:58:03 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/10 12:41:07 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	main(int ac, char **av)
 	t_data	*d;
 
 	(void)ac;
-	// if (ac != 2)
-	// 	return (puterror(WRG_ARG_NO), 1);
-	mlx_load_png(av[2]);
-	dprintf(2, "[%s]\n", av[2]);
+	if (ac != 2)
+		return (puterror(WRG_ARG_NO), 1);
 	d = ft_calloc(sizeof(t_data), 1);
 	if (d == NULL)
 		return (puterror(": Fatal"), 1);
@@ -34,6 +32,6 @@ int	main(int ac, char **av)
 	// 	return (terminate_and_cleanup(&d), 1);
 	// mlx_loop_hook(d->mlx, key_hook, (void *)d);
 	// mlx_loop(d->mlx);
-	// terminate_and_cleanup(&d);
+	terminate_and_cleanup(&d);
 	return (0);
 }
