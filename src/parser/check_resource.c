@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:28:22 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/11 00:40:31 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:49:40 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,14 @@ int	check_resource(char **map, t_parser_data *res)
 		free(tmp);
 		int size_to_get = ft_strlen(map[i]) - find_first_of_space(map[i]);
 		dprintf(2, "2st trim is [%s  %d]\n", map[i], size_to_get);
-
 		element[0] = ft_substr(map[i], 0, find_first_of_space(map[i]));
-		
 		element[1] = ft_substr(map[i], find_first_of_space(map[i]), size_to_get);
-		
 		dprintf(2, "element[1] -> %s\n", element[1]);
-		
 		tmp = element[1];
 		element[1] = ft_strtrim(element[1], " \n\t\r\v\f");
 		free(tmp);
 		
 		dprintf(2, "after -> [trim is s ->  [%s] -> [%s]\n", element[0], element[1]);
-		// should not be here
-		
 		elm_count += get_element_check(element[0], element[1], res);
 		free(element[0]);
 		free(element[1]);

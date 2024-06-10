@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:14:51 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/11 00:29:50 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:48:01 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@ int					ft_isspace(char c);
 int					ft_isprint_mk2(int c);
 char				**ft_split_no_cut(char const *s, char c);
 
+int find_first_of_space(char *str);
+int find_last_of(char *str, char c);
 #endif

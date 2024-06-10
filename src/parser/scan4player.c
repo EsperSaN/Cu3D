@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:13 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 16:30:14 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:58:37 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int	scan4player(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'W' || map[i][j] == 'N')
+			if (map[i][j] == 'W' || map[i][j] == 'N' || \
+					map[i][j] == 'E' || map[i][j] == 'S')
+			{
+				dprintf(2, "found!!! in %c [%d][%d]\n", map[i][j], i,j);
 				co++;
-			if (map[i][j] == 'E' || map[i][j] == 'S')
-				co++;
+			}
 			j++;
 		}
 		i++;

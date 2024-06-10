@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/11 00:42:38 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:46:45 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int		get_element_check(char *type, char *text, t_parser_data *res)
 		get_ceil_floor(text, res, 'f');
 		return (1);
 	}
+	return (0);
 	// need to improve in various case
 }
