@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:31:03 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 21:31:03 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/09 12:29:33 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ void	print_map_data(t_parser_data *res)
 	printf("EA : [%s]\n", res->east_texture);
 	printf("floor : [%u]\n", res->floor_color);
 	printf("ceil : [%u]\n", res->ceil_color);
+	for (int i = 0; res->maps_data[i]; i++)
+		dprintf(2, "[%s]\n",res->maps_data[i]);
 }

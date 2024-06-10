@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_file_readable.c                                 :+:      :+:    :+:   */
+/*   ft_isprint_mk2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:28:03 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/09 12:27:16 by wave             ###   ########.fr       */
+/*   Created: 2024/06/09 12:21:42 by wave              #+#    #+#             */
+/*   Updated: 2024/06/09 12:22:06 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-// just to check if the file canbe open and read
-
-bool	is_file_readable(char *file_name)
+int	ft_isprint_mk2(int c)
 {
-	int	fd;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		return (false);
-	if (fd > 0)
-		close(fd);
-	return (true);
+	if ((c >= ' ' && c <= '~') || ft_isspace(c))
+		return (1);
+	else
+		return (0);
 }

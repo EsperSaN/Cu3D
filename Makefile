@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+         #
+#    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/07 15:50:22 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/06/09 12:55:28 by wave             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3d
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+# CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = src
 INC_DIR = ./include/
@@ -57,6 +57,7 @@ UTIL_FILE = puterror.c \
 			rotate_vector.c
 
 PARSER_FILE = parser.c \
+			  ft_isprint_mk2.c\
 			  set_from_parser_data.c\
 			  set_maps_data.c\
 			  set_texture_assets.c\
@@ -65,7 +66,8 @@ PARSER_FILE = parser.c \
 			  checker2.c\
 			  checker3.c\
 			  floodfill.c\
-			  print.c
+			  print.c \
+			  main_parser.c\
 
 FREE_FILE = free_maps_data.c\
 			free_parser_data.c\

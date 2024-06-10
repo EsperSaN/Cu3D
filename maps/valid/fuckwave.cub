@@ -1,9 +1,10 @@
-C          		      225,30,0        		    
-WE 	      ./texture/i love wave/test/west_texture.png 				    	
-EA  	    ./texture/i love wave/test/east_texture.png                       		           
-F                           		            220,200,0   
-NO 	    ./w    ave///////texture/i love wave/test/mo		ssy.png       				
-SO   	   ./texture/i love wave/test/south_texture.png    
+		    			 	 		 	 	 C          		      225,30,0        		    
+   		 WE 	      ./texture/i love wave/test/west_texture.png 	
+		 			    	
+	 	 EA  	    ./texture/i love wave/test/east_texture.png                       		           
+		 	 F                           		            220,200,0   
+		 	 	NO 	    ./w    ave///////texture/i love wave/test/mo		ssy.png       				
+		 	 	 SO   	   ./texture/i love wave/test/south_texture.png    
 
 11111111111111111111111111111111111111111111111111111111111111              
 10000000000000000000000000000000000000000000000000000000000001       
@@ -41,7 +42,6 @@ SO   	   ./texture/i love wave/test/south_texture.png
      1111
    111
    
-
      
   
   

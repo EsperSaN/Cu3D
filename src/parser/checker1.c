@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 08:50:50 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/07 23:05:47 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/09 12:22:02 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,6 @@ int	in_line(char *str, int start, int stop)
 		i++;
 	}
 	return (1);
-}
-
-int	ft_isprint_mk2(int c)
-{
-	if ((c >= ' ' && c <= '~') || ft_isspace(c))
-		return (1);
-	else
-		return (0);
 }
 
 int	scanner(char *data)

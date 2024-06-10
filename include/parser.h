@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:14:51 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/05 14:26:50 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/09 12:56:02 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int					in_line(char *str, int start, int stop);
 int					try_get_texture(t_texture_assets *res);
 int					is_numline(char *str);
 int					ft_isspace(char c);
+int					ft_isprint_mk2(int c);
 
 #endif
