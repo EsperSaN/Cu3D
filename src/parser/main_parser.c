@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/10 17:25:33 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:24:47 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_parser_data	*main_parser(char *file_name)
 	dprintf(2, "file reader done!!\n");
 
 	for (int i = 0; data[i]; i++)
-		printf("%s\n", data[i]);
+		printf("%s", data[i]);
 
 	if (!checklist(res, data))
 		return (NULL);

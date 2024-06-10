@@ -6,7 +6,7 @@
 #    By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/10 16:26:30 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/06/11 00:31:49 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ UTIL_FILE = puterror.c \
 			rotate_vector.c
 
 PARSER_FILE = \
+		get_element_check.c\
+		ft_split_no_cut.c\
 		border_checker.c \
 		check_resource.c \
 		count_value_line.c \
@@ -69,7 +71,6 @@ PARSER_FILE = \
 		ft_isprint_mk2.c \
 		ft_isspace.c \
 		get_ceil_floor.c \
-		get_texture_check.c \
 		get_texture_file.c \
 		init_map.c \
 		is_map_element.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:14:51 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/09 12:56:02 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/11 00:29:50 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int					scan4player(char **map);
 int					border_checker(t_parser_data *data, char **map);
 int					is_map_not_sp(char c);
 void				free_2dwithres(t_parser_data *res, char **data);
-void				get_texture_check(char *type, char *text, \
+int					get_element_check(char *type, char *text, \
 						t_parser_data *res);
 char				**ft_floodfill(t_parser_data *data);
 t_int_point			get_player_pos4(char **map);
@@ -54,5 +54,6 @@ int					try_get_texture(t_texture_assets *res);
 int					is_numline(char *str);
 int					ft_isspace(char c);
 int					ft_isprint_mk2(int c);
+char				**ft_split_no_cut(char const *s, char c);
 
 #endif

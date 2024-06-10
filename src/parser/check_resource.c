@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:28:22 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 17:23:51 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:40:31 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@
 int	check_resource(char **map, t_parser_data *res)
 {
 	int		i;
-	int		j;
+	int		elm_count;
 	char	*element[3];
 	char	*tmp;
 
 	element[2] = NULL;
+	elm_count = 0;
 	i = 0;
 	dprintf(2, "\n\n\ncheck_resouse\n");
 	// for each element
-	while (i < 6)
+	while (map[i]) // || map[i] is not 10101010101010
 	{
 		dprintf(2, "\n map [%d] is [%s]\n", i, map[i]);
 		tmp = map[i];
-		map[i] = ft_strtrim(map[i], " \t\r\v\f");
+		map[i] = ft_strtrim(map[i], " \n\t\r\v\f");
 		dprintf(2, "1st trim is [%s]\n", map[i]);
 		free(tmp);
 		int size_to_get = ft_strlen(map[i]) - find_first_of_space(map[i]);
@@ -41,28 +42,23 @@ int	check_resource(char **map, t_parser_data *res)
 
 		element[0] = ft_substr(map[i], 0, find_first_of_space(map[i]));
 		
-		dprintf(2, "element[0] -> %s -> sub [%d] and [%d]\n", element[0], find_first_of_space(map[i]),size_to_get);
-		
 		element[1] = ft_substr(map[i], find_first_of_space(map[i]), size_to_get);
 		
 		dprintf(2, "element[1] -> %s\n", element[1]);
 		
 		tmp = element[1];
-		element[1] = ft_strtrim(element[1], " \t\r\v\f");
+		element[1] = ft_strtrim(element[1], " \n\t\r\v\f");
 		free(tmp);
 		
-		dprintf(2, "after -> [trim is s ->  [%s] -> [%s]]\n", element[0], element[1]);
+		dprintf(2, "after -> [trim is s ->  [%s] -> [%s]\n", element[0], element[1]);
 		// should not be here
-		i++;
-		get_texture_check(element[0], element[1], res);
-		if (is_same_str(element[0], "C") && is_numline(element[1]))
-			get_ceil_floor(element[1], res, 'c');
-		if (is_same_str(element[0], "F") && is_numline(element[1]))
-			get_ceil_floor(element[1], res, 'f');
-	
+		
+		elm_count += get_element_check(element[0], element[1], res);
 		free(element[0]);
 		free(element[1]);
+		i++;
 	}
-	dprintf(2, "check end\n");
+	if (elm_count != 6)
+		return (puterror("Map element are not good"), false);
 	return (true);
 }

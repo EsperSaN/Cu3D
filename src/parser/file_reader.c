@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:28:33 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 17:25:07 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:20:02 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**file_reader(int fd)
 	chdata = read_loop(read_count, chdata, fd, buffer);
 	// if (scanner(chdata) == 0 || !ft_strlen(chdata))
 	// 	return (free(chdata), NULL);
-	map = ft_split(chdata, '\n');
+	map = ft_split_no_cut(chdata, '\n');
 	free(chdata);
 	return (map);
 }
