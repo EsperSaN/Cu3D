@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/09 12:44:39 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/10 16:12:08 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+int	checklist(t_parser_data *res, char **data)
+{
+	if (data == NULL)
+		return (free(res), 0);
+	// if (count_value_line(data) == -1)
+	// 	return (puterror("count value line"), free_2dwithres(res, data), 0);
+	if (!check_resource(data, res))
+		return (free_2dwithres(res, data), 0);
+	if (!src_checker(res))
+		return (free_2dwithres(res, data), 0);
+	dprintf(2, "check list done\n");
+	return (1);
+}
 
 t_parser_data	*main_parser(char *file_name)
 {

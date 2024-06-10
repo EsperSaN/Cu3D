@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floodfill.c                                        :+:      :+:    :+:   */
+/*   ft_floodfill.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:42:01 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/05/30 16:42:01 by tpoungla         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:02:33 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,6 @@ void	ft_floodfill_util(t_parser_data *data, char **visited, int x, int y)
 	}
 }
 
-char	**ft_floodfill(t_parser_data *data)
-{
-	t_int_point	pos;
-	char		**visited;
-	int			h;
-	int			w;
-
-	pos = get_player_pos4(data->maps_data);
-	h = data->height;
-	w = data->width;
-	visited = create_visitmap(w, h);
-	ft_floodfill_util(data, visited, pos.y, pos.x);
-	return (visited);
-}
-
 t_int_point	get_player_pos4(char **map)
 {
 	t_int_point	pos;
@@ -91,4 +76,19 @@ t_int_point	get_player_pos4(char **map)
 		i++;
 	}
 	return (pos);
+}
+
+char	**ft_floodfill(t_parser_data *data)
+{
+	t_int_point	pos;
+	char		**visited;
+	int			h;
+	int			w;
+
+	pos = get_player_pos4(data->maps_data);
+	h = data->height;
+	w = data->width;
+	visited = create_visitmap(w, h);
+	ft_floodfill_util(data, visited, pos.y, pos.x);
+	return (visited);
 }
