@@ -23,7 +23,7 @@ int	is_numline(char *str)
 	{
 		if (str[i] == ',')
 			co++;
-		else if (str[i] > '9' || str[i] < '0')
+		else if (str[i] > '9' || str[i] < '0' && !ft_isspace(str[i]))
 			return (0);
 		i++;
 	}

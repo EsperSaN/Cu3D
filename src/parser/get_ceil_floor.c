@@ -28,10 +28,17 @@ int	get_ceil_floor(char *str, t_parser_data *res, char mode)
 		i++;
 	}
 	if (i != 3)
+	{
+		printf("not 3\n");
 		return (free2d(num), 0);
+	}
 	i = -1;
 	while (num[++i])
+	{
 		color[i] = ft_atoi(num[i]);
+		printf("%d>", color[i]);
+	}
+	printf("\n");
 	rgb = get_rgba(color[0], color[1], color[2], 255);
 	if (mode == 'c' && res->ceil_color == 0)
 		res->ceil_color = rgb;

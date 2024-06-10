@@ -23,11 +23,11 @@ int	main(int ac, char **av)
 	if (d == NULL)
 		return (puterror(": Fatal"), 1);
 	d->parser_data = main_parser(av[1]);
-	if (d->parser_data == NULL)
-		return (puterror("Invalid Data in file"), terminate_and_cleanup(&d), 1);
+	//// if (d->parser_data == NULL)
+	//// 	return (puterror("Invalid Data in file"), terminate_and_cleanup(&d), 1);
 	//print_map_data(d->parser_data);
-	if (!set_from_parser_data(d))
-		return (terminate_and_cleanup(&d), 1);
+	////if (!set_from_parser_data(d))
+	////	return (terminate_and_cleanup(&d), 1);
 	// if (prepare_render(d) == false)
 	// 	return (terminate_and_cleanup(&d), 1);
 	// mlx_loop_hook(d->mlx, key_hook, (void *)d);

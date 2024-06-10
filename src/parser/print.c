@@ -34,12 +34,16 @@ void	print_map(char **map)
 
 void	print_map_data(t_parser_data *res)
 {
-	printf("NO : [%s]\n", res->north_texture);
-	printf("SO : [%s]\n", res->south_texture);
-	printf("WE : [%s]\n", res->west_texture);
-	printf("EA : [%s]\n", res->east_texture);
-	printf("floor : [%u]\n", res->floor_color);
-	printf("ceil : [%u]\n", res->ceil_color);
-	for (int i = 0; res->maps_data[i]; i++)
-		dprintf(2, "[%s]\n",res->maps_data[i]);
+	if (res->north_texture)
+		printf("NO : [%s]\n", res->north_texture);
+	if (res->south_texture)
+		printf("SO : [%s]\n", res->south_texture);
+	if (res->west_texture)
+		printf("WE : [%s]\n", res->west_texture);
+	if (res->east_texture)
+		printf("EA : [%s]\n", res->east_texture);
+	if (res->floor_color)
+		printf("floor : [%u]\n", res->floor_color);
+	if (res->ceil_color)
+		printf("ceil : [%u]\n", res->ceil_color);
 }

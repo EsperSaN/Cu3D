@@ -64,5 +64,6 @@ int	check_resource(char **map, t_parser_data *res)
 		free(element[1]);
 	}
 	dprintf(2, "check end\n");
+	print_map_data(res);
 	return (true);
 }

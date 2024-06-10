@@ -9,10 +9,10 @@
 /*   Updated: 2024/06/10 17:25:07 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+// read -> sep by '\n' 
 #include "parser.h"
 
-char	**file_reader(int fd)
+char	*file_reader(int fd)
 {
 	char	*chdata;
 	char	**map;
@@ -29,9 +29,5 @@ char	**file_reader(int fd)
 	if (!chdata)
 		return (free(buffer), puterror(": Fatal"), NULL);
 	chdata = read_loop(read_count, chdata, fd, buffer);
-	// if (scanner(chdata) == 0 || !ft_strlen(chdata))
-	// 	return (free(chdata), NULL);
-	map = ft_split(chdata, '\n');
-	free(chdata);
-	return (map);
+	return (chdata);
 }

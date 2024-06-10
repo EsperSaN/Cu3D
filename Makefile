@@ -57,7 +57,8 @@ UTIL_FILE = puterror.c \
 			rotate_vector.c
 
 PARSER_FILE = \
-		border_checker.c \
+		main_parser.c \
+		#border_checker.c \
 		check_resource.c \
 		count_value_line.c \
 		file_reader.c \
@@ -83,7 +84,7 @@ PARSER_FILE = \
 		set_from_parser_data.c \
 		set_maps_data.c \
 		set_texture_assets.c \
-		src_checker.c 
+		#src_checker.c 
 
 FREE_FILE = free_maps_data.c\
 			free_parser_data.c\
@@ -119,7 +120,7 @@ endif
 UTIL_DIR = $(SRC_DIR)/util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
 
-PARSER_DIR = $(SRC_DIR)/parser/
+PARSER_DIR = $(SRC_DIR)/neoparser/
 PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
   
 RENDER_DIR = $(SRC_DIR)/render/

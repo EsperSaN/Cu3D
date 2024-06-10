@@ -17,7 +17,10 @@ int	src_checker(t_parser_data *res)
 	if (!res->north_texture || !res->south_texture \
 	|| !res->west_texture || !res->east_texture \
 	|| !res->ceil_color || !res->floor_color)
+	{
+		printf("some texture not found\n");
 		return (0);
+	}
 	if (!is_file_readable(res->north_texture) \
 		|| !is_right_extension(res->north_texture, ".png"))
 		return (0);
