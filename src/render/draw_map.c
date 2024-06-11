@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:24:31 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/07 17:48:35 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 01:33:20 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	void	draw_player(mlx_image_t *image, t_int_point pos, int scale \
 
 	pos.x = image->width / 2;
 	pos.y = image->height / 2;
-	draw_square(image, pos, scale - 5, get_rgba(255, 255, 255, 255));
+	draw_square_center(image, pos, scale - 5, get_rgba(255, 255, 255, 255));
 	dir.x = (pos.x + 15 * pdir.x);
 	dir.y = (pos.y + 15 * pdir.y);
 	draw_line(image, pos, dir, get_rgba(0, 255, 255, 255));
@@ -32,7 +32,7 @@ void	put_maps(t_dm m, mlx_image_t *image, t_maps_data *maps_data)
 		if (m.pos.x >= 0 && m.pos.y >= 0 && m.pos.y < maps_data->maps_height && \
 		m.pos.x < (int)(ft_strlen(maps_data->maps_array[m.pos.y])) && \
 		maps_data->maps_array[m.pos.y][m.pos.x] == WALL)
-			draw_square(image, m.draw, m.scale, get_rgba(255, 0, 0, 255));
+			draw_square_center(image, m.draw, m.scale, get_rgba(255, 0, 0, 255));
 		m.pos.x++;
 		m.draw.x += m.scale;
 		m.cur_p.x++;
