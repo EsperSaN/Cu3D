@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:24:31 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 01:33:20 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 01:48:55 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	put_maps(t_dm m, mlx_image_t *image, t_maps_data *maps_data)
 		if (m.pos.x >= 0 && m.pos.y >= 0 && m.pos.y < maps_data->maps_height && \
 		m.pos.x < (int)(ft_strlen(maps_data->maps_array[m.pos.y])) && \
 		maps_data->maps_array[m.pos.y][m.pos.x] == WALL)
-			draw_square_center(image, m.draw, m.scale, get_rgba(255, 0, 0, 255));
+			draw_square_center(image, m.draw, m.scale, \
+										get_rgba(255, 0, 0, 255));
 		m.pos.x++;
 		m.draw.x += m.scale;
 		m.cur_p.x++;
