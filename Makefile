@@ -80,7 +80,6 @@ PARSER_FILE = \
 		print.c \
 		read_loop.c \
 		scan4player.c \
-		scanner.c \
 		set_from_parser_data.c \
 		set_maps_data.c \
 		set_texture_assets.c \

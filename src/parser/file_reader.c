@@ -29,8 +29,6 @@ char	**file_reader(int fd)
 	if (!chdata)
 		return (free(buffer), puterror(": Fatal"), NULL);
 	chdata = read_loop(read_count, chdata, fd, buffer);
-	// if (scanner(chdata) == 0 || !ft_strlen(chdata))
-	// 	return (free(chdata), NULL);
 	dprintf(2, "data is \n{%s}", chdata);
 	map = ft_split_no_cut(chdata, '\n');
 	free(chdata);

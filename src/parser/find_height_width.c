@@ -20,7 +20,7 @@ int	find_first_mapline(char **data)
 	while (data[i])
 	{
 		if (is_map_line(data[i]) == -1)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
@@ -29,22 +29,15 @@ int	find_first_mapline(char **data)
 int	find_height(char **data)
 {
 	int	i;
-	int f;
-	int co;
+	int	co;
 
 	i = 0;
 	co = 0;
-	f = 0;
+	while (-1 != is_map_line(data[i]))
+		i++;
 	while (data[i])
 	{
-		// printf("line is <%s>", data[i]);
-		if (is_map_line(data[i]) == -1)
-		{
-			co++;
-			f = 1;
-		}
-		if (f && is_map_line(data[i]) != -1)
-			break ;
+		co++;
 		i++;
 	}
 	return (co);

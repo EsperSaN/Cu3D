@@ -15,7 +15,7 @@
 char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 {
 	char	*tmp;
-	
+
 	while (read_co > 0)
 	{
 		tmp = chdata;

@@ -15,7 +15,7 @@
 int	is_map_line(char *str)
 {
 	int	i;
-	int f;
+	int	f;
 
 	f = 0;
 	i = 0;
@@ -28,4 +28,18 @@ int	is_map_line(char *str)
 		i++;
 	}
 	return (f);
+}
+
+int	is_all_mapline(char **data)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (1 == is_map_line(data[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

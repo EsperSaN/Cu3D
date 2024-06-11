@@ -12,9 +12,9 @@
 
 #include "parser.h"
 
-int find_last_of(char *str, char c)
+int	find_last_of(char *str, char c)
 {
-	int len;
+	int	len;
 
 	if (!str)
 		return (-1);

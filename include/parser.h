@@ -24,12 +24,10 @@ t_parser_data		*main_parser(char *file_name);
 char				*get_texture_file(char **map, char *indicater);
 int					find_height(char **data);
 int					find_width(char **data);
-int					scanner(char *data);
 int					count_value_line(char **data);
 int					check_resource(char **map, t_parser_data *res);
 int					get_ceil_floor(char *str, t_parser_data *res, char mode);
 int					src_checker(t_parser_data *res);
-int					scanner_checker(int num[], int i, char *data);
 int					scan4player(char **map);
 int					border_checker(t_parser_data *data, char **map);
 int					is_map_not_sp(char c);
@@ -49,7 +47,6 @@ int					checklist(t_parser_data *res, char **data);
 char				*read_loop(int read_co, char *chdata, int fd, \
 						char *buffer);
 int					is_map_element(char c);
-int					in_line(char *str, int start, int stop);
 int					try_get_texture(t_texture_assets *res);
 int					is_numline(char *str);
 int					ft_isspace(char c);
@@ -57,6 +54,7 @@ int					ft_isprint_mk2(int c);
 char				**ft_split_no_cut(char const *s, char c);
 
 int					is_map_line(char *str);
+int					is_all_mapline(char **data);
 int					find_first_mapline(char **data);
 int					find_first_of_space(char *str);
 int					find_last_of(char *str, char c);

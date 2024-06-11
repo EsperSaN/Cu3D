@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-int		get_element_check(char *type, char *text, t_parser_data *res)
+int	get_element_check(char *type, char *text, t_parser_data *res)
 {
 	if (is_same_str(type, "NO") && !res->north_texture)
 	{
@@ -25,7 +25,7 @@ int		get_element_check(char *type, char *text, t_parser_data *res)
 		return (1);
 	}
 	if (is_same_str(type, "EA") && !res->east_texture)
-	{	
+	{
 		res->east_texture = ft_strdup(text);
 		return (1);
 	}
@@ -37,15 +37,12 @@ int		get_element_check(char *type, char *text, t_parser_data *res)
 	if (is_same_str(type, "C") && is_numline(text))
 	{
 		get_ceil_floor(text, res, 'c');
-		printf("try get c\n");
 		return (1);
 	}
 	if (is_same_str(type, "F") && is_numline(text))
 	{
 		get_ceil_floor(text, res, 'f');
-		printf("try get f\n");
 		return (1);
 	}
 	return (0);
-	// need to improve in various case
 }

@@ -28,7 +28,7 @@ int	scan4player(char **map)
 			if (map[i][j] == 'W' || map[i][j] == 'N' || \
 					map[i][j] == 'E' || map[i][j] == 'S')
 			{
-				dprintf(2, "found!!! in %c [%d][%d]\n", map[i][j], i,j);
+				dprintf(2, "found!!! in %c [%d][%d]\n", map[i][j], i, j);
 				co++;
 			}
 			j++;

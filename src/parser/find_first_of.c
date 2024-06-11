@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-int find_first_of_space(char *str)
+int	find_first_of_space(char *str)
 {
 	int	idx;
 
@@ -22,7 +22,7 @@ int find_first_of_space(char *str)
 	while (*str)
 	{
 		if (true == ft_isspace(*str))
-			return(idx);
+			return (idx);
 		str++;
 		idx++;
 	}

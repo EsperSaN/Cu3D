@@ -45,25 +45,17 @@ t_parser_data	*main_parser(char *file_name)
 	data = file_reader(fd);
 	close(fd);
 	dprintf(2, "file reader done!!\n");
-
-	// for (int i = 0; data[i]; i++)
-		// printf("< %s >\n", data[i]);
-
 	if (!checklist(res, data))
 		return (NULL);
 	dprintf(2, "check list done!!!\n");
-	// for (int i = 0; data[i]; i++)
-		// printf("| %s |", data[i]);
-	
 	res->height = find_height(data);
 	res->width = find_width(data);
 	if (res->height == 0 || res->width == 0)
 		return (free_2dwithres(res, data), NULL);
 	dprintf(2, "find w h [%d] [%d] done\n", res->width, res->height);
 	res->maps_data = init_map(data, res->width, res->height);
-	dprintf(2, "\n");
-	for (int t = 0; res->maps_data[t]; t++)
-		dprintf(2, "{%s}\n", res->maps_data[t]);
+	if (!is_all_mapline(res->maps_data))
+		return (free_parser(res), NULL);
 	if (!scan4player(res->maps_data))
 		return (free_parser(res), NULL);
 	dprintf(2, "s4p done\n");

@@ -40,6 +40,4 @@ void	print_map_data(t_parser_data *res)
 	printf("EA : [%s]\n", res->east_texture);
 	printf("floor : [%u]\n", res->floor_color);
 	printf("ceil : [%u]\n", res->ceil_color);
-	for (int i = 0; res->maps_data[i]; i++)
-		dprintf(2, "[%s]\n",res->maps_data[i]);
 }
