@@ -15,13 +15,17 @@
 int	is_map_line(char *str)
 {
 	int	i;
+	int f;
 
+	f = 0;
 	i = 0;
 	while (str[i])
 	{
 		if (!is_map_element(str[i]))
-			return (0);
+			return (1);
+		if (str[i] == '0' || str[i] == '1')
+			f = -1;
 		i++;
 	}
-	return (1);
+	return (f);
 }

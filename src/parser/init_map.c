@@ -19,10 +19,11 @@ char	**init_map(char **smap, int width, int height)
 
 	i = 0;
 	(void)width;
-	map = (char **)malloc(sizeof(char *) * (height + 1));
+	map = (char **)malloc(sizeof(char *) * (height + 1)); //recheck HHHH
 	map[height] = NULL;
 	while (i < height)
 	{
+		dprintf(2, "dup [%s]\n", smap[i + 6]); // fix this plz
 		map[i] = ft_strdup(smap[i + 6]);
 		i++;
 	}

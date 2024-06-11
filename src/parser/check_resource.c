@@ -28,19 +28,23 @@ int	check_resource(char **map, t_parser_data *res)
 	element[2] = NULL;
 	elm_count = 0;
 	i = 0;
-	dprintf(2, "\n\n\ncheck_resouse\n");
+	dprintf(2, "\n\n\ncheck_resource\n");
 	// for each element
 	while (map[i]) // || map[i] is not 10101010101010
 	{
 		dprintf(2, "\n map [%d] is [%s]\n", i, map[i]);
-		tmp = map[i];
-		map[i] = ft_strtrim(map[i], " \n\t\r\v\f");
-		dprintf(2, "1st trim is [%s]\n", map[i]);
+
+		element[0] = ft_strtrim(map[i], " \n\t\r\v\f");
+
+		dprintf(2, "1st trim is [%s]\n", element[0]);
+
+		int size_to_get = ft_strlen(element[0]) - find_first_of_space(element[0]);
+
+		dprintf(2, "2st trim is [%s  %d]\n", element[0], size_to_get);
+		tmp = element[0];
+		element[0] = ft_substr(element[0], 0, find_first_of_space(element[0]));
+		element[1] = ft_substr(tmp, find_first_of_space(tmp), size_to_get);
 		free(tmp);
-		int size_to_get = ft_strlen(map[i]) - find_first_of_space(map[i]);
-		dprintf(2, "2st trim is [%s  %d]\n", map[i], size_to_get);
-		element[0] = ft_substr(map[i], 0, find_first_of_space(map[i]));
-		element[1] = ft_substr(map[i], find_first_of_space(map[i]), size_to_get);
 		dprintf(2, "element[1] -> %s\n", element[1]);
 		tmp = element[1];
 		element[1] = ft_strtrim(element[1], " \n\t\r\v\f");

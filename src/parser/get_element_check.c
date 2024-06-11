@@ -37,11 +37,13 @@ int		get_element_check(char *type, char *text, t_parser_data *res)
 	if (is_same_str(type, "C") && is_numline(text))
 	{
 		get_ceil_floor(text, res, 'c');
+		printf("try get c\n");
 		return (1);
 	}
 	if (is_same_str(type, "F") && is_numline(text))
 	{
 		get_ceil_floor(text, res, 'f');
+		printf("try get f\n");
 		return (1);
 	}
 	return (0);

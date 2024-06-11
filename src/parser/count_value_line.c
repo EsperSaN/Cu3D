@@ -21,19 +21,14 @@ int	count_value_line(char **data)
 	k = 0;
 	while (data[i])
 	{
-		if (!is_map_line(data[i]))
-		{
-			dprintf(2, "in [%s] k++\n", data[i]);
-			k++;
-		}
-		if (is_map_line(data[i]) && k != 6)
-		{
-			dprintf(2, "k != 6 case\n");
-			return (-1);
-		}
+		if (is_map_line(data[i]) == -1)
+			break ;
+		k += is_map_line(data[i]);
+		printf("k in %s is %d\n",data[i], k);
 		i++;
 	}
-	if (k > 6)
+	printf("k is %d\n", k);
+	if (k != 6)
 		return (-1);
-	return (k);
+	return (1);
 }

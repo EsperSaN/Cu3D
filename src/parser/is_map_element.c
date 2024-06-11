@@ -15,7 +15,7 @@
 int	is_map_element(char c)
 {
 	if (c == 'S' || c == 'W' || c == 'E' \
-		|| c == 'N' || c == '0' || c == '1' || c == ' ')
+		|| c == 'N' || c == '0' || c == '1' || ft_isspace(c))
 		return (1);
 	return (0);
 }

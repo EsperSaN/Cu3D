@@ -16,8 +16,8 @@ int	checklist(t_parser_data *res, char **data)
 {
 	if (data == NULL)
 		return (free(res), 0);
-	// if (count_value_line(data) == -1)
-	// 	return (puterror("count value line"), free_2dwithres(res, data), 0);
+	if (count_value_line(data) == -1)
+		return (puterror("count value line"), free_2dwithres(res, data), 0);
 	if (!check_resource(data, res))
 		return (free_2dwithres(res, data), 0);
 	if (!src_checker(res))
@@ -47,11 +47,13 @@ t_parser_data	*main_parser(char *file_name)
 	dprintf(2, "file reader done!!\n");
 
 	for (int i = 0; data[i]; i++)
-		printf("%s", data[i]);
+		printf("> %s <", data[i]);
 
 	if (!checklist(res, data))
 		return (NULL);
 	dprintf(2, "check list done!!!\n");
+	for (int i = 0; data[i]; i++)
+		printf("| %s |", data[i]);
 	
 	res->height = find_height(data);
 	res->width = find_width(data);

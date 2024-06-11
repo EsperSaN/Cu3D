@@ -19,11 +19,12 @@ int	is_numline(char *str)
 
 	co = 0;
 	i = 0;
+	printf("try numline <%s>\n", str);
 	while (str[i])
 	{
 		if (str[i] == ',')
 			co++;
-		else if (str[i] > '9' || str[i] < '0')
+		else if ((str[i] > '9' || str[i] < '0') && !ft_isspace(str[i]))
 			return (0);
 		i++;
 	}
