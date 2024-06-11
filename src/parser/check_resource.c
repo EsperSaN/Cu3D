@@ -32,25 +32,25 @@ int	check_resource(char **map, t_parser_data *res)
 	// for each element
 	while (map[i] && is_map_line(map[i]) != -1) // || map[i] is not 10101010101010
 	{
-		dprintf(2, "\n map [%d] is [%s]\n", i, map[i]);
+		// dprintf(2, "\n map [%d] is [%s]\n", i, map[i]);
 
 		element[0] = ft_strtrim(map[i], " \n\t\r\v\f");
 
-		dprintf(2, "1st trim is [%s]\n", element[0]);
+		// dprintf(2, "1st trim is [%s]\n", element[0]);
 
 		int size_to_get = ft_strlen(element[0]) - find_first_of_space(element[0]);
 
-		dprintf(2, "2st trim is [%s  %d]\n", element[0], size_to_get);
+		// dprintf(2, "2st trim is [%s  %d]\n", element[0], size_to_get);
 		tmp = element[0];
 		element[0] = ft_substr(element[0], 0, find_first_of_space(element[0]));
 		element[1] = ft_substr(tmp, find_first_of_space(tmp), size_to_get);
 		free(tmp);
-		dprintf(2, "element[1] -> %s\n", element[1]);
+		// dprintf(2, "element[1] -> %s\n", element[1]);
 		tmp = element[1];
 		element[1] = ft_strtrim(element[1], " \n\t\r\v\f");
 		free(tmp);
 		
-		dprintf(2, "after -> [trim is s ->  [%s] -> [%s]\n", element[0], element[1]);
+		// dprintf(2, "after -> [trim is s ->  [%s] -> [%s]\n", element[0], element[1]);
 		elm_count += get_element_check(element[0], element[1], res);
 		free(element[0]);
 		free(element[1]);

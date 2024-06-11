@@ -69,6 +69,12 @@ char	**ft_split_no_cut(char const *s, char c)
 			n++;
 		i++;
 	}
+	// printf("n is [%d] ", n);
+	if (n)
+	{
+		resplit[big_i] = ft_substr(s, i - n, n + 1);
+		big_i++;
+	}
 	resplit[big_i] = NULL;
 	return (resplit);
 }

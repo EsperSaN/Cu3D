@@ -37,6 +37,7 @@ int	find_height(char **data)
 	f = 0;
 	while (data[i])
 	{
+		// printf("line is <%s>", data[i]);
 		if (is_map_line(data[i]) == -1)
 		{
 			co++;

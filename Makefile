@@ -167,7 +167,7 @@ fclean : clean
 	rm -f $(NAME)
 
 norm : 
-	norminette -R CheckDefine $(LIB_FT_DIR) $(HEADER_SRC) $(SRCS)
+	norminette $(LIB_FT_DIR) $(HEADER_SRC) $(SRCS)
 
 re : fclean all
 
