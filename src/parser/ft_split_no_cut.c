@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:54:09 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 02:23:20 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 02:25:19 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ void	assign_res(char **resplit, char const *s, char c)
 	if (n)
 		resplit[big_i++] = ft_substr(s, i - n, n + 1);
 	resplit[big_i] = NULL;
-
 }
 
 char	**ft_split_no_cut(char const *s, char c)
 {
 	char	**resplit;
-
 
 	if (!s)
 		return (NULL);
