@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+         #
+#    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/11 00:31:49 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/06/12 02:37:39 by wave             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3d
 
 CC = cc
 
-# CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = src
 INC_DIR = ./include/
