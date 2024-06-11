@@ -23,12 +23,15 @@ int	is_map_not_sp(char c)
 int	border_checker(t_parser_data *data, char **map)
 {
 	int		i;
+	int		h;
 	int		j;
 	char	**visited;
 
 	visited = ft_floodfill(data);
-	i = -1;
-	while (map[++i])
+	i = 0;
+	h = data->height;
+	printf("\n");
+	while (i < h)
 	{
 		j = 0;
 		while (map[i][j])
@@ -36,7 +39,7 @@ int	border_checker(t_parser_data *data, char **map)
 			if (map[i][j] != '1' && is_map_not_sp(map[i][j]) \
 				&& visited[i][j] == '3')
 			{
-				if (i == 0 || i == find_height(map) + 5 \
+				if (i == 0 || i == h - 1 \
 					|| !is_map_not_sp(map[i][j - 1]) \
 					|| !is_map_not_sp(map[i + 1][j]) \
 					|| !is_map_not_sp(map[i - 1][j]) \
@@ -45,6 +48,8 @@ int	border_checker(t_parser_data *data, char **map)
 			}
 			j++;
 		}
+		i++;
 	}
+	printf("done border\n");
 	return (free2d(visited), 1);
 }

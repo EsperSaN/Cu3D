@@ -15,21 +15,15 @@
 static size_t	count_on_me(char const *s, char c)
 {
 	int	word;
-	int	skip;
 
-	skip = 0;
 	word = 0;
 	while (*s)
 	{
-		if (*s == c && skip == 1)
-			skip = 0;
-		if (*s != c && skip == 0)
-		{
+		if (*s == c)
 			word++;
-			skip = 1;
-		}
 		s++;
 	}
+	word++;
 	return (word);
 }
 
@@ -53,24 +47,27 @@ char	**ft_split_no_cut(char const *s, char c)
 	char	**resplit;
 	size_t	i;
 	size_t	big_i;
+	int		n;
 
 	if (!s)
 		return (0);
 	i = 0;
+	n = 0;
 	big_i = 0;
 	resplit = (char **)malloc((sizeof(char *)) * (count_on_me(s, c) + 1));
 	if (!resplit)
 		return (0);
 	while (s[i] && i <= ft_strlen(s))
 	{
-		if (s[i] != c)
-		{
-			resplit[big_i] = ft_substr(s, i, how_long(&s[i], c) + 1);
-			i = i + how_long(&s[i], c);
-			big_i++;
-		}
 		if (s[i] == c)
-			i++;
+		{
+			resplit[big_i] = ft_substr(s, i - n, n + 1);
+			big_i++;
+			n = 0;
+		}
+		else
+			n++;
+		i++;
 	}
 	resplit[big_i] = NULL;
 	return (resplit);

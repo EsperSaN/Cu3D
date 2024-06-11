@@ -30,7 +30,7 @@ int	check_resource(char **map, t_parser_data *res)
 	i = 0;
 	dprintf(2, "\n\n\ncheck_resource\n");
 	// for each element
-	while (map[i]) // || map[i] is not 10101010101010
+	while (map[i] && is_map_line(map[i]) != -1) // || map[i] is not 10101010101010
 	{
 		dprintf(2, "\n map [%d] is [%s]\n", i, map[i]);
 

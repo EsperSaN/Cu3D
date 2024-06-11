@@ -24,10 +24,10 @@ int	count_value_line(char **data)
 		if (is_map_line(data[i]) == -1)
 			break ;
 		k += is_map_line(data[i]);
-		printf("k in %s is %d\n",data[i], k);
+		// printf("k in %s is %d\n", data[i], k);
 		i++;
 	}
-	printf("k is %d\n", k);
+	// printf("k is %d\n", k);
 	if (k != 6)
 		return (-1);
 	return (1);

@@ -12,14 +12,41 @@
 
 #include "parser.h"
 
-int	find_height(char **data)
+int	find_first_mapline(char **data)
 {
 	int	i;
 
 	i = 0;
 	while (data[i])
+	{
+		if (is_map_line(data[i]) == -1)
+			break;
 		i++;
-	return (i - 6);
+	}
+	return (i);
+}
+
+int	find_height(char **data)
+{
+	int	i;
+	int f;
+	int co;
+
+	i = 0;
+	co = 0;
+	f = 0;
+	while (data[i])
+	{
+		if (is_map_line(data[i]) == -1)
+		{
+			co++;
+			f = 1;
+		}
+		if (f && is_map_line(data[i]) != -1)
+			break ;
+		i++;
+	}
+	return (co);
 }
 
 int	find_width(char **data)

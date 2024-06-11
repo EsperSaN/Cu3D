@@ -57,7 +57,7 @@ int					ft_isprint_mk2(int c);
 char				**ft_split_no_cut(char const *s, char c);
 
 int					is_map_line(char *str);
-
-int find_first_of_space(char *str);
-int find_last_of(char *str, char c);
+int					find_first_mapline(char **data);
+int					find_first_of_space(char *str);
+int					find_last_of(char *str, char c);
 #endif
