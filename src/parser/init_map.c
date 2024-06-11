@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:29:32 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 16:29:33 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:41:13 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ char	**init_map(char **smap, int width, int height)
 	map[height] = NULL;
 	while (i < height)
 	{
-		dprintf(2, "dup [%s]\n", smap[i + 6]); // fix this plz
+		dprintf(2, "dup [%s] to -> ", smap[i + 6]); // fix this plz
 		map[i] = ft_strdup(smap[i + 6]);
+		*ft_strchr(map[i], '\n') = '\0';
 		i++;
 	}
 	free2d(smap);
