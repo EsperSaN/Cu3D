@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_height_width.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:28:48 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 16:28:49 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 02:25:54 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	find_width(char **data)
 	int	max;
 
 	max = 0;
-	i = 6;
+	i = find_first_mapline(data);
 	s = 0;
 	while (data[i])
 	{
