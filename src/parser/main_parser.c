@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/12 01:51:00 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 02:37:28 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	checklist(t_parser_data *res, char **data)
 		return (free(res), 0);
 	if (count_value_line(data) == -1)
 		return (puterror("count value line"), free_2dwithres(res, data), 0);
+	res->ceil_color = -1;
+	res->floor_color = -1;
 	if (!check_resource(data, res))
 		return (free_2dwithres(res, data), 0);
 	if (!src_checker(res))
