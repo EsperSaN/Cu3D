@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:13 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 23:51:44 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:17:40 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 static void	print_player(int x, int y, char c)
 {
+	char	*str;
+
 	ft_putstr_fd("Player found on ", 1);
 	ft_putstr_fd("( ", 1);
-	ft_putstr_fd(ft_itoa(x), 1);
+	str = ft_itoa(x);
+	ft_putstr_fd(str, 1);
+	free(str);
 	ft_putstr_fd(" , ", 1);
-	ft_putstr_fd(ft_itoa(y), 1);
+	str = ft_itoa(y);
+	ft_putstr_fd(str, 1);
+	free(str);
 	ft_putstr_fd(" )", 1);
 	ft_putstr_fd(" with ", 1);
 	ft_putchar_fd(c, 1);

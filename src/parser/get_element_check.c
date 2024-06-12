@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:10:32 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/12 23:51:10 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:16:30 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,22 @@ static void	print_tex(char *elm, char *tex)
 
 static int	ceil_floor_element(char *type, char *text, t_parser_data *res)
 {
+	char	*str;
+	
 	if (is_same_str(type, "C") && is_numline(text) && res->ceil_color == -1)
 	{
 		get_ceil_floor(text, res, 'c');
-		print_tex(type, ft_itoa(res->ceil_color));
+		str = ft_itoa(res->ceil_color);
+		print_tex(type, str);
+		free(str);
 		return (1);
 	}
 	if (is_same_str(type, "F") && is_numline(text) && res->floor_color == -1)
 	{
 		get_ceil_floor(text, res, 'f');
-		print_tex(type, ft_itoa(res->floor_color));
+		str = ft_itoa(res->floor_color);
+		print_tex(type, str);
+		free(str);
 		return (1);
 	}
 	return (0);
