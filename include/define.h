@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:23:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 12:56:41 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:12:21 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 // DONT CHANGE
 # define X_LINE 0
 # define Y_LINE 1
-# define SUCCESS 1
-# define FAIL 0
 # define PI 3.14123456789098765432123456789876543212345678909876543f
 # define FLOOR '0'
 # define WALL '1'
@@ -39,6 +37,7 @@
 # define MLX_IMG_FAIL  "MLX FAIL TO CREATE IMG"
 # define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
 # define WRG_ARG_NO "Invalid arguments number!"
+# define READ_SIZE 1
 
 enum	e_direction
 {
