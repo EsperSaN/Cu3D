@@ -16,7 +16,6 @@
 // SETTING
 
 # define FIELD_OF_VIEW 66
-
 # define MOVE_SPEED 0.4
 # define ROT_SPEED 2
 
@@ -26,13 +25,6 @@
 # define PI 3.14123456789098765432123456789876543212345678909876543f
 # define FLOOR '0'
 # define WALL '1'
-
-// error msg
-
-// # define WIN_WIDTH     1024
-// # define WIN_HIGHT     768 
-// # define MINI_MAPS_OFFSET 10
-// # define MINI_MAPS_SIZE	  200
 # define MLX_INIT_FAIL "MLX INIT FAIL : EXIT"
 # define MLX_IMG_FAIL  "MLX FAIL TO CREATE IMG"
 # define BAD_DEFINE "I WON'T LET YOU MESS WITH THE SETTING!!!!"
@@ -41,14 +33,6 @@
 
 enum	e_direction
 {
-	N = 0,
-	E,
-	S,
-	W,
-	NE,
-	NW,
-	SE,
-	SW,
 	FORWARD,
 	BACKWARD,
 	LEFT,
@@ -85,13 +69,10 @@ typedef struct s_draw_tex
 
 typedef struct s_texture
 {
-	//get_png_texture to assign this
 	t_texture		*west_texture;
 	t_texture		*east_texture;
 	t_texture		*north_texture;
 	t_texture		*south_texture;
-
-	// get_rgb to assign this
 	unsigned int	floor_color;
 	unsigned int	ceil_color;
 }	t_texture_assets;
@@ -105,7 +86,6 @@ typedef struct s_maps_data
 
 typedef struct s_parser_raw_data
 {
-	// check the file and str not above
 	char	*west_texture;
 	char	*east_texture;
 	char	*north_texture;
@@ -157,11 +137,9 @@ typedef struct s_data
 	mlx_image_t			*img_game;
 	mlx_image_t			*img_maps;
 	t_parser_data		*parser_data;
-	// check file before assign
 	t_texture_assets	*texture;
-	//ff before maps
 	t_maps_data			*maps;
 	t_player_data		*player;
 }	t_data;
-//need to check the define
+
 #endif
