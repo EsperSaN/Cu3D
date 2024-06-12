@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putreport.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:22:18 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:11 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/10 16:29:15 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/10 16:29:16 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-void	putreport(char *msg)
+int	ft_isspace(char c)
 {
-	write(STDOUT_FILENO, "REPORT: ", 8);
-	while (*msg)
-	{
-		write(STDOUT_FILENO, msg, 1);
-		msg++;
-	}
-	write(STDOUT_FILENO, "\n", 1);
-	return ;
+	if (c == '\r' || c == '\n' || c == '\f' )
+		return (1);
+	else if (c == '\v' || c == '\t' || c == ' ' )
+		return (1);
+	return (0);
 }

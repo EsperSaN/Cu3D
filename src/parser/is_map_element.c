@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putreport.c                                        :+:      :+:    :+:   */
+/*   is_map_element.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:22:18 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:11 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/10 16:29:39 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/10 16:29:40 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-void	putreport(char *msg)
+int	is_map_element(char c)
 {
-	write(STDOUT_FILENO, "REPORT: ", 8);
-	while (*msg)
-	{
-		write(STDOUT_FILENO, msg, 1);
-		msg++;
-	}
-	write(STDOUT_FILENO, "\n", 1);
-	return ;
+	if (c == 'S' || c == 'W' || c == 'E' \
+		|| c == 'N' || c == '0' || c == '1' || ft_isspace(c))
+		return (1);
+	return (0);
 }

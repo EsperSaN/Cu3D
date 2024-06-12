@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putreport.c                                        :+:      :+:    :+:   */
+/*   find_first_of.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:22:18 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:11 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/10 16:28:41 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/10 16:28:42 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-void	putreport(char *msg)
+int	find_first_of_space(char *str)
 {
-	write(STDOUT_FILENO, "REPORT: ", 8);
-	while (*msg)
+	int	idx;
+
+	idx = 0;
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		write(STDOUT_FILENO, msg, 1);
-		msg++;
+		if (true == ft_isspace(*str))
+			return (idx);
+		str++;
+		idx++;
 	}
-	write(STDOUT_FILENO, "\n", 1);
-	return ;
+	return (0);
 }

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putreport.c                                        :+:      :+:    :+:   */
+/*   count_value_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:22:18 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:11 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/10 16:28:28 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/10 16:28:29 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-void	putreport(char *msg)
+int	count_value_line(char **data)
 {
-	write(STDOUT_FILENO, "REPORT: ", 8);
-	while (*msg)
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (data[i])
 	{
-		write(STDOUT_FILENO, msg, 1);
-		msg++;
+		if (is_map_line(data[i]) == -1)
+			break ;
+		k += is_map_line(data[i]);
+		i++;
 	}
-	write(STDOUT_FILENO, "\n", 1);
-	return ;
+	if (k != 6)
+		return (-1);
+	return (1);
 }

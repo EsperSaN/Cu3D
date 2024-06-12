@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putreport.c                                        :+:      :+:    :+:   */
+/*   find_last_of.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:22:18 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:11 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/10 16:28:55 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/10 16:28:56 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-void	putreport(char *msg)
+int	find_last_of(char *str, char c)
 {
-	write(STDOUT_FILENO, "REPORT: ", 8);
-	while (*msg)
+	int	len;
+
+	if (!str)
+		return (-1);
+	len = ft_strlen(str);
+	len = len - 1;
+	while (str[len])
 	{
-		write(STDOUT_FILENO, msg, 1);
-		msg++;
+		if (str[len] == c)
+			return (len);
+		len--;
 	}
-	write(STDOUT_FILENO, "\n", 1);
-	return ;
+	return (-1);
 }

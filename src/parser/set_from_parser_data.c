@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_from_parser_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:59:12 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/05 13:59:06 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:03:48 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	is_in_set(char *set, char c)
+static bool	is_in_set(char *set, char c)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ bool	is_in_set(char *set, char c)
 	return (false);
 }
 
-int	find_player_angle(char p)
+static int	find_player_angle(char p)
 {
 	if (p == 'N')
 		return (180);
@@ -36,7 +36,7 @@ int	find_player_angle(char p)
 	return (180);
 }
 
-t_float_point	find_player_pos(char **maps)
+static t_float_point	find_player_pos(char **maps)
 {
 	t_float_point	res;
 
@@ -55,7 +55,7 @@ t_float_point	find_player_pos(char **maps)
 	return (res);
 }
 
-t_player_data	*set_player_data(t_data *data)
+static t_player_data	*set_player_data(t_data *data)
 {
 	t_player_data	*res;
 	int				angle;
@@ -81,14 +81,14 @@ bool	set_from_parser_data(t_data *data)
 	data->maps = set_maps_data(data);
 	if (data->maps == NULL)
 		return (false);
-	putreport("set map done");
+	putreport("prepare map done");
 	data->texture = set_texture_assets(data);
 	if (data->texture == NULL)
 		return (false);
-	putreport("set tex done");
+	putreport("prepare tex done");
 	data->player = set_player_data(data);
 	if (data->player == NULL)
 		return (false);
-	putreport("set play");
+	putreport("prepare player done");
 	return (true);
 }

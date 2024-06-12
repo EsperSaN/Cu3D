@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:25:08 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/07 17:11:48 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:58:12 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	t_data	*d;
 
+	(void)ac;
 	if (ac != 2)
 		return (puterror(WRG_ARG_NO), 1);
 	d = ft_calloc(sizeof(t_data), 1);

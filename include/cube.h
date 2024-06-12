@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 22:05:54 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/02 17:42:29 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 12:32:11 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
+# include <string.h>
+# include <errno.h>
 # include "MLX42.h"
 # include "libft.h"
 # include "get_next_line.h"

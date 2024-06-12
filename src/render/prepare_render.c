@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:55:02 by wave              #+#    #+#             */
-/*   Updated: 2024/06/07 15:04:36 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:57:21 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-bool	init_window(t_data *data)
+static bool	init_window(t_data *data)
 {
 	data->mlx = mlx_init(1024, 768, "cub3d", false);
 	if (data->mlx == NULL)
@@ -33,5 +33,6 @@ bool	prepare_render(t_data *data)
 {
 	if (init_window(data) == false)
 		return (false);
+	putreport("init window done");
 	return (true);
 }

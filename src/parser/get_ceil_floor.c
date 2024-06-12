@@ -1,79 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker3.c                                         :+:      :+:    :+:   */
+/*   get_ceil_floor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 21:41:03 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/02 21:41:03 by tpoungla         ###   ########.fr       */
+/*   Created: 2024/06/10 16:29:21 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/12 22:15:42 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-int	is_map_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!is_map_element(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	count_value_line(char **data)
-{
-	int	i;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while (data[i])
-	{
-		if (!is_map_line(data[i]))
-			k++;
-		if (is_map_line(data[i]) && k != 6)
-			return (-1);
-		i++;
-	}
-	if (k > 6)
-		return (-1);
-	return (k);
-}
-
-int	find_height(char **data)
-{
-	int	i;
-
-	i = 0;
-	while (data[i])
-		i++;
-	return (i - 6);
-}
-
-int	find_width(char **data)
-{
-	int	i;
-	int	s;
-	int	max;
-
-	max = 0;
-	i = 6;
-	s = 0;
-	while (data[i])
-	{
-		s = ft_strlen(data[i]);
-		if (s > max)
-			max = s;
-		i++;
-	}
-	return (max);
-}
 
 int	get_ceil_floor(char *str, t_parser_data *res, char mode)
 {
@@ -96,9 +33,9 @@ int	get_ceil_floor(char *str, t_parser_data *res, char mode)
 	while (num[++i])
 		color[i] = ft_atoi(num[i]);
 	rgb = get_rgba(color[0], color[1], color[2], 255);
-	if (mode == 'c' && res->ceil_color == 0)
+	if (mode == 'c' && res->ceil_color == -1)
 		res->ceil_color = rgb;
-	else if (mode == 'f' && res->floor_color == 0)
+	else if (mode == 'f' && res->floor_color == -1)
 		res->floor_color = rgb;
 	free2d(num);
 	return (1);

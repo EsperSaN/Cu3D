@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_file_readable.c                                 :+:      :+:    :+:   */
+/*   is_numline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:28:03 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 23:05:17 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/10 16:29:57 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/06/12 22:20:13 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-// just to check if the file canbe open and read
-
-bool	is_file_readable(char *file_name)
+int	is_numline(char *str)
 {
-	int	fd;
+	int			i;
+	int			co;
 
-	fd = open(file_name, O_RDONLY);
-	ft_putstr_fd("open ", 1);
-	ft_putstr_fd(file_name, 1);
-	ft_putstr_fd(" : ", 1);
-	if (fd == -1)
+	co = 0;
+	i = 0;
+	while (str[i])
 	{
-		perror("");
-		return (false);
+		if (str[i] == ',')
+			co++;
+		else if ((str[i] > '9' || str[i] < '0') && !ft_isspace(str[i]))
+			return (0);
+		i++;
 	}
-	if (fd > 0)
-		close(fd);
-	ft_putstr_fd("OK!!\n", 1);
-	return (true);
+	if (co > 2)
+		return (0);
+	return (1);
 }

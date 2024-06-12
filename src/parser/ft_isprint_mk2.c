@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putreport.c                                        :+:      :+:    :+:   */
+/*   ft_isprint_mk2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 01:22:18 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:11 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/06/09 12:21:42 by wave              #+#    #+#             */
+/*   Updated: 2024/06/09 12:22:06 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "parser.h"
 
-void	putreport(char *msg)
+int	ft_isprint_mk2(int c)
 {
-	write(STDOUT_FILENO, "REPORT: ", 8);
-	while (*msg)
-	{
-		write(STDOUT_FILENO, msg, 1);
-		msg++;
-	}
-	write(STDOUT_FILENO, "\n", 1);
-	return ;
+	if ((c >= ' ' && c <= '~') || ft_isspace(c))
+		return (1);
+	else
+		return (0);
 }
