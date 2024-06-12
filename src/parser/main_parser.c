@@ -6,7 +6,7 @@
 /*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/12 02:37:28 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 12:24:06 by wave             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	checklist(t_parser_data *res, char **data)
 	res->floor_color = -1;
 	if (!check_resource(data, res))
 		return (free_2dwithres(res, data), 0);
+	putreport("ELEMENT GET DONE!!");
 	if (!src_checker(res))
 		return (free_2dwithres(res, data), 0);
 	dprintf(2, "check list done\n");
