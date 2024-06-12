@@ -26,7 +26,8 @@ static int	ceil_floor_element(char *type, char *text, t_parser_data *res)
 
 	if (is_same_str(type, "C") && is_numline(text) && res->ceil_color == -1)
 	{
-		get_ceil_floor(text, res, 'c');
+		if (!get_ceil_floor(text, res, 'c'))
+			return (0);
 		str = ft_itoa(res->ceil_color);
 		print_tex(type, str);
 		free(str);
@@ -34,7 +35,8 @@ static int	ceil_floor_element(char *type, char *text, t_parser_data *res)
 	}
 	if (is_same_str(type, "F") && is_numline(text) && res->floor_color == -1)
 	{
-		get_ceil_floor(text, res, 'f');
+		if (!get_ceil_floor(text, res, 'f'))
+			return (0);
 		str = ft_itoa(res->floor_color);
 		print_tex(type, str);
 		free(str);

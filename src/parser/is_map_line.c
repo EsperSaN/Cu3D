@@ -38,7 +38,7 @@ int	is_all_mapline(char **data)
 	i = 0;
 	while (data[i])
 	{
-		if (1 == is_map_line(data[i]))
+		if (data[i] && 1 == is_map_line(data[i]))
 			return (ft_putstr_fd(data[i], 1) \
 				, ft_putstr_fd("<<< not good\n", 1), 0);
 		ft_putstr_fd(data[i], 1);
