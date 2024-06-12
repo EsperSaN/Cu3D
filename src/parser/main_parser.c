@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/12 12:24:06 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 18:30:01 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	checklist(t_parser_data *res, char **data)
 	res->floor_color = -1;
 	if (!check_resource(data, res))
 		return (free_2dwithres(res, data), 0);
-	putreport("ELEMENT GET DONE!!");
+	putreport("get all element done");
 	if (!src_checker(res))
 		return (free_2dwithres(res, data), 0);
-	dprintf(2, "check list done\n");
+	putreport("check element done");
 	return (1);
 }
 
@@ -47,9 +47,11 @@ t_parser_data	*main_parser(char *file_name)
 		return (NULL);
 	res->height = find_height(data);
 	res->width = find_width(data);
+	printf("map dimention width [%d] height [%d]\n", res->width, res->height);
 	if (res->height == 0 || res->width == 0)
 		return (free_2dwithres(res, data), NULL);
-	res->maps_data = init_map(data, res->width, res->height);
+	res->maps_data = init_map(data, res->height);
+	
 	if (!is_all_mapline(res->maps_data) || \
 		!scan4player(res->maps_data) || \
 		!border_checker(res, res->maps_data))

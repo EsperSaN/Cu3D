@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:29:32 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/11 14:41:13 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 14:40:54 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	**init_map(char **smap, int width, int height)
+char	**init_map(char **smap, int height)
 {
 	char	**map;
 	int		i;
@@ -20,7 +20,6 @@ char	**init_map(char **smap, int width, int height)
 
 	i = 0;
 	f = find_first_mapline(smap);
-	(void)width;
 	map = (char **)ft_calloc(sizeof(char *), (height + 1));
 	map[height] = NULL;
 	while (i < height)
