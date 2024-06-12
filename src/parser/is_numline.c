@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_numline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:29:57 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 16:29:58 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:20:13 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	is_numline(char *str)
 
 	co = 0;
 	i = 0;
-	printf("try numline <%s>\n", str);
 	while (str[i])
 	{
 		if (str[i] == ',')
@@ -30,6 +29,5 @@ int	is_numline(char *str)
 	}
 	if (co > 2)
 		return (0);
-	dprintf(2, "[%s] << pass numline \n", str);
 	return (1);
 }

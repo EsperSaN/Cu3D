@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:01 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:15:33 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	checklist(t_parser_data *res, char **data)
 	if (data == NULL)
 		return (free(res), 0);
 	if (count_value_line(data) == -1)
-		return (puterror("count value line"), free_2dwithres(res, data), 0);
+		return (puterror("element not equal to six"), \
+				free_2dwithres(res, data), 0);
 	res->ceil_color = -1;
 	res->floor_color = -1;
 	if (!check_resource(data, res))
@@ -47,11 +48,9 @@ t_parser_data	*main_parser(char *file_name)
 		return (NULL);
 	res->height = find_height(data);
 	res->width = find_width(data);
-	printf("map dimention width [%d] height [%d]\n", res->width, res->height);
 	if (res->height == 0 || res->width == 0)
 		return (free_2dwithres(res, data), NULL);
 	res->maps_data = init_map(data, res->height);
-	
 	if (!is_all_mapline(res->maps_data) || \
 		!scan4player(res->maps_data) || \
 		!border_checker(res, res->maps_data))

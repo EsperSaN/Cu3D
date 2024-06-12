@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   scan4player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:13 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/11 00:58:37 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:51:44 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+static void	print_player(int x, int y, char c)
+{
+	ft_putstr_fd("Player found on ", 1);
+	ft_putstr_fd("( ", 1);
+	ft_putstr_fd(ft_itoa(x), 1);
+	ft_putstr_fd(" , ", 1);
+	ft_putstr_fd(ft_itoa(y), 1);
+	ft_putstr_fd(" )", 1);
+	ft_putstr_fd(" with ", 1);
+	ft_putchar_fd(c, 1);
+	ft_putstr_fd(" direction\n", 1);
+}
 
 int	scan4player(char **map)
 {
@@ -28,7 +41,7 @@ int	scan4player(char **map)
 			if (map[i][j] == 'W' || map[i][j] == 'N' || \
 					map[i][j] == 'E' || map[i][j] == 'S')
 			{
-				dprintf(2, "found!!! in %c [%d][%d]\n", map[i][j], i, j);
+				print_player(j, i, map[i][j]);
 				co++;
 			}
 			j++;
@@ -36,6 +49,6 @@ int	scan4player(char **map)
 		i++;
 	}
 	if (co > 1 || co == 0)
-		return (0);
+		return (ft_putstr_fd("Mutiple or none player found!!!\n", 1), 0);
 	return (1);
 }

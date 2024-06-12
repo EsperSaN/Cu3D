@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wave <wave@student.42.fr>                  +#+  +:+       +#+         #
+#    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 22:39:14 by pruenrua          #+#    #+#              #
-#    Updated: 2024/06/12 11:31:13 by wave             ###   ########.fr        #
+#    Updated: 2024/06/12 23:52:54 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,6 @@ PARSER_FILE = \
 		is_map_line.c \
 		is_numline.c \
 		main_parser.c \
-		print.c \
 		read_loop.c \
 		scan4player.c \
 		set_from_parser_data.c \

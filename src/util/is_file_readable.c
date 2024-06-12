@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 01:28:03 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 14:26:57 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:05:17 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ bool	is_file_readable(char *file_name)
 	int	fd;
 
 	fd = open(file_name, O_RDONLY);
-	printf("openning the [%s] file : ", file_name);
+	ft_putstr_fd("open ", 1);
+	ft_putstr_fd(file_name, 1);
+	ft_putstr_fd(" : ", 1);
 	if (fd == -1)
 	{
-		perror(file_name);
+		perror("");
 		return (false);
 	}
 	if (fd > 0)
 		close(fd);
-	printf("OK\n");
+	ft_putstr_fd("OK!!\n", 1);
 	return (true);
 }

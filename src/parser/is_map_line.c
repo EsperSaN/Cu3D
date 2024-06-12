@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:29:49 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/10 16:29:51 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:50:23 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ int	is_all_mapline(char **data)
 {
 	int	i;
 
+	ft_putstr_fd("check maping..\n", 1);
 	i = 0;
 	while (data[i])
 	{
 		if (1 == is_map_line(data[i]))
-			return (0);
+			return (ft_putstr_fd(data[i], 1) \
+				, ft_putstr_fd("<<< not good\n", 1), 0);
+		ft_putstr_fd(data[i], 1);
+		ft_putchar_fd('\n', 1);
 		i++;
 	}
+	ft_putstr_fd("checkmaps done!!!\n", 1);
 	return (1);
 }

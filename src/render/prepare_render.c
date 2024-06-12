@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:55:02 by wave              #+#    #+#             */
-/*   Updated: 2024/06/07 15:04:36 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:00:32 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ bool	prepare_render(t_data *data)
 {
 	if (init_window(data) == false)
 		return (false);
+	putreport("init window done");
 	return (true);
 }

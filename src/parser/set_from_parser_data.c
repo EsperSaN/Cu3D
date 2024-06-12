@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_from_parser_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:59:12 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/05 13:59:06 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:36:02 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ bool	set_from_parser_data(t_data *data)
 	data->maps = set_maps_data(data);
 	if (data->maps == NULL)
 		return (false);
-	putreport("set map done");
+	putreport("prepare map done");
 	data->texture = set_texture_assets(data);
 	if (data->texture == NULL)
 		return (false);
-	putreport("set tex done");
+	putreport("prepare tex done");
 	data->player = set_player_data(data);
 	if (data->player == NULL)
 		return (false);
-	putreport("set play");
+	putreport("prepare player done");
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_right_extension.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 01:26:29 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/05 15:54:14 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:09:30 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 bool	is_right_extension(char *file_name, char *extension)
 {
 	if (!is_same_str(extension, ft_strrchr(file_name, '.')))
+	{
+		ft_putstr_fd(file_name, 1);
+		ft_putstr_fd(" : not right extention!!!\n", 1);
 		return (false);
+	}
 	return (true);
 }

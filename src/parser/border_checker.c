@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   border_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:28:12 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 01:55:05 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 23:53:39 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	border_checker(t_parser_data *data, char **map)
 						|| !is_map_not_sp(map[i + 1][j]) \
 							|| !is_map_not_sp(map[i - 1][j]) \
 								|| !is_map_not_sp(map[i][j + 1]))
-					return (free2d(visited), 0);
+					return (ft_putstr_fd("player map are leaks or \
+					not surrounding with wall!!!\n", 1), free2d(visited), 0);
 			j++;
 		}
 		i++;
