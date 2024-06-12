@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:30:06 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/11 00:24:20 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:07:49 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*read_loop(int read_co, char *chdata, int fd, char *buffer)
 	while (read_co > 0)
 	{
 		tmp = chdata;
-		read_co = read(fd, buffer, BUFFER_SIZE);
+		read_co = read(fd, buffer, READ_SIZE);
 		buffer[read_co] = '\0';
 		chdata = ft_strjoin(tmp, buffer);
 		if (!chdata)
