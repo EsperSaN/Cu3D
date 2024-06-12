@@ -6,13 +6,13 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:55:02 by wave              #+#    #+#             */
-/*   Updated: 2024/06/12 23:00:32 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:57:21 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-bool	init_window(t_data *data)
+static bool	init_window(t_data *data)
 {
 	data->mlx = mlx_init(1024, 768, "cub3d", false);
 	if (data->mlx == NULL)

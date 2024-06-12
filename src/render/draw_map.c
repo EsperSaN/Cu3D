@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:24:31 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 01:48:55 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 23:58:44 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	void	draw_player(mlx_image_t *image, t_int_point pos, int scale \
 	draw_line(image, pos, dir, get_rgba(0, 255, 255, 255));
 }
 
-void	put_maps(t_dm m, mlx_image_t *image, t_maps_data *maps_data)
+static void	put_maps(t_dm m, mlx_image_t *image, t_maps_data *maps_data)
 {
 	while (m.cur_p.x < 20 && m.pos.y >= 0)
 	{

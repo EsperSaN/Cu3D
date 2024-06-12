@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:51:10 by wave              #+#    #+#             */
-/*   Updated: 2024/06/04 11:17:05 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/12 23:58:05 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	player_rotate(t_data *d, int dir)
+static void	player_rotate(t_data *d, int dir)
 {
 	if (dir == LEFT)
 	{
@@ -26,7 +26,7 @@ void	player_rotate(t_data *d, int dir)
 	}
 }
 
-void	player_sidemove(t_data *d, int dir)
+static void	player_sidemove(t_data *d, int dir)
 {
 	t_float_point	mdr;
 	char			**maps;
@@ -50,7 +50,7 @@ void	player_sidemove(t_data *d, int dir)
 	}
 }
 
-void	player_move(t_data *d, int dir)
+static void	player_move(t_data *d, int dir)
 {
 	t_float_point	mdr;
 	char			**maps;
