@@ -14,7 +14,7 @@ NAME = cub3d
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror -Wunreachable-code
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = src
 INC_DIR = ./include/
@@ -75,7 +75,6 @@ UTIL_FILE = puterror.c \
 			get_png_texture.c \
 			ft_cos.c \
 			ft_sin.c \
-			get_direction.c \
 			rotate_vector.c
 UTIL_DIR = $(SRC_DIR)/util/
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILE))
