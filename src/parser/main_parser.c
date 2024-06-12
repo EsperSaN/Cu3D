@@ -6,13 +6,13 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:35:07 by wave              #+#    #+#             */
-/*   Updated: 2024/06/12 23:15:33 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:02:13 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	checklist(t_parser_data *res, char **data)
+static int	checklist(t_parser_data *res, char **data)
 {
 	if (data == NULL)
 		return (free(res), 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_no_cut.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:54:09 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 02:25:19 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/13 00:01:40 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	count_on_me(char const *s, char c)
 	return (word);
 }
 
-void	assign_res(char **resplit, char const *s, char c)
+static void	assign_res(char **resplit, char const *s, char c)
 {
 	size_t	i;
 	size_t	big_i;

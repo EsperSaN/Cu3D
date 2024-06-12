@@ -6,13 +6,13 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 21:59:12 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/12 22:36:02 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:03:48 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	is_in_set(char *set, char c)
+static bool	is_in_set(char *set, char c)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ bool	is_in_set(char *set, char c)
 	return (false);
 }
 
-int	find_player_angle(char p)
+static int	find_player_angle(char p)
 {
 	if (p == 'N')
 		return (180);
@@ -36,7 +36,7 @@ int	find_player_angle(char p)
 	return (180);
 }
 
-t_float_point	find_player_pos(char **maps)
+static t_float_point	find_player_pos(char **maps)
 {
 	t_float_point	res;
 
@@ -55,7 +55,7 @@ t_float_point	find_player_pos(char **maps)
 	return (res);
 }
 
-t_player_data	*set_player_data(t_data *data)
+static t_player_data	*set_player_data(t_data *data)
 {
 	t_player_data	*res;
 	int				angle;

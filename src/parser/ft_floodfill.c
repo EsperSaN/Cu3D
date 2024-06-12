@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_floodfill.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:42:01 by tpoungla          #+#    #+#             */
-/*   Updated: 2024/06/10 16:02:33 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:01:25 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	**create_visitmap(int w, int h)
+static char	**create_visitmap(int w, int h)
 {
 	int		i;
 	int		j;
@@ -36,7 +36,7 @@ char	**create_visitmap(int w, int h)
 	return (visited);
 }
 
-void	ft_floodfill_util(t_parser_data *data, char **visited, int x, int y)
+static void	ft_floodfill_util(t_parser_data *data, char **visited, int x, int y)
 {
 	if (y > -1 && y < data->width && x > -1 && x < data->height \
 		&& data->maps_data[x][y] && visited[x][y] == '0' \
@@ -50,7 +50,7 @@ void	ft_floodfill_util(t_parser_data *data, char **visited, int x, int y)
 	}
 }
 
-t_int_point	get_player_pos4(char **map)
+static t_int_point	get_player_pos4(char **map)
 {
 	t_int_point	pos;
 	int			i;

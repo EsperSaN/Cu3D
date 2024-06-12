@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_resource.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wave <wave@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:28:22 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/06/12 02:46:52 by wave             ###   ########.fr       */
+/*   Updated: 2024/06/13 00:00:47 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	get_resource(char **map, t_parser_data *res, int *elm_count)
+static void	get_resource(char **map, t_parser_data *res, int *elm_count)
 {
 	int		i;
 	char	*element[3];
